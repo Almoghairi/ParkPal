@@ -1,0 +1,10 @@
+{
+  "dependencies": {
+    "express": "^5.1.0",
+    "framer-motion": "^12.6.3",
+    "lottie-react": "^2.4.1",
+    "react-awesome-reveal": "^4.3.1",
+    "react-simple-typewriter": "^5.0.1",
+    "typewriter-effect": "^2.21.0"
+  }
+}
