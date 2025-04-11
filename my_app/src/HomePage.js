@@ -5,6 +5,7 @@ import Col from 'react-bootstrap/Col';
 import './App.css';
 import Coaster from './RollerCoaster';
 import Typewriter from 'typewriter-effect';
+import { motion } from 'framer-motion';
 
 
 function Home() {
@@ -15,7 +16,11 @@ function Home() {
                 <Row className="align-items-center">
                     <Col md={6}>
                         <Row className='mt-5 mb-4 fs-1 fw-bold'> 
-                            <p className='actor-font'style={{ color: 'Black', fontSize: '2rem' }}>
+
+                            <motion.p className='actor-font'style={{ color: 'Black', fontSize: '2rem' }} initial={{ opacity: 0, y: 20 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ duration: 1.2, ease: 'easeIn' }}>
+                                
                                 <Typewriter
                                     options={{
                                     strings: ['Welcome to ParkPal!', 'Your adventure starts here!'],
@@ -25,14 +30,28 @@ function Home() {
                                     deleteSpeed: 50,
                                     }}
                                 />
-                            </p>
+                            </motion.p>
+
                         </Row>
-                        <Row><p className='times-font'>{description}</p></Row>
+                        <Row><motion.p
+                            className='times-font fs-6'
+                            style={{ textAlign: 'justify' }}
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 1.2, ease: 'easeOut' }}
+                        >
+                            {description}
+                        </motion.p></Row>
                     </Col>
 
                 {/* Right column: image */}
                     <Col md={6}>
+                        <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 1.2, ease: 'easeIn' }}>
                         <Coaster/>
+                        </motion.div>
                     </Col>
                 </Row>
             </Container>
