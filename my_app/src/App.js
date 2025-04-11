@@ -16,7 +16,7 @@ function App() {
         
         <Navbar bg="light" data-bs-theme="light" expand="lg" collapseOnSelect>
           <Container>
-            <Navbar.Brand href="#home">ParkPal.</Navbar.Brand>
+            <Navbar.Brand>ParkPal.</Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav"  />
             <Navbar.Collapse id="basic-navbar-nav">
               <Nav className="me-auto">
