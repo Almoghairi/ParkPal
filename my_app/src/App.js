@@ -14,7 +14,7 @@ function App() {
     <div className="App">
       <div className='NavBar mb-5'>
         
-        <Navbar bg="light" data-bs-theme="light" expand="lg" collapseOnSelect>
+        <Navbar fixed ='top' bg="light" data-bs-theme="light" expand="lg" collapseOnSelect>
           <Container>
             <Navbar.Brand>ParkPal.</Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav"  />
