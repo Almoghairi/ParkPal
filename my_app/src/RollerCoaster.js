@@ -1,34 +1,36 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useMemo } from 'react';
 import * as THREE from 'three';
-import { Canvas, useFrame } from '@react-three/fiber';
-import { OrbitControls } from '@react-three/drei';
+import { Canvas, useFrame, useLoader } from '@react-three/fiber';
+import { OrbitControls ,  Reflector } from '@react-three/drei';
+import { useGLTF } from '@react-three/drei';
 
 export default function Coaster() {
   return (
     <div style={{ height: '100vh' }}>
-      <Canvas camera={{ position: [0, 5, 25], fov: 50 }}>
-        <ambientLight intensity={0.5} />
-        <directionalLight position={[10, 10, 5]} intensity={0.5} />
+      <Canvas shadows camera={{ position: [4, 4, 32], fov: 125 }}>
+        <ambientLight intensity={0.8} />
+        <directionalLight position={[10, 20, 10]} intensity={1.2} />
         <Track />
         <AnimatedCart />
+        <GrassField />
         <Ground />
-        <OrbitControls />
       </Canvas>
     </div>
   );
 }
 
-// 🎢 Track made from smooth curve
+// Track 
 function Track() {
-  const liftY = 1.5;
-  const radius = 10;
-  const segments = 30;
-  const offset = 0.3;
-  const heightWave = 2;
+  const liftY = 4; // Raise the whole track up by this amount
+  
+
+  const radius = 10;      // Size of the circular track
+  const segments = 30;    // Number of points in the loop
+  const heightWave = 2;   // Vertical variation
 
   const points = [];
   for (let i = 0; i <= segments; i++) {
-    const angle = (i / segments) * Math.PI * 2;
+    const angle = (i / segments) * Math.PI * 2; // full circle
     const x = Math.cos(angle) * radius;
     const z = Math.sin(angle) * radius;
     const y = liftY + Math.sin(angle * 2) * heightWave;
@@ -36,50 +38,25 @@ function Track() {
   }
 
   const curve = new THREE.CatmullRomCurve3(points, true);
-  const frames = curve.computeFrenetFrames(200, true);
-
-  const leftPoints = [];
-  const rightPoints = [];
-
-  for (let i = 0; i <= 200; i++) {
-    const t = i / 200;
-    const center = curve.getPointAt(t);
-    const tangent = frames.tangents[i];
-    
-    // Restrict tangent to horizontal plane for stable side offset
-    const flatTangent = tangent.clone();
-    flatTangent.y = 0;
-    flatTangent.normalize();
-
-    // Perpendicular vector in horizontal plane (cross up x tangent)
-    const up = new THREE.Vector3(0, 1, 0);
-    const side = new THREE.Vector3().crossVectors(up, flatTangent).normalize();
-
-    const left = center.clone().add(side.clone().multiplyScalar(-offset));
-    const right = center.clone().add(side.clone().multiplyScalar(offset));
-
-    leftPoints.push(left);
-    rightPoints.push(right);
-  }
-
-  const leftCurve = new THREE.CatmullRomCurve3(leftPoints);
-  const rightCurve = new THREE.CatmullRomCurve3(rightPoints);
+  const frames = curve.computeFrenetFrames(200, true); // compute directions at every step
+  const offset = 0.3; // distance between the left and right rails
 
   return (
     <>
       {/* === Left Rail === */}
-      <mesh>
-        <tubeGeometry args={[leftCurve, 200, 0.05, 8, false]} />
+      <mesh position={[-offset, 0, 0]}>
+        <tubeGeometry args={[curve, 100, 0.05, 8, false]} />
         <meshStandardMaterial color="gray" />
       </mesh>
 
       {/* === Right Rail === */}
-      <mesh>
-        <tubeGeometry args={[rightCurve, 200, 0.05, 8, false]} />
+      <mesh position={[offset, 0, 0]}>
+        <tubeGeometry args={[curve, 100, 0.05, 8, false]} />
         <meshStandardMaterial color="gray" />
       </mesh>
 
-      {/* === Bottom Support Bars === */}
+      {/* === Segmented Bottom Support Bar === */}
+      {/* === Segmented Bottom Support Bars (fully follow curve) === */}
       {Array.from({ length: 40 }, (_, i) => {
         const t1 = i / 40;
         const t2 = (i + 1) / 40;
@@ -96,83 +73,156 @@ function Track() {
         );
       })}
 
-      {/* === Cross Connectors === */}
+      {/* === Cross Connectors Between Rails (fully follow curve) === */}
       {Array.from({ length: 20 }, (_, i) => {
-        const t = i / 20;
-        const center = curve.getPointAt(t);
-        const tangent = curve.getTangentAt(t).normalize();
-        const up = new THREE.Vector3(0, 1, 0);
-        const cross = new THREE.Vector3().crossVectors(up, tangent).normalize();
+  const t = i / 20;
+  const center = curve.getPointAt(t);
+  const tangent = curve.getTangentAt(t).normalize();
 
-        const left = center.clone().add(cross.clone().multiplyScalar(-offset));
-        const right = center.clone().add(cross.clone().multiplyScalar(offset));
-        const dip = center.clone().add(new THREE.Vector3(0, -0.15, 0));
+  // Create a side vector (perpendicular to tangent)
+  const up = new THREE.Vector3(0, 1, 0);
+  const cross = new THREE.Vector3().crossVectors(up, tangent).normalize();
 
-        const curvedConnector = new THREE.CatmullRomCurve3([left, dip, right]);
-        const connectorTube = new THREE.TubeGeometry(curvedConnector, 10, 0.02, 6, false);
+  const left = center.clone().add(cross.clone().multiplyScalar(-offset));
+  const right = center.clone().add(cross.clone().multiplyScalar(offset));
+  const dip = center.clone().add(new THREE.Vector3(0, -0.15, 0));
+
+  const curvedConnector = new THREE.CatmullRomCurve3([left, dip, right]);
+  const connectorTube = new THREE.TubeGeometry(curvedConnector, 10, 0.02, 6, false);
+
+  return (
+    <mesh castShadow key={`cross-${i}`} geometry={connectorTube}>
+      <meshStandardMaterial color="gray" />
+    </mesh>
+  );
+  
+})
+}
+      {/* === Vertical Support Pillars === */}
+      {Array.from({ length: 30 }, (_, i) => {
+        const t = i / 30;
+        const point = curve.getPointAt(t);
+        const groundY = 0;
+
+        const height = point.y - groundY;
+        const position = new THREE.Vector3(point.x, groundY + height / 2, point.z);
 
         return (
-          <mesh key={`cross-${i}`} geometry={connectorTube}>
+          <mesh key={`pillar-${i}`} position={position}>
+            <cylinderGeometry args={[0.05, 0.05, height, 6]} />
             <meshStandardMaterial color="gray" />
           </mesh>
         );
       })}
+
+
     </>
   );
 }
 
-
 // 🚗 Cart moving along the track
+
 function AnimatedCart() {
   const cartRef = useRef();
-  const curveRef = useRef(
-    new THREE.CatmullRomCurve3([
-      new THREE.Vector3(0, 1, 0),
-      new THREE.Vector3(5, 3, -5),
-      new THREE.Vector3(10, 1, -10),
-      new THREE.Vector3(15, 4, -15),
-    ])
-  );
+  const t = useRef(1);
 
-  let t = useRef(1);
+  const liftY = 4;
+  const radius = 10;
+  const segments = 30;
+  const heightWave = 2;
 
-  useFrame(() => {
-    if (cartRef.current) {
-      t.current -= 0.005;
-      if (t.current < 0) t.current = 1;
-
-      const pos = curveRef.current.getPointAt(t.current);
-      const tangent = curveRef.current.getTangentAt(t.current).normalize();
-
-      cartRef.current.position.copy(pos);
-
-      const axis = new THREE.Vector3(0, 1, 0);
-      const up = new THREE.Vector3(0, 1, 0);
-      const quaternion = new THREE.Quaternion().setFromUnitVectors(
-        up,
-        tangent
-      );
-      cartRef.current.quaternion.copy(quaternion);
-      cartRef.current.position.y +=0.15;
+  const points = useMemo(() => {
+    const arr = [];
+    for (let i = 0; i <= segments; i++) {
+      const angle = (i / segments) * Math.PI * 2;
+      const x = Math.cos(angle) * radius;
+      const z = Math.sin(angle) * radius;
+      const y = liftY + Math.sin(angle * 2) * heightWave;
+      arr.push(new THREE.Vector3(x, y, z));
     }
-  });
+    return arr;
+  }, []);
 
-  return (
-    <mesh ref={cartRef}>
-      <cylinderGeometry args={[0.1, 0.1, 1, 32]} />
-      <meshStandardMaterial color="red" />
-    </mesh>
-  );
+  const curve = useMemo(() => new THREE.CatmullRomCurve3(points, true), [points]);
+  const { scene } = useGLTF('/models/roller_coaster_cart.glb');
+// ✅ points to public/models
+
+const frames = useMemo(() => curve.computeFrenetFrames(1000, true), [curve]);
+
+useFrame(() => {
+  if (!cartRef.current) return;
+
+  t.current = (t.current + 0.005) % 1;
+
+  const pos = curve.getPointAt(t.current);
+  const index = Math.floor(t.current * (frames.tangents.length - 1));
+  const tangent = frames.tangents[index];
+  const normal = frames.normals[index];
+  const binormal = frames.binormals[index];
+
+  const matrix = new THREE.Matrix4();
+  const basis = new THREE.Matrix4().makeBasis(binormal, normal, tangent); // X=binormal, Y=normal, Z=tangent
+  matrix.makeTranslation(pos.x, pos.y + 0.15, pos.z);
+  matrix.multiply(basis);
+
+  cartRef.current.matrixAutoUpdate = false;
+  cartRef.current.matrix.copy(matrix);
+});
+
+  return <group ref={cartRef}>
+  <primitive
+    object={scene}
+    scale={1}
+    position={[0, 0, 0]}
+  rotation={[0,0,Math.PI/2]}
+  />
+</group>
 }
+
 
 // 🌱 Ground plane
 function Ground() {
+  
+
   return (
-    <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, -0.1, 0]}>
-      <planeGeometry args={[25, 25]} />
-      <meshStandardMaterial color="lightgreen" />
-    </mesh>
+    <>
+      
+        {(Material, props) => (
+          <Material
+            color="white"
+            metalness={0.3}
+            roughness={0.2}
+            {...props}
+          />
+        )}
+    </>
   );
+}
+function GrassField() {
+  const { scene } = useGLTF('/models/grass2.glb');
+
+  const countX = 5; // tiles across X axis
+  const countZ = 5; // tiles across Z axis
+  const spacing = 5; // distance between grass patches
+
+  const tiles = [];
+
+  for (let x = -countX / 2; x < countX / 2; x++) {
+    for (let z = -countZ / 2; z < countZ / 2; z++) {
+      tiles.push(
+        <primitive
+          key={`tile-${x}-${z}`}
+          object={scene.clone()}
+          scale={[8,8,8]} // size
+          position={[x * spacing + 5, 0, z * spacing]} // controlling the position
+          receiveShadow
+          castShadow
+        />
+      );
+    }
+  }
+
+  return <>{tiles}</>; 
 }
 
   
