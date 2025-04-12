@@ -17,7 +17,7 @@ function Home() {
                     <Col md={6}>
                         <Row className='mt-5 mb-4 fs-1 fw-bold'> 
 
-                            <motion.p className='actor-font'style={{ color: 'Black', fontSize: '2rem' }} initial={{ opacity: 0, y: 20 }}
+                            <motion.p className='actor-font'style={{ color: 'Black', fontSize: '2rem' }} initial={{ opacity: 0, y: 0 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ duration: 1.2, ease: 'easeIn' }}>
                                 
@@ -47,7 +47,7 @@ function Home() {
                 {/* Right column: image */}
                     <Col md={6}>
                         <motion.div
-                        initial={{ opacity: 0, y: 20 }}
+                        initial={{ opacity: 0, y: 0 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 1.2, ease: 'easeIn' }}>
                         <Coaster/>
