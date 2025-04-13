@@ -43,7 +43,7 @@ function App() {
         </Container>
       </div>
       <div id="map">
-        <Container className='vh-100'>
+        <Container className='vh-100 ' style={{paddingTop: '120px'}}>
           <Map/>
         </Container>
       </div>

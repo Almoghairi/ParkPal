@@ -11,8 +11,8 @@ function Map() {
   );
 
   const gameImage = ['/pictures/Unknown-4', '/pictures/Unknown-5'];
-  const posX = ['500px', '200px'];
-  const posY = ['100px', '150px'];
+  const posX = ['50%', '20%']; // x-axis for cards
+  const posY = ['100px', '150px']; // y-axis for cards
   const gameTitle = ['Game 1', 'Game 2'];
   const gameDiscription = [
     'This game is about adventure and fun!',
@@ -22,9 +22,15 @@ function Map() {
   const [activeIndex, setActiveIndex] = useState(null); // null = nothing selected
 
   return (
-    <Container className="vh-100 position-relative">
+    <Container  className="vh-100 position-relative">
       {/* Map background */}
-      <img src={map} width={1000} alt="Map" />
+      <img src={map} alt="Map"
+          style={{ // important for screen sizes
+            width: '100%',
+            height: 'auto',
+            maxWidth: '1000px',
+            display: 'block',
+          }} />
 
       {/* Map Pointers -> location marks*/}
       {posX.map((left, index) => (
