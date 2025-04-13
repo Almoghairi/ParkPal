@@ -1,4 +1,5 @@
 import logo from './logo.svg';
+import ForgottenAsylumReviews from './ForgottenAsylumReviews';
 import './App.css';
 import { BrowserRouter as Router , Route , Routes } from 'react-router';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -8,47 +9,58 @@ import Navbar from 'react-bootstrap/Navbar';
 import Home from './HomePage';
 import Map from './MapViewer'
 import ImgMediaCard from './Card';
+import { useState } from 'react';
 function App() {
-  return (
-
-    
-    <div className="App">
-      <div className='NavBar mb-5'>
         
-        <Navbar fixed ='top' bg="light" data-bs-theme="light" expand="lg" collapseOnSelect>
+const [activeTab, setActiveTab] = useState('home');
+
+const renderContent = () => {
+  switch (activeTab) {
+    case 'home':
+      return <Home/>;
+    case 'ticket':
+      return <div> buy tickets </div>;
+    case 'map':
+      return <div style={{padding: '40px'}}><Map /></div>;
+    case 'queue':
+      return <div> Virtual Queue </div>;
+    case 'info':
+      return <div></div>;
+    case 'reviews':
+      return <div><ForgottenAsylumReviews/></div>;
+    default:
+      return <div><Home/></div>;
+  }
+};
+
+return (
+  <div className="App">
+      <div className='NavBar mb-5'>
+        <Navbar fixed="top" bg="light" expand="lg">
           <Container>
             <Navbar.Brand>ParkPal.</Navbar.Brand>
-            <Navbar.Toggle aria-controls="basic-navbar-nav"  />
+            <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
-              <Nav className="me-auto">
-                <Nav.Link href="#home">Home</Nav.Link>
-                <Nav.Link href="#ticket">Buy Ticket</Nav.Link>
-                <Nav.Link href="#map">Map</Nav.Link>
-                <Nav.Link href="#queue">Virtual Queue</Nav.Link>
-                <Nav.Link href="#info">Ride Info</Nav.Link>
-                <Nav.Link href="#reviews">Reviews</Nav.Link>
+              <Nav className="me-auto" activeKey={activeTab} onSelect={(selectedKey) => setActiveTab(selectedKey)}>
+                <Nav.Link eventKey="home">Home</Nav.Link>
+                <Nav.Link eventKey="ticket">Buy Ticket</Nav.Link>
+                <Nav.Link eventKey="map">Map</Nav.Link>
+                <Nav.Link eventKey="queue">Virtual Queue</Nav.Link>
+                <Nav.Link eventKey="info">Ride Info</Nav.Link>
+                <Nav.Link eventKey="reviews">Reviews</Nav.Link>
               </Nav>
             </Navbar.Collapse>
           </Container>
         </Navbar>
-      </div>
-      <div id="home">
-        <Container fluid>
-          <Home />
-        </Container>
-      </div>
-      <div id="ticket">
-        <Container className='vh-100'>
-          {/* Todo later */}
-        </Container>
-      </div>
-      <div id="map">
-        <Container className='vh-100 ' style={{paddingTop: '120px'}}>
-          <Map/>
-        </Container>
-      </div>
-      
 
+        {/* Padding to avoid content being hidden behind the fixed navbar */}
+        <div style={{ paddingTop: '80px', padding: '20px' }}>
+          {renderContent()}
+        </div>
+        
+        
+
+      </div>
     </div>
 
 
