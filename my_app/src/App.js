@@ -7,6 +7,7 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import Home from './HomePage';
 import Map from './MapViewer'
+import Info from './Info';
 import { useNavigate, useLocation } from 'react-router';
 
 function App() {
@@ -40,7 +41,7 @@ function App() {
             <Route path="/ticket" element={<div>Buy Ticket</div>} />
             <Route path="/map" element={<div style={{ padding: '40px' }}><Map /></div>} />
             <Route path="/queue" element={<div>Virtual Queue</div>} />
-            <Route path="/info" element={<div>Ride Info</div>} />
+            <Route path="/info" element={<Info />} />
             <Route path="/reviews" element={<ForgottenAsylumReviews />} />
             <Route path="*" element={<Home />} />
           </Routes>
