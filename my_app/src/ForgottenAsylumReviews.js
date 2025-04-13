@@ -91,7 +91,13 @@ const ForgottenAsylumReviews = () => {
             {/* Right */}
             <div className="right-section">
                 <h2 className="ride-title">The Forgotten Asylum</h2>
-                <div className="ride-image-placeholder">[Ride Image Placeholder]</div>
+                <div className="ride-image-placeholder">
+                    <img src="/pictures/forgotten.png" 
+                        alt="The Forgotten Asylum" 
+                        width="100%" 
+                        height="500px" 
+                    />
+                </div>
             </div>
         </div>
     );
