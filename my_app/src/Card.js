@@ -27,7 +27,7 @@ function ImgMediaCard({discription,title, image}) {
       </CardContent>
       <CardActions>
         {/* to be linked later */}
-        <Button size="small">Virtual Queue</Button> 
+        <Button size="small" >Virtual Queue</Button> 
         <Button size="small">Ride Info</Button>
         <Button size="small">Reviews</Button>
       </CardActions>
