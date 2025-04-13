@@ -3,6 +3,7 @@ import * as THREE from 'three';
 import { Canvas, useFrame, useLoader } from '@react-three/fiber';
 import { OrbitControls ,  Reflector } from '@react-three/drei';
 import { useGLTF } from '@react-three/drei';
+import CurveSingleton from './curve';
 
 export default function Coaster() {
   return (
@@ -21,24 +22,8 @@ export default function Coaster() {
 
 // Track 
 function Track() {
-  const liftY = 4; // Raise the whole track up by this amount
-  
 
-  const radius = 10;      // Size of the circular track
-  const segments = 30;    // Number of points in the loop
-  const heightWave = 2;   // Vertical variation
-
-  const points = [];
-  for (let i = 0; i <= segments; i++) {
-    const angle = (i / segments) * Math.PI * 2; // full circle
-    const x = Math.cos(angle) * radius;
-    const z = Math.sin(angle) * radius;
-    const y = liftY + Math.sin(angle * 2) * heightWave;
-    points.push(new THREE.Vector3(x, y, z));
-  }
-
-  const curve = new THREE.CatmullRomCurve3(points, true);
-  const frames = curve.computeFrenetFrames(200, true); // compute directions at every step
+  const { curve,points } = CurveSingleton();
   const offset = 0.3; // distance between the left and right rails
 
   return (
@@ -126,24 +111,8 @@ function AnimatedCart() {
   const cartRef = useRef();
   const t = useRef(1);
 
-  const liftY = 4;
-  const radius = 10;
-  const segments = 30;
-  const heightWave = 2;
+  const { curve, points } = CurveSingleton();
 
-  const points = useMemo(() => {
-    const arr = [];
-    for (let i = 0; i <= segments; i++) {
-      const angle = (i / segments) * Math.PI * 2;
-      const x = Math.cos(angle) * radius;
-      const z = Math.sin(angle) * radius;
-      const y = liftY + Math.sin(angle * 2) * heightWave;
-      arr.push(new THREE.Vector3(x, y, z));
-    }
-    return arr;
-  }, []);
-
-  const curve = useMemo(() => new THREE.CatmullRomCurve3(points, true), [points]);
   const { scene } = useGLTF('/models/roller_coaster_cart.glb');
 // ✅ points to public/models
 
@@ -205,24 +174,26 @@ function GrassField() {
   const countZ = 5; // tiles across Z axis
   const spacing = 5; // distance between grass patches
 
-  const tiles = [];
+  const tiles = useMemo(() => {
+    const arr = [];
 
-  for (let x = -countX / 2; x < countX / 2; x++) {
-    for (let z = -countZ / 2; z < countZ / 2; z++) {
-      tiles.push(
-        <primitive
-          key={`tile-${x}-${z}`}
-          object={scene.clone()}
-          scale={[8,8,8]} // size
-          position={[x * spacing + 5, 0, z * spacing]} // controlling the position
-          receiveShadow
-          castShadow
-        />
-      );
+    for (let x = -countX / 2; x < countX / 2; x++) {
+      for (let z = -countZ / 2; z < countZ / 2; z++) {
+        arr.push(
+          <primitive
+            key={`tile-${x}-${z}`}
+            object={scene.clone()}
+            scale={[8, 8, 8]}
+            position={[x * spacing + 5, 0, z * spacing]}
+          />
+        );
+      }
     }
-  }
 
-  return <>{tiles}</>; 
+    return arr;
+  }, [scene]); // Rebuild only if scene changes
+
+  return <>{tiles}</>;
 }
 
   
