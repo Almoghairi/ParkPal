@@ -2,7 +2,7 @@ import React, { use, useState } from "react";
 import { FaUserCircle } from "react-icons/fa";
 import { AiFillStar, AiOutlineStar } from "react-icons/ai";
 
-const ForgottenAsylumReviews = () => {
+const TempestWrathReviews = () => {
     const [reviews, setReviews] = useState([
         {
             id: 1,
@@ -90,12 +90,12 @@ const ForgottenAsylumReviews = () => {
             
             {/* Right */}
             <div className="right-section">
-                <h2 className="ride-title">The Forgotten Asylum</h2>
+                <h2 className="ride-title">The Tempest's Wrath</h2>
                 <div className="ride-image-placeholder">
-                    <img src="/pictures/forgotten.png" 
-                        alt="The Forgotten Asylum" 
-                        width="100%" 
-                        height="500px" 
+                    <img src="/pictures/tampet.png" 
+                        alt="The Tempest's Wrath"
+                        width="100%"
+                        height="250px" 
                     />
                 </div>
             </div>
@@ -103,4 +103,4 @@ const ForgottenAsylumReviews = () => {
     );
 }
 
-export default ForgottenAsylumReviews;
+export default TempestWrathReviews;

@@ -10,10 +10,10 @@ function Map() {
     'https://i2.wp.com/www.mybigfathalalblog.com/wp-content/uploads/2015/01/Screen_Shot_2016-11-28_at_16.32.18.png'
   );
 
-  const gameImage = ['/pictures/Unknown-4', '/pictures/Unknown-5'];
+  const gameImage = ['/pictures/forgotten.png', '/pictures/pharoah.png'];
   const posX = ['50%', '20%']; // x-axis for cards
   const posY = ['100px', '150px']; // y-axis for cards
-  const gameTitle = ['Game 1', 'Game 2'];
+  const gameTitle = ['The Forgotten Asylum', 'Pharaoh’s Curse'];
   const gameDiscription = [
     'This game is about adventure and fun!',
     'Challenge your skills in this epic game!',
