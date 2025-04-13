@@ -7,7 +7,7 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import Home from './HomePage';
 import Map from './MapViewer'
-import Info from './Info';
+import Info from './info';
 import { useNavigate, useLocation } from 'react-router';
 
 function App() {
