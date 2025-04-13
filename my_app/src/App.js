@@ -9,7 +9,9 @@ import Home from './HomePage';
 import Map from './MapViewer'
 import Info from './info';
 import VQ from './VQ';
+import TicketPage from './Ticket';
 import { useNavigate, useLocation } from 'react-router';
+import "./TicketPage.css";
 
 function App() {
   const navigate = useNavigate();
@@ -39,7 +41,7 @@ function App() {
         <div style={{ paddingTop: '80px', padding: '60px' }}>
           <Routes>
             <Route path="/home" element={<Home />} />
-            <Route path="/ticket" element={<div>Buy Ticket</div>} />
+            <Route path="/ticket" element={<div><TicketPage /></div>} />
             <Route path="/map" element={<div style={{ padding: '40px' }}><Map /></div>} />
             <Route path="/queue" element={<VQ />} />
             <Route path="/info" element={<Info />} />
