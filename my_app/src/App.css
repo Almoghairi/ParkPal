@@ -52,3 +52,129 @@ html {
 }
 
 
+/* Begininng of Abdulrahman Alqhtani CSS code */
+.reviews-page {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  padding: 2rem;
+  min-height: 100vh;
+  background-color: white;
+}
+
+@media (min-width: 768px) {
+  .reviews-page {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.left-section {
+  padding-right: 1rem;
+}
+
+.add-review-title {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.review-form {
+  margin-bottom: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.comment-box {
+  width: 100%;
+  min-height: 80px;
+  padding: 8px;
+  resize: vertical;
+}
+
+.star-rating {
+  display: flex;
+  gap: 5px;
+  color: #facc15;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.submit-btn {
+  background-color: black;
+  color: white;
+  padding: 6px 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.review-count {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-top: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.review-card {
+  display: flex;
+  gap: 1rem;
+  background-color: white;
+  padding: 1rem;
+  border-radius: 6px;
+  margin-bottom: 1rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border: 2px solid black;
+}
+
+.user-icon {
+  font-size: 2rem;
+}
+
+.review-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.review-user {
+  font-weight: bold;
+}
+
+.review-date {
+  font-size: 0.8rem;
+  color: #666;
+}
+
+.review-comment {
+  margin-top: 0.5rem;
+  font-weight: 500;
+}
+
+.review-stars {
+  display: flex;
+  margin-top: 4px;
+  color: #facc15;
+}
+
+.right-section {
+  text-align: center;
+}
+
+.ride-title {
+  font-size: 1.8rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.ride-image-placeholder {
+  width: 100%;
+  height: 500px;
+  border: 2px solid black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+  color: gray;
+}
+
+/* Ending of Abdulrahman Alqhtani CSS code */
