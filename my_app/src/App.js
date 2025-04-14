@@ -38,12 +38,25 @@ function App() {
           </Container>
         </Navbar>
 
-        <div style={{ padding: '60px' }}>
+        <div >
           <Routes>
             <Route path="/home" element={<Home />} />
+<<<<<<< HEAD
+
+            <Route path="/ticket" element={<div>Buy Ticket</div>} />
+            <Route path="/map" element={<div style={{ padding: '40px' }}><Map /></div>} />
+            <Route path="/queue" element={<VQ />} />
+            <Route path="/info" element={<div>Ride Info</div>} />
+            <Route path="/queue" element={<div>Virtual Queue</div>} />
+
             <Route path="/ticket" element={<div><TicketPage /></div>} />
             <Route path="/map" element={<div ><Map /></div>} />
+=======
+            <Route path="/ticket" element={<div ><TicketPage /></div>} />
+            <Route path="/map" element={<div  style={{marginTop:'60px'}}><Map /></div>} />
+>>>>>>> 681ada4b61a64c73570ec1bcfcb9621367ce6fd8
             <Route path="/queue" element={<VQ />} />
+
             <Route path="/info" element={<Info />} />
             <Route path="/reviews" element={<ForgottenAsylumReviews />} />
             <Route path="*" element={<Home />} />

@@ -6,10 +6,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons';
 
 function Map() {
-  const [map] = useState('/pictures/map.pdf');
+  const [map] = useState('/pictures/map.jpg');
   const gameImage = ['/pictures/forgotten.png', '/pictures/tampet.png','/pictures/inferno.png','/pictures/cryzone.png', '/pictures/pharoah.png'];
-  const posX = ['30%', '25%','75%','70%','30%']; // x-axis as percentages
-  const posY = ['20%', '50%', '70%', '15%', '70%']; // y-axis also as percentages
+  const posX = ['30%', '25%','75%','70%','35%']; // x-axis as percentages
+  const posY = ['20%', '50%', '70%', '15%', '72%']; // y-axis also as percentages
   const gameTitle = ['Game 1', 'Game 2','Game 3','Game 4','Game 5'];
   const gameDiscription = [
     'This game is about adventure and fun!',
