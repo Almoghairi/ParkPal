@@ -8,6 +8,7 @@ import Navbar from 'react-bootstrap/Navbar';
 import Home from './HomePage';
 import Map from './MapViewer'
 import Info from './info';
+import VQ from './VQ';
 import { useNavigate, useLocation } from 'react-router';
 
 function App() {
@@ -40,13 +41,10 @@ function App() {
             <Route path="/home" element={<Home />} />
             <Route path="/ticket" element={<div>Buy Ticket</div>} />
             <Route path="/map" element={<div style={{ padding: '40px' }}><Map /></div>} />
-<<<<<<< HEAD
             <Route path="/queue" element={<VQ />} />
             <Route path="/info" element={<div>Ride Info</div>} />
-=======
             <Route path="/queue" element={<div>Virtual Queue</div>} />
             <Route path="/info" element={<Info />} />
->>>>>>> 5a8a8f8d855c29422e37dc07946c0884c424c340
             <Route path="/reviews" element={<ForgottenAsylumReviews />} />
             <Route path="*" element={<Home />} />
           </Routes>
