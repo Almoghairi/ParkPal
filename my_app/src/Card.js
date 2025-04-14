@@ -50,7 +50,28 @@ function ImgMediaCard({discription,title, image}) {
                 navigate('/info'); 
             }
         }}>Ride Info</Button>
-        <Button size="small" onClick={() => navigate('/reviews')}>Reviews</Button>
+        <Button size="small" onClick={() =>{
+          switch (image) {
+            case '/pictures/forgotten.png':
+              navigate('/forgotten-reviews');
+              break;
+            case '/pictures/tampet.png':
+              navigate('/tampet-reviews');
+              break;
+            case '/pictures/inferno.png':
+              navigate('/inferno-reviews');
+              break;
+            case '/pictures/cryzone.png':
+              navigate('/cryzone-reviews');
+              break;
+            case '/pictures/pharoah.png':
+              navigate('/pharoah-reviews');
+              break;
+            default:
+              navigate('/inferno-reviews'); 
+          }
+          
+        }}>Reviews</Button>
       </CardActions>
     </Card>
   );

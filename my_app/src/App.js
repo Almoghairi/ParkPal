@@ -17,7 +17,10 @@ import Tampet from './TampetInfo';
 import Inferno from './InfernoInfo';
 import CryzoneX from './CryzoneInfo';
 import Pharoah from './PharoahInfo';
-
+import TempestWrathReviews from './TempestWrathReviews';
+import CryZoneXReviews from './CryZoneXReviews';
+import PharaohCurseReviews from './PharaohCurseReviews';
+import InfernoSpiralReviews from './InfernoSpiralReviews';
 function App() {
   const navigate = useNavigate();
   const location = useLocation();
@@ -52,8 +55,12 @@ function App() {
             <Route path="/inferno-info" element={<Inferno />} />
             <Route path="/cryzone-info" element={<CryzoneX />} />
             <Route path="/pharoah-info" element={<Pharoah />} />
-            <Route path="/info" element={<Info />} /> {/* fallback or generic info */}
-            <Route path="/reviews" element={<ForgottenAsylumReviews />} />
+            <Route path="/info" element={<Info />} /> {/* generic info */}
+            <Route path="/forgotten-reviews" element={<ForgottenAsylumReviews />} />
+            <Route path="/tampet-reviews" element={<TempestWrathReviews />} />
+            <Route path="/inferno-reviews" element={<InfernoSpiralReviews />} />
+            <Route path="/cryzone-reviews" element={<CryZoneXReviews />} />
+            <Route path="/pharoah-reviews" element={<PharaohCurseReviews />} />
             <Route path="*" element={<Home />} />
           </Routes>
         </div>
