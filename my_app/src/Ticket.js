@@ -1,7 +1,9 @@
+import { Center } from "@react-three/drei";
+
 function TicketPage() {
   return (
     <>
-        <div id="ticket-page">
+        <div id="ticket-page" >
             <h1>Buy Ticket</h1>
             <p>Here you can buy tickets for the theme park.</p>
             <form>

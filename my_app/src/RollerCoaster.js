@@ -15,6 +15,7 @@ export default function Coaster() {
         <AnimatedCart />
         <GrassField />
         <Ground />
+        <OrbitControls/>
       </Canvas>
     </div>
   );
