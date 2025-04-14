@@ -30,9 +30,7 @@ function App() {
                 <Nav.Link eventKey="home">Home</Nav.Link>
                 <Nav.Link eventKey="ticket">Buy Ticket</Nav.Link>
                 <Nav.Link eventKey="map">Map</Nav.Link>
-                <Nav.Link eventKey="queue">Virtual Queue</Nav.Link>
                 <Nav.Link eventKey="info">Ride Info</Nav.Link>
-                <Nav.Link eventKey="reviews">Reviews</Nav.Link>
               </Nav>
             </Navbar.Collapse>
           </Container>
