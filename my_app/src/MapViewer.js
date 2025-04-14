@@ -6,76 +6,93 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons';
 
 function Map() {
-  const [map] = useState(
-    'https://i2.wp.com/www.mybigfathalalblog.com/wp-content/uploads/2015/01/Screen_Shot_2016-11-28_at_16.32.18.png'
-  );
-
-  const gameImage = ['/pictures/forgotten.png', '/pictures/pharoah.png'];
-  const posX = ['50%', '20%']; // x-axis for cards
-  const posY = ['100px', '150px']; // y-axis for cards
-  const gameTitle = ['The Forgotten Asylum', 'Pharaoh’s Curse'];
+  const [map] = useState('/pictures/map.pdf');
+  const gameImage = ['/pictures/forgotten.png', '/pictures/tampet.png','/pictures/inferno.png','/pictures/cryzone.png', '/pictures/pharoah.png'];
+  const posX = ['30%', '25%','75%','70%','30%']; // x-axis as percentages
+  const posY = ['20%', '50%', '70%', '15%', '70%']; // y-axis also as percentages
+  const gameTitle = ['Game 1', 'Game 2','Game 3','Game 4','Game 5'];
   const gameDiscription = [
     'This game is about adventure and fun!',
     'Challenge your skills in this epic game!',
+    'This game is about adventure and fun!',
+    'Challenge your skills in this epic game!',
+    'This game is about adventure and fun!',
   ];
 
-  const [activeIndex, setActiveIndex] = useState(null); // null = nothing selected
+  const [activeIndex, setActiveIndex] = useState(null);
 
   return (
-    <Container  className="vh-100 position-relative">
-      {/* Map background */}
-      <img src={map} alt="Map"
-          style={{ // important for screen sizes
-            width: '100%',
-            height: 'auto',
-            maxWidth: '1000px',
-            display: 'block',
-          }} />
+    
+    <motion.div 
+    initial={{ opacity: 0, y: 20 }}
+    animate={{ opacity: 1, y: 0 }}
+    transition={{ duration: .8, ease: 'easeOut' }}
+    >
+        <Container className="vhd-100 d-flex justify-content-center">
+        <div style={{ 
+          position: 'relative', 
+          width: '100%', 
+          maxWidth: '1200px', 
+          minWidth: '600px',
+          minHeight: '600px',
+          aspectRatio: '16/9' 
+        }}>
+          <img
+            src={map}
+            alt="Map"
+            style={{
+              width: '100%',
+              height: '100%',
+              objectFit: 'contain',
+              display: 'block',
+            }}
+          />
 
-      {/* Map Pointers -> location marks*/}
-      {posX.map((left, index) => (
-        <FontAwesomeIcon
-              icon={faMapMarkerAlt} // pre built icon (location)
+          {posX.map((left, index) => (
+            <FontAwesomeIcon
+              key={`marker-${index}`}
+              icon={faMapMarkerAlt}
               onClick={() =>
                 setActiveIndex(activeIndex === index ? null : index)
               }
               style={{
                 position: 'absolute',
-                top: `${parseInt(posY[index]) - 30}px`,
-                left: posX[index],
+                top: posY[index],
+                left: left,
+                transform: 'translate(-50%, -100%)', // center above location
                 zIndex: 998,
                 cursor: 'pointer',
                 fontSize: '32px',
                 color: 'black',
               }}
             />
-      ))}
+          ))}
 
-      {/* Show selected card */}
-      {activeIndex !== null && (
-        <motion.div // simple animation 
-            key={activeIndex} 
-            style={{ // setting the position of the card
+          {activeIndex !== null && (
+            <motion.div
+              key={activeIndex}
+              style={{
                 position: 'absolute',
                 top: posY[activeIndex],
                 left: posX[activeIndex],
-                zIndex: 999, // to override the map
-            }}
-            initial={{ opacity: 0, y: 20 }} // slide up 
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1.0, ease: 'easeOut' }} 
-        >
-          {/* Card detail */}
-          <ImgMediaCard 
-            title={gameTitle[activeIndex]}
-            discription={gameDiscription[activeIndex]}
-            image={gameImage[activeIndex]}
-          />
-        </motion.div>
-      )}
-    </Container>
+                transform: 'translate(-50%, 0)',
+                zIndex: 999,
+              }}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1.0, ease: 'easeOut' }}
+            >
+              <ImgMediaCard
+                title={gameTitle[activeIndex]}
+                discription={gameDiscription[activeIndex]}
+                image={gameImage[activeIndex]}
+              />
+            </motion.div>
+          )}
+        </div>
+      </Container>
+    </motion.div>
   );
 }
 
 export default Map;
-

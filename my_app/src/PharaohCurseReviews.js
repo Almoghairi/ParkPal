@@ -24,7 +24,15 @@ const PharaohCurseReviews = () => {
             id: reviews.length + 1,
             user: `User ${reviews.length + 1}`,
             comment,
-            date: new Date().toLocaleDateString,
+            date: new Date().toLocaleString('en-US', 
+                {
+                    year: 'numeric',
+                    month: 'numeric',
+                    day: 'numeric',
+                    hour: 'numeric',
+                    minute: 'numeric',
+                    hour12: true
+                }),
             rating,
         }
 
