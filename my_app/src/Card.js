@@ -28,7 +28,7 @@ function ImgMediaCard({discription,title, image}) {
       </CardContent>
       <CardActions>
         {/* linked  now */}
-        <Button size="small" onClick={() => navigate('/queue')}>Virtual Queue</Button> 
+        <Button size="small" onClick={() => navigate('/queue',{ state: { gameT:title , image:image}} )}>Virtual Queue</Button> 
         <Button size="small" onClick={() => navigate('/info')}>Ride Info</Button>
         <Button size="small" onClick={() => navigate('/reviews')}>Reviews</Button>
       </CardActions>
