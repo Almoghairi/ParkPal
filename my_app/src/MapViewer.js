@@ -7,7 +7,7 @@ import { faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons';
 
 function Map() {
   const [map] = useState('/pictures/ParkMAP');
-  const gameImage = ['/pictures/Unknown-4', '/pictures/Unknown-5','/pictures/Unknown-12','/pictures/Unknown-13', '/pictures/Unknown-11'];
+  const gameImage = ['/pictures/forgotten.png', '/pictures/tampet.png','/pictures/inferno.png','/pictures/cryzone.png', '/pictures/pharoah.png'];
   const posX = ['30%', '25%','75%','70%','30%']; // x-axis as percentages
   const posY = ['20%', '50%', '70%', '15%', '70%']; // y-axis also as percentages
   const gameTitle = ['Game 1', 'Game 2','Game 3','Game 4','Game 5'];

@@ -21,7 +21,7 @@ function App() {
   return (
     <div className="App">
       <div className="NavBar mb-5">
-        <Navbar fixed="top" bg="light" expand="lg"> 
+        <Navbar bg="light" expand="lg"> 
           <Container>
             <Navbar.Brand>ParkPal.</Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -38,11 +38,11 @@ function App() {
           </Container>
         </Navbar>
 
-        <div style={{ paddingTop: '80px', padding: '60px' }}>
+        <div style={{ padding: '60px' }}>
           <Routes>
             <Route path="/home" element={<Home />} />
             <Route path="/ticket" element={<div><TicketPage /></div>} />
-            <Route path="/map" element={<div style={{ padding: '40px' }}><Map /></div>} />
+            <Route path="/map" element={<div ><Map /></div>} />
             <Route path="/queue" element={<VQ />} />
             <Route path="/info" element={<Info />} />
             <Route path="/reviews" element={<ForgottenAsylumReviews />} />
