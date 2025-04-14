@@ -12,6 +12,11 @@ import VQ from './VQ';
 import TicketPage from './Ticket';
 import { useNavigate, useLocation } from 'react-router';
 import "./TicketPage.css";
+import ForgottenAsylum from './ForgottenInfo';
+import Tampet from './TampetInfo';
+import Inferno from './InfernoInfo';
+import CryzoneX from './CryzoneInfo';
+import Pharoah from './PharoahInfo';
 
 function App() {
   const navigate = useNavigate();
@@ -42,7 +47,12 @@ function App() {
             <Route path="/ticket" element={<div><TicketPage /></div>} />
             <Route path="/map" element={<div ><Map /></div>} />
             <Route path="/queue" element={<VQ  />} />
-            <Route path="/info" element={<Info />} />
+            <Route path="/forgotten-info" element={<ForgottenAsylum/>} />
+            <Route path="/tampet-info" element={<Tampet />} />
+            <Route path="/inferno-info" element={<Inferno />} />
+            <Route path="/cryzone-info" element={<CryzoneX />} />
+            <Route path="/pharoah-info" element={<Pharoah />} />
+            <Route path="/info" element={<Info />} /> {/* fallback or generic info */}
             <Route path="/reviews" element={<ForgottenAsylumReviews />} />
             <Route path="*" element={<Home />} />
           </Routes>

@@ -10,7 +10,7 @@ function Map() {
   const gameImage = ['/pictures/forgotten.png', '/pictures/tampet.png','/pictures/inferno.png','/pictures/cryzone.png', '/pictures/pharoah.png'];
   const posX = ['30%', '25%','75%','70%','35%']; // x-axis as percentages
   const posY = ['20%', '50%', '70%', '15%', '72%']; // y-axis also as percentages
-  const gameTitle = ['Game 1', 'Game 2','Game 3','Game 4','Game 5'];
+  const gameTitle = ['The Forgotten Asylum', 'The Tempest’s Wrath','Inferno Spiral','CryzoneX','Pharaoh’s Curse'];
   const gameDiscription = [
     'This game is about adventure and fun!',
     'Challenge your skills in this epic game!',

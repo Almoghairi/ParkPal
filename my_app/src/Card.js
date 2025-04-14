@@ -29,7 +29,27 @@ function ImgMediaCard({discription,title, image}) {
       <CardActions>
         {/* linked  now */}
         <Button size="small" onClick={() => navigate('/queue',{ state: { gameT:title , image:image}} )}>Virtual Queue</Button> 
-        <Button size="small" onClick={() => navigate('/info')}>Ride Info</Button>
+        <Button size="small" onClick={() => {
+            switch (image) {
+              case '/pictures/forgotten.png':
+                navigate('/forgotten-info');
+                break;
+              case '/pictures/tampet.png':
+                navigate('/tampet-info');
+                break;
+              case '/pictures/inferno.png':
+                navigate('/inferno-info');
+                break;
+              case '/pictures/cryzone.png':
+                navigate('/cryzone-info');
+                break;
+              case '/pictures/pharoah.png':
+                navigate('/pharoah-info');
+                break;
+              default:
+                navigate('/info'); 
+            }
+        }}>Ride Info</Button>
         <Button size="small" onClick={() => navigate('/reviews')}>Reviews</Button>
       </CardActions>
     </Card>
