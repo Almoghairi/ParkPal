@@ -1,8 +1,14 @@
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/esm/Row';
-import { useState,useEffect  } from 'react';
+import { useState,useEffect } from 'react';
+import { useLocation } from 'react-router';
 
-function VQ(gameT, image){
+
+
+function VQ(){
+    const location = useLocation();
+    const { gameT, image } = location.state || {};
+    const title = gameT.title
 
     const [randomNumber, setRandomNumber] = useState(0);
     useEffect(() => {
@@ -47,8 +53,8 @@ function VQ(gameT, image){
                 </Col>
 
                 <Col md={6}>
-                    <h1>gameT</h1>
-                    <img class="rounded" src="/pictures/forgotten.png" style={{width:"90%"}}></img>
+                    <h1>{title}</h1>
+                    <img class="rounded" src={image} style={{width:"90%"}} alt={title}></img>
 
                 </Col>
             </Row>
