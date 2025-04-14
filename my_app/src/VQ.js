@@ -1,7 +1,9 @@
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/esm/Row';
 import { useState,useEffect  } from 'react';
+
 function VQ(gameT, image){
+
     const [randomNumber, setRandomNumber] = useState(0);
     useEffect(() => {
         setRandomNumber(Math.floor(Math.random() * 90)); 
@@ -47,6 +49,7 @@ function VQ(gameT, image){
                 <Col md={6}>
                     <h1>gameT</h1>
                     <img class="rounded" src="/pictures/forgotten.png" style={{width:"90%"}}></img>
+
                 </Col>
             </Row>
 

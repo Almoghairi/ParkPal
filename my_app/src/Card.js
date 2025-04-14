@@ -27,7 +27,7 @@ function ImgMediaCard({discription,title, image}) {
         </Typography>
       </CardContent>
       <CardActions>
-        {/* to be linked later */}
+        {/* linked  now */}
         <Button size="small" onClick={() => navigate('/queue')}>Virtual Queue</Button> 
         <Button size="small" onClick={() => navigate('/info')}>Ride Info</Button>
         <Button size="small" onClick={() => navigate('/reviews')}>Reviews</Button>

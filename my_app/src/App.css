@@ -89,7 +89,7 @@ html {
   width: 100%;
   min-height: 80px;
   padding: 8px;
-  resize: vertical;
+  resize: none;
 }
 
 .star-rating {
