@@ -1,6 +1,6 @@
 import React, { useRef, useMemo } from 'react';
 import * as THREE from 'three';
-import { Canvas, useFrame, useLoader } from '@react-three/fiber';
+import { Canvas, useFrame, useLoader, useThree } from '@react-three/fiber';
 import { OrbitControls ,  Reflector } from '@react-three/drei';
 import { useGLTF } from '@react-three/drei';
 import CurveSingleton from './curve';
@@ -13,12 +13,24 @@ export default function Coaster() {
         <directionalLight position={[10, 20, 10]} intensity={1.2} />
         <Track />
         <AnimatedCart />
-        <GrassField />
         <Ground />
+        <AnimatedCamera/>
         <OrbitControls/>
       </Canvas>
     </div>
   );
+}
+function AnimatedCamera() {
+  const { camera } = useThree();
+  const t = useRef(0);
+
+  useFrame((state, delta) => {
+    t.current += delta * 0.5; // animation speed
+    const radius = 10;
+    camera.position.x = Math.sin(t.current) * radius;
+  });
+
+  return null; // doesn't render anything, just animates
 }
 
 // Track 
@@ -157,14 +169,25 @@ function Ground() {
   return (
     <>
       
-        {(Material, props) => (
-          <Material
-            color="white"
-            metalness={0.3}
-            roughness={0.2}
-            {...props}
-          />
-        )}
+      <Reflector
+  resolution={1024}
+  args={[20,20]} // width, height of the plane
+  mirror={1} // reflection intensity
+  mixBlur={1} // blur level of the reflection
+  mixStrength={1.5} // strength of the reflection
+  rotation={[-Math.PI / 2, 0, 0]} // horizontal
+  position={[0, 0, 0]} // floor position
+>
+  {(Material, props) => (
+    <Material
+      transparent
+      opacity={0.2}
+      metalness={0.3}
+      roughness={0.2}
+      {...props}
+    />
+  )}
+</Reflector>
     </>
   );
 }

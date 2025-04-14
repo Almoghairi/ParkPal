@@ -11,8 +11,16 @@ import { useNavigate } from 'react-router';
 function ImgMediaCard({discription,title, image}) {
   const navigate = useNavigate();
   return (
-    <Card sx={{ maxWidth: 345 }}>
-      <CardMedia
+    <Card sx={{ maxWidth: 345 }} style={{backgroundColor:'light'}}>
+      <CardMedia style={{
+  background: 'rgba(24, 24, 27, 0.55)',           // slightly warmer black
+  backdropFilter: 'blur(14px)',
+  WebkitBackdropFilter: 'blur(12px)', // for Safari
+  boxShadow: '0 8px 30px rgba(0, 0, 0, 0.6)',
+  borderBottomLeftRadius: '8px',
+  borderBottomRightRadius: '8px',
+  color: '#eee'
+}}
         component="img"
         alt={title}
         height="140"

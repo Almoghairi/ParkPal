@@ -21,24 +21,33 @@ import TempestWrathReviews from './TempestWrathReviews';
 import CryZoneXReviews from './CryZoneXReviews';
 import PharaohCurseReviews from './PharaohCurseReviews';
 import InfernoSpiralReviews from './InfernoSpiralReviews';
+import BackgroundAnimation from './BackgroundGradient';
+import { Background } from 'react-parallax';
+import { color, motion } from 'framer-motion';
+
 function App() {
   const navigate = useNavigate();
   const location = useLocation();
   const currentTab = location.pathname.replace('/', '') || 'home';
 
   return (
-    <div className="App">
-      <div className="NavBar mb-5">
-        <Navbar bg="light" expand="lg"> 
+    <div className="App" style={{color:'#EDEDED'}}>
+
+      <motion.div className="NavBar mt-4 mb-5 " 
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1.2, ease: 'easeIn' }}
+      >
+        <Navbar expand="lg" > 
           <Container>
-            <Navbar.Brand>ParkPal.</Navbar.Brand>
+            <Navbar.Brand className='light-text'>ParkPal.</Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
-              <Nav className="me-auto" activeKey={currentTab} onSelect={(key) => navigate(`/${key}`)}>
-                <Nav.Link eventKey="home">Home</Nav.Link>
-                <Nav.Link eventKey="ticket">Buy Ticket</Nav.Link>
-                <Nav.Link eventKey="map">Map</Nav.Link>
-                <Nav.Link eventKey="info">Ride Info</Nav.Link>
+              <Nav className="me-auto " activeKey={currentTab} onSelect={(key) => navigate(`/${key}`)}>
+                <Nav.Link className='light-text' eventKey="home">Home</Nav.Link>
+                <Nav.Link className='light-text' eventKey="ticket">Buy Ticket</Nav.Link>
+                <Nav.Link className='light-text' eventKey="map">Map</Nav.Link>
+                <Nav.Link className='light-text' eventKey="info">Ride Info</Nav.Link>
               </Nav>
             </Navbar.Collapse>
           </Container>
@@ -64,7 +73,7 @@ function App() {
             <Route path="*" element={<Home />} />
           </Routes>
         </div>
-      </div>
+      </motion.div>
     </div>
   );
 }
