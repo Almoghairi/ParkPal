@@ -47,7 +47,7 @@ function App() {
                 <Nav.Link className='light-text' eventKey="home">Home</Nav.Link>
                 <Nav.Link className='light-text' eventKey="ticket">Buy Ticket</Nav.Link>
                 <Nav.Link className='light-text' eventKey="map">Map</Nav.Link>
-                <Nav.Link className='light-text' eventKey="info">Ride Info</Nav.Link>
+                <Nav.Link className='light-text' eventKey="info">Rides Info</Nav.Link>
               </Nav>
             </Navbar.Collapse>
           </Container>
