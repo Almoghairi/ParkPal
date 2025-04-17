@@ -2,17 +2,13 @@
 #ticket-page {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: flex-start;
     align-items: center;
-    justify-content: center;
     border: black solid 2px;
-    padding: 20px;
+    padding: 40px;
     border-radius: 5px;
     width: 50%;
-    position: absolute;
-    top: 25%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    margin: 10px auto 50px auto;
 }
 #ticket-page h1 {
     font-size: 36px;

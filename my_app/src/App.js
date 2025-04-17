@@ -24,6 +24,7 @@ import InfernoSpiralReviews from './InfernoSpiralReviews';
 import BackgroundAnimation from './BackgroundGradient';
 import { Background } from 'react-parallax';
 import { color, motion } from 'framer-motion';
+import Contact from './Contact';
 
 function App() {
   const navigate = useNavigate();
@@ -48,6 +49,7 @@ function App() {
                 <Nav.Link className='light-text' eventKey="ticket">Buy Ticket</Nav.Link>
                 <Nav.Link className='light-text' eventKey="map">Map</Nav.Link>
                 <Nav.Link className='light-text' eventKey="info">Rides Info</Nav.Link>
+                <Nav.Link className='light-text' eventKey="contact">Contact</Nav.Link>
               </Nav>
             </Navbar.Collapse>
           </Container>
@@ -70,6 +72,7 @@ function App() {
             <Route path="/inferno-reviews" element={<InfernoSpiralReviews />} />
             <Route path="/cryzone-reviews" element={<CryZoneXReviews />} />
             <Route path="/pharoah-reviews" element={<PharaohCurseReviews />} />
+            <Route path="/contact" element={<Contact />} />
             <Route path="*" element={<Home />} />
           </Routes>
         </div>
