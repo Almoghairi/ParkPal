@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
 
 
 function TicketPage() {
@@ -23,7 +24,11 @@ function TicketPage() {
 
   return (
     <>
-        <div id="ticket-page" >
+        <motion.div 
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1.0, ease: 'easeIn' }}
+          id="ticket-page" >
             <h1>Buy Ticket</h1>
             <p>Here you can buy tickets for the theme park.</p>
             <form>
@@ -41,7 +46,7 @@ function TicketPage() {
                 </div>
                 <button type="button" onClick={() => setShowPayPage(true)}>Pay</button>
             </form>
-        </div>
+        </motion.div>
     </>
   );
 }
@@ -63,7 +68,11 @@ function Pay(parms) {
   };
 
   return (
-    <div id="pay-page">
+    <motion.div 
+      initial={{ opacity: 0, y: 10 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 1.0, ease: 'easeIn' }}
+      id="pay-page">
       <h1>Pay</h1>
       <p>Here you can pay for your tickets.</p>
       <p>The total amount is: {parms.totalAmount} SAR</p>
@@ -83,7 +92,7 @@ function Pay(parms) {
         </div>
         <button type="submit">Submit Payment</button>
       </form>
-    </div>
+    </motion.div>
   );
 }
 export default TicketPage;

@@ -44,7 +44,7 @@ function App() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1.2, ease: 'easeIn' }}
       >
-        <Navbar expand="lg" > 
+        <Navbar expand="lg" variant="dark"> 
           <Container>
             <Navbar.Brand className='light-text'>ParkPal.</Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
