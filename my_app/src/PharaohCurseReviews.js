@@ -100,7 +100,7 @@ const PharaohCurseReviews = () => {
             <div className="right-section">
                 <h2 className="ride-title">Pharaoh's Curse</h2>
                 <div className="ride-image-placeholder">
-                    <img src="/picture/pharoah.png" 
+                    <img src="/pictures/pharoah.png" 
                         alt="Pharaoh Curse" 
                         width="100%"
                         height="500px"
