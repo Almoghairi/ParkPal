@@ -4,10 +4,20 @@ import CryzoneX from './CryzoneInfo';
 import Inferno from './InfernoInfo'
 import Tampet from './TampetInfo';
 import Pharoah from './PharoahInfo';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+import { useEffect } from 'react';
 function Info(){
+  useEffect(() => {
+    AOS.init({
+      duration: 1000, 
+      once: true,    
+    });
+  }, []);
+
     return (
         <div>
-          <section id='infoF'>
+          <section id='infoF' data-aos="fade-up">
             <Parallax strength={400}>
               <div style={{ height: '100vh' }} className="d-flex justify-content-center align-items-center">
                 <ForgottenAsylum />
@@ -15,7 +25,7 @@ function Info(){
             </Parallax>
           </section>
 
-          <section id='infoC'>
+          <section id='infoC' data-aos="fade-up">
             <Parallax strength={400}>
               <div style={{ height: '100vh' }} className="d-flex justify-content-center align-items-center">
                 <CryzoneX />
@@ -23,7 +33,7 @@ function Info(){
             </Parallax>
           </section>
 
-          <section id='infoI'>
+          <section id='infoI' data-aos="fade-up">
             <Parallax strength={400}>
               <div style={{ height: '100vh' }} className="d-flex justify-content-center align-items-center">
                 <Inferno />
@@ -31,7 +41,7 @@ function Info(){
             </Parallax>
           </section>
 
-          <section id='infoT'>
+          <section id='infoT' data-aos="fade-up">
             <Parallax strength={400}>
               <div style={{ height: '100vh' }} className="d-flex justify-content-center align-items-center">
                 <Tampet />
@@ -39,7 +49,7 @@ function Info(){
             </Parallax>
           </section>
 
-          <section id='infoP'>
+          <section id='infoP' data-aos="fade-up">
             <Parallax strength={400}>
               <div style={{ height: '100vh' }} className="d-flex justify-content-center align-items-center">
                 <Pharoah />

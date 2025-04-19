@@ -103,7 +103,7 @@ const PharaohCurseReviews = () => {
                     <img src="/picture/pharoah.png" 
                         alt="Pharaoh Curse" 
                         width="100%"
-                        height="250px"
+                        height="500px"
                     />
                 </div>
             </div>

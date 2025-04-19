@@ -17,9 +17,17 @@ function Home() {
                     <Col md={6}>
                         <Row className='mt-5 mb-4 fs-1 fw-bold'> 
 
-                            <motion.p className='actor-font'style={{ color: 'Black', fontSize: '2rem' }} initial={{ opacity: 0, y: 0 }}
+                            <motion.p className='actor-font'style={{ 
+                                color: 'light',
+                                textShadow: '2px 2px 8px rgba(0,0,0,0.8)',
+                                fontSize: '2rem' 
+                            }}
+                                initial={{ opacity: 0, y: 0 }}
                                 animate={{ opacity: 1, y: 0 }}
-                                transition={{ duration: 1.2, ease: 'easeIn' }}>
+                                transition={{ duration: 1.2, ease: 'easeIn'
+                            
+                             }}
+                                >
                                 
                                 <Typewriter
                                     options={{
@@ -28,6 +36,7 @@ function Home() {
                                     loop: true,
                                     delay: 75,
                                     deleteSpeed: 50,
+                                    
                                     }}
                                 />
                             </motion.p>

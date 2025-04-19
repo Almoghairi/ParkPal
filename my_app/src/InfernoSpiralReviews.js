@@ -103,7 +103,7 @@ const InfernoSpiralReviews = () => {
                     <img src="/pictures/inferno.png" 
                         alt=""
                         width="100%"
-                        height="250px" 
+                        height="500px" 
                     />
                 </div>
             </div>
