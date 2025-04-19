@@ -2,6 +2,9 @@ import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/esm/Row';
 import { useState,useEffect } from 'react';
 import { useLocation } from 'react-router';
+import Ani from './Ani3.json';
+import Ani2 from './Ani2.json';
+import Lottie from 'lottie-react';
 
 
 
@@ -36,25 +39,27 @@ function VQ(){
         <>
             
 
-            <Row className="align-items-center">
+            <Row className="align-items-center"style={{padding:"0",margin:"0"}}>
 
-                <Col md={6} style={{background:"#D9D9D9"}}>
-                    <h1>Estimated waiting time: </h1>
+                <Col md={6}  className="align-items-center" style={{display: 'grid',placeItems: 'center',height: '70vh',}}>
+                    <Lottie animationData={Ani} style={{ width: 300, height: 300 }} />
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '8px', whiteSpace: 'nowrap' }}>
+                        <div className='fs-2'>Estimated waiting time </div>
+                        <Lottie animationData={Ani2} loop autoplay /> 
+                        <div className='fs-3'>{randomNumber} min to start</div>
+                     </div>
+                    
 
-                    <p class="lead">{randomNumber} min</p>
+                    <div className='fs-2' >{numOfPeople} people in queue</div>
 
-                    <h2>Number of people in the queue:</h2>
-
-                    <p class="lead">{numOfPeople}</p>
 
 
                     <button class="btn btn-dark" onClick={handleSubmit}>Enter Queue</button>
-                    <p>{data}</p>
+                    <div className='fs-4'>{data}</div>
                 </Col>
 
-                <Col md={6}>
-                    <h1>{title}</h1>
-                    <img class="rounded" src={image} style={{width:"90%"}} alt={title}></img>
+                <Col md={6} style={{padding:"0",margin:"0"}} >
+                    <img className='img-thumbnail' style={{width:"70%",top:"50%", left:"50%"}}src={image} alt={title}></img>
 
                 </Col>
             </Row>
