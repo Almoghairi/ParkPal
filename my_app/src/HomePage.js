@@ -32,7 +32,13 @@ function Home() {
                                 
                                 <Typewriter
                                     options={{
-                                    strings: ['Welcome to ParkPal!', 'Your adventure starts here!'],
+                                    strings: [
+                                        'Welcome to ParkPal',
+                                        'Effortless Ticketing & Navigation',
+                                        'Join Virtual Queues with Confidence',
+                                        'Discover Top-Rated Attractions',
+                                        'Plan Your Day Like a Pro'
+                                    ],
                                     autoStart: true,
                                     loop: true,
                                     delay: 75,
