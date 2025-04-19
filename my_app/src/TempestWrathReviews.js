@@ -103,7 +103,7 @@ const TempestWrathReviews = () => {
                     <img src="/pictures/tampet.png" 
                         alt="The Tempest's Wrath"
                         width="100%"
-                        height="250px" 
+                        height="500px" 
                     />
                 </div>
             </div>

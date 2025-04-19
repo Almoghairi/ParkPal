@@ -103,7 +103,7 @@ const CryZoneXReviews = () => {
                     <img src="/pictures/cryzone.png" 
                         alt="CryZone X" 
                         width="100%"
-                        height="250px"
+                        height="500px"
                     />
                 </div>
             </div>
