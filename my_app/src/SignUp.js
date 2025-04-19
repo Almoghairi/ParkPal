@@ -108,7 +108,7 @@ const SignUp = () => {
             />
             {errors.confirmPassword && <span className="error-text">{errors.confirmPassword}</span>}
           </div>
-          <Lottie type= "submit" onClick={handleSubmit} style ={{width:"500px", margin:"auto",position: 'absolute',transform: 'translate(-15%,-31%)' }} animationData={Ani5} loop autoplay /> 
+          <Lottie type= "submit" onClick={handleSubmit} style ={{width:"500px", margin:"auto",position: 'absolute',transform: 'translateY(35%)' }} animationData={Ani5} loop autoplay /> 
         </form>
       </div>
     </div>
