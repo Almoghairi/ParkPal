@@ -14,7 +14,7 @@ function Tampet() {
           <div className="flip-card-inner">
             <div className="flip-card-front">
               <div className="hover-icon">🔄</div>
-              <img src="/pictures/tampet.png" alt="The Tampet’s Wrath"/>
+              <img src="/pictures/tampet.png" alt="The Tampet’s Wrath" style={{ borderRadius: '18px' }}/>
             </div>
             <div className="flip-card-back">
               <h2>The Tempest’s Wrath</h2>
