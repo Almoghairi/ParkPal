@@ -6,6 +6,7 @@ import './App.css';
 import Coaster from './RollerCoaster';
 import Typewriter from 'typewriter-effect';
 import { motion } from 'framer-motion';
+import ParkAnimation from './ParkAnimation';
 
 
 function Home() {
@@ -59,7 +60,7 @@ function Home() {
                         initial={{ opacity: 0, y: 0 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 1.2, ease: 'easeIn' }}>
-                        <Coaster/>
+                        <ParkAnimation/>
                         </motion.div>
                     </Col>
                 </Row>
