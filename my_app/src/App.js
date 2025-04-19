@@ -56,7 +56,7 @@ function App() {
                 <Nav.Link className='light-text' eventKey="info">Rides Info</Nav.Link>
                 <Nav.Link className='light-text' eventKey="contact">Contact</Nav.Link>
               </Nav>
-              <Nav.Link className='light-text' onClick={() => navigate('/login')}>Log in</Nav.Link>
+              <Nav.Link id="Login" className='light-text' onClick={() => navigate('/login')}>Log in</Nav.Link>
 
             </Navbar.Collapse>
           </Container>
