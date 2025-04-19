@@ -63,11 +63,7 @@ const SignUp = () => {
     setAuthError(null);
     
     if(validateForm()){
-      const loginLink = document.querySelector("#Login");
-      if (loginLink) {
-          loginLink.style.display = "none";
-          setShowHomePage(true);
-      }
+      navigate("/home")
     }
       
   };
@@ -98,14 +94,13 @@ const SignUp = () => {
           
           <div className="form-group">
             <label htmlFor="password">Password </label>
-            <input type="password" id="password" name="password" onChange={handleChange} className={errors.password ? 'error' : ''}/>
+            <input type="password" id="password" name="password" value={formData.password} onChange={handleChange} className={errors.password ? 'error' : ''}style={{position: 'relative',zIndex: "1"}}/>
             {errors.password && <span className="error-text">{errors.password}</span>}
           </div>
           
           <div className="form-group">
             <label htmlFor="confirmPassword">Confirm Password </label>
-            <input type="password" id="confirmPassword"name="confirmPassword" onChange={handleChange} className={errors.confirmPassword ? 'error' : ''}
-            />
+            <input type="password" id="confirmPassword"name="confirmPassword" value={formData.confirmPassword} onChange={handleChange} className={errors.confirmPassword ? 'error' : '' } style={{position: 'relative',zIndex: "1"}}/>
             {errors.confirmPassword && <span className="error-text">{errors.confirmPassword}</span>}
           </div>
           <Lottie type= "submit" onClick={handleSubmit} style ={{width:"500px", margin:"auto",position: 'absolute',transform: 'translateY(35%)' }} animationData={Ani5} loop autoplay /> 
