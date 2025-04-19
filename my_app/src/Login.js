@@ -3,6 +3,9 @@ import SignUp from "./SignUp";
 import React, { useState } from "react";
 import HomePage from "./HomePage";
 import { Link } from "react-router";
+import { color } from "framer-motion";
+
+
 
 function Login() {
     const [showHomePage, setShowHomePage] = useState(false); 
@@ -12,9 +15,13 @@ function Login() {
         const username = document.getElementById("username").value;
         const password = document.getElementById("password").value;
 
-        if (!username || !password) {
-            alert("Both username and password are required.");
-            return;
+        if (!username) {
+           document.getElementById("usernameError").innerText = "Please enter a username.";
+           return; 
+        }
+        if (!password) {
+           document.getElementById("passwordError").innerText = "Please enter a password.";
+           return; 
         }
 
         alert("Login successful!");
@@ -37,8 +44,10 @@ function Login() {
             <form onSubmit={handleSubmit}>
                 <label htmlFor="username">Username:</label>
                 <input id="username" type="text" placeholder="Username" />
+                <p id="usernameError" style={{color: "red"}}></p>
                 <label htmlFor="password">Password:</label>
                 <input id="password" type="password" placeholder="Password" />
+                <p id="passwordError" style={{color: "red"}}></p>
                 <button type="submit">Login</button>
             </form>
             <p>Don't have an account? <Link to="/signup">Sign Up</Link></p>
