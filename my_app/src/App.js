@@ -25,6 +25,7 @@ import BackgroundAnimation from './BackgroundGradient';
 import { Background } from 'react-parallax';
 import { color, motion } from 'framer-motion';
 import Contact from './Contact';
+import SignUp from './SignUp';
 
 function App() {
   const navigate = useNavigate();
@@ -50,6 +51,7 @@ function App() {
                 <Nav.Link className='light-text' eventKey="map">Map</Nav.Link>
                 <Nav.Link className='light-text' eventKey="info">Rides Info</Nav.Link>
                 <Nav.Link className='light-text' eventKey="contact">Contact</Nav.Link>
+                <Nav.Link className='light-text' eventKey="signup"><img src='/pictures/loginp.png' style={{width:"5.5%", right:"100", top:"0"}}/> </Nav.Link>
               </Nav>
             </Navbar.Collapse>
           </Container>
@@ -73,6 +75,7 @@ function App() {
             <Route path="/cryzone-reviews" element={<CryZoneXReviews />} />
             <Route path="/pharoah-reviews" element={<PharaohCurseReviews />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/signup" element={<SignUp />} />
             <Route path="*" element={<Home />} />
           </Routes>
         </div>
