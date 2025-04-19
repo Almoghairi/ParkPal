@@ -1,4 +1,12 @@
+import Home from "./HomePage";
+import SignUp from "./SignUp";
+import React, { useState } from "react";
+import HomePage from "./HomePage";
+
+
 function Login() {
+    const [showHomePage, setShowHomePage] = useState(false); 
+    const [showSignUpPage, setShowSignUpPage] = useState(false);
     const handleSubmit = (event) => {
         event.preventDefault();
         const username = document.getElementById("username").value;
@@ -10,12 +18,18 @@ function Login() {
         }
 
         alert("Login successful!");
-        const loginLink = document.querySelector('a[href="/login"]');
+        const loginLink = document.querySelector("#Login");
         if (loginLink) {
             loginLink.style.display = "none";
+            setShowHomePage(true);
         }
     };
-
+    if (showHomePage) {
+        return <HomePage />;
+    }
+    if (showSignUpPage) {
+        return <SignUp />;
+    }
     return (
         <div id="login-page">
             <h1>Welcome to ParkPal</h1>
@@ -27,7 +41,7 @@ function Login() {
                 <input id="password" type="password" placeholder="Password" />
                 <button type="submit">Login</button>
             </form>
-            <p>Don't have an account? <a href="/register">Register here</a></p>
+            <p>Don't have an account? <a href="/signup" onClick={() => setShowSignUpPage(true)}>Sign Up</a></p>
         </div>
     );
 }

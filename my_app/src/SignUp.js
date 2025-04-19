@@ -3,8 +3,10 @@ import { useNavigate, Link } from 'react-router';
 import './SignUp.css'; 
 import Ani5 from './Ani5.json';
 import Lottie from 'lottie-react';
+import HomePage from './HomePage';
 
 const SignUp = () => {
+  const [showHomePage, setShowHomePage] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -61,10 +63,17 @@ const SignUp = () => {
     setAuthError(null);
     
     if(validateForm()){
-      navigate("/home")
+      const loginLink = document.querySelector("#Login");
+      if (loginLink) {
+          loginLink.style.display = "none";
+          setShowHomePage(true);
+      }
     }
       
   };
+  if (showHomePage) {
+    return <HomePage />;
+  }
 
   return (
     <div className="signup-container">
@@ -121,12 +130,6 @@ const SignUp = () => {
           </div>
           <Lottie type= "submit" onClick={handleSubmit} style ={{width:"350px"}} animationData={Ani5} loop autoplay /> 
         </form>
-        
-        <div className="signup-footer">
-          <p>
-            Already have an account? <Link to="/signin">Sign in</Link>
-          </p>
-        </div>
       </div>
     </div>
   );

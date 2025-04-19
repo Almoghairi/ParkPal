@@ -55,8 +55,7 @@ function App() {
                 <Nav.Link className='light-text' eventKey="map">Map</Nav.Link>
                 <Nav.Link className='light-text' eventKey="info">Rides Info</Nav.Link>
                 <Nav.Link className='light-text' eventKey="contact">Contact</Nav.Link>
-                <Nav.Link className='light-text' eventKey="signup"><img src='/pictures/loginp.png' style={{width:"5.5%", right:"100", top:"0"}}/> </Nav.Link>
-                <Nav.Link className='light-text login-link' eventKey="login">Log In</Nav.Link>
+                <Nav.Link id = "Login" className='light-text' eventKey="login">Log in</Nav.Link>
               </Nav>
             </Navbar.Collapse>
           </Container>
