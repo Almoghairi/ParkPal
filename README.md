@@ -24,6 +24,7 @@ npm install react-icons
 npm install react-parallax
 npm install react-lottie
 npm install aos
+npm install react-tsparticles
 ```
 
 ## 📖 Usage Instructions
