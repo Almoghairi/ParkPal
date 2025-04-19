@@ -1,9 +1,14 @@
 import React from 'react';
 import { Container, Row, Col, Card } from 'react-bootstrap';
+import { motion } from 'framer-motion';
 
 function Contact() {
   return (
-    <div style={{ backgroundColor: '#1c1c2b', minHeight: '100vh', paddingTop: '100px', paddingBottom: '60px' }}>
+    <motion.div 
+    initial={{ opacity: 0, y: 10 }}
+    animate={{ opacity: 1, y: 0 }}
+    transition={{ duration: 1.0, ease: 'easeIn' }}
+    style={{ backgroundColor: '#1c1c2b', minHeight: '100vh', paddingTop: '100px', paddingBottom: '60px' }}>
       <Container>
         <Card className="p-5 text-white shadow" style={{ backgroundColor: '#2a2a3d', borderRadius: '16px' }}>
           <h2 className="text-center mb-4" style={{ color: '#b39ddb' }}>Contact ParkPal</h2>
@@ -30,7 +35,7 @@ function Contact() {
           </Row>
         </Card>
       </Container>
-    </div>
+    </motion.div>
   );
 }
 
