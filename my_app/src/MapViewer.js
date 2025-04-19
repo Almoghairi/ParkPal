@@ -11,13 +11,6 @@ function Map() {
   const posX = ['30%', '20%','80%','77%','35%']; // x-axis as percentages
   const posY = ['20%', '50%', '70%', '15%', '72%']; // y-axis also as percentages
   const gameTitle = ['The Forgotten Asylum', 'The Tempest’s Wrath','Inferno Spiral','CryzoneX','Pharaoh’s Curse'];
-  const gameDiscription = [
-    'This game is about adventure and fun!',
-    'Challenge your skills in this epic game!',
-    'This game is about adventure and fun!',
-    'Challenge your skills in this epic game!',
-    'This game is about adventure and fun!',
-  ];
 
   const [activeIndex, setActiveIndex] = useState(null);
 
@@ -89,7 +82,6 @@ function Map() {
             >
               <ImgMediaCard
                 title={gameTitle[activeIndex]}
-                discription={gameDiscription[activeIndex]}
                 image={gameImage[activeIndex]}
                 
               />

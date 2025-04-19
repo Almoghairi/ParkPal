@@ -8,7 +8,7 @@ import Typography from '@mui/material/Typography';
 import { useNavigate } from 'react-router';
 
 {/* Card function took from MUI.com */}
-function ImgMediaCard({discription,title, image}) {
+function ImgMediaCard({title, image}) {
   const navigate = useNavigate();
   return (
     <Card sx={{ maxWidth: 345 }} style={{backgroundColor:'light'}}>
@@ -31,7 +31,7 @@ function ImgMediaCard({discription,title, image}) {
           {title}
         </Typography>
         <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-          {discription}
+          
         </Typography>
       </CardContent>
       <CardActions>
