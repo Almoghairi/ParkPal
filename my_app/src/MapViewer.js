@@ -30,6 +30,7 @@ function Map() {
     >
         <Container className="vhd-100 d-flex justify-content-center">
         <div style={{ 
+          
           position: 'relative', 
           width: '100%', 
           maxWidth: '1200px', 

@@ -10,21 +10,27 @@ const BackgroundAnimation = () => {
       .then(data => setAnimationData(data));
   }, []);
 
-  if (!animationData) return null; // or a loading spinner
+  if (!animationData) return null;
 
   return (
-    <Lottie 
-      animationData={animationData} 
-      loop 
-      style={{
-        position: 'fixed',
-        top: 0,
-        left: 0,
-        width: '100vw',
-        height: '100vh',
-        zIndex: -1,
-      }}
-    />
+    <div style={{
+      position: 'fixed',
+      inset: 0,
+      zIndex: -1,
+      overflow: 'hidden',
+      width: '100vw',
+      height: '100vh',
+    }}>
+      <Lottie 
+        animationData={animationData}
+        loop
+        style={{
+          width: '100%',
+          height: '100%',
+          transform: 'scale(2.5)', // 👈 force the internal SVG/canvas to stretch
+        }}
+      />
+    </div>
   );
 };
 
