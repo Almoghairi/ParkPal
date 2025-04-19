@@ -11,12 +11,14 @@ import Info from './info';
 import VQ from './VQ';
 import TicketPage from './Ticket';
 import { useNavigate, useLocation } from 'react-router';
-import "./TicketPage.css";
+import "./Ticket.css";
 import ForgottenAsylum from './ForgottenInfo';
 import Tampet from './TampetInfo';
 import Inferno from './InfernoInfo';
 import CryzoneX from './CryzoneInfo';
 import Pharoah from './PharoahInfo';
+import Login from './Login';
+import "./Login.css";
 import TempestWrathReviews from './TempestWrathReviews';
 import CryZoneXReviews from './CryZoneXReviews';
 import PharaohCurseReviews from './PharaohCurseReviews';
@@ -54,6 +56,7 @@ function App() {
                 <Nav.Link className='light-text' eventKey="info">Rides Info</Nav.Link>
                 <Nav.Link className='light-text' eventKey="contact">Contact</Nav.Link>
                 <Nav.Link className='light-text' eventKey="signup"><img src='/pictures/loginp.png' style={{width:"5.5%", right:"100", top:"0"}}/> </Nav.Link>
+                <Nav.Link className='light-text login-link' eventKey="login">Log In</Nav.Link>
               </Nav>
             </Navbar.Collapse>
           </Container>
@@ -79,6 +82,7 @@ function App() {
             <Route path="/contact" element={<Contact />} />
             <Route path="/signup" element={<SignUp />} />
             <Route path="*" element={<Home />} />
+            <Route path="/login" element={<Login />} />
           </Routes>
         </div>
       </motion.div>
