@@ -16,7 +16,7 @@ const BackgroundAnimation = () => {
     <div style={{
       position: 'fixed',
       inset: 0,
-      zIndex: -1,
+      zIndex: -20,
       overflow: 'hidden',
       width: '100vw',
       height: '100vh',
@@ -27,7 +27,7 @@ const BackgroundAnimation = () => {
         style={{
           width: '100%',
           height: '100%',
-          transform: 'scale(2.5)', // 👈 force the internal SVG/canvas to stretch
+          transform: 'scale(2.5)', //  SVG/canvas stretch
         }}
       />
     </div>
