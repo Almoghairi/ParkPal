@@ -14,7 +14,7 @@ function Inferno() {
           <div className="flip-card-inner">
             <div className="flip-card-front">
               <div className="hover-icon">🔄</div>
-              <img src="/pictures/inferno.png" alt="Inferno Spiral"/>
+              <img src="/pictures/inferno.png" alt="Inferno Spiral" style={{ borderRadius: '18px' }}/>
             </div>
             <div className="flip-card-back">
               <h2>Inferno Spiral</h2>

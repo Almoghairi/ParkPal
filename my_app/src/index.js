@@ -5,10 +5,12 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter} from 'react-router'
 import BackgroundAnimation from './BackgroundGradient';
+import DotParticles from './Particles';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
+    <DotParticles/>
     <BackgroundAnimation />
     <BrowserRouter>
     <App />

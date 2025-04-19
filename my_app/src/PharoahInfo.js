@@ -14,7 +14,7 @@ function Pharoah() {
           <div className="flip-card-inner">
             <div className="flip-card-front">
               <div className="hover-icon">🔄</div>
-              <img src="/pictures/pharoah.png" alt="Pharaoh’s Curse"/>
+              <img src="/pictures/pharoah.png" alt="Pharaoh’s Curse" style={{ borderRadius: '18px' }}/>
             </div>
             <div className="flip-card-back">
               <h2>Pharaoh’s Curse</h2>

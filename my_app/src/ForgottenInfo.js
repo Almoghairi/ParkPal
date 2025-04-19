@@ -14,7 +14,7 @@ function ForgottenAsylum() {
           <div className="flip-card-inner">
             <div className="flip-card-front">
               <div className="hover-icon">🔄</div>
-              <img src="/pictures/forgotten.png" alt="The Forgotten Asylum"/>
+              <img src="/pictures/forgotten.png" alt="The Forgotten Asylum" style={{ borderRadius: '18px' }}/>
             </div>
             <div className="flip-card-back">
               <h2>The Forgotten Asylum</h2>

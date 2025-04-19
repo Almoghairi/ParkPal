@@ -1,14 +1,14 @@
-
 #ticket-page {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
     border: black solid 2px;
-    padding: 40px;
     border-radius: 5px;
+    padding: 40px;
     width: 50%;
-    margin: 10px auto 50px auto;
+    margin-top: 10%;
+    margin-left: 25%;
 }
 #ticket-page h1 {
     font-size: 36px;
@@ -49,4 +49,105 @@
     border-radius: 5px;
     border: 1px solid #ccc;
     margin-bottom: 20px;
+}
+#pay-page {
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    align-items: center;
+    border: black solid 2px;
+    border-radius: 5px;
+    padding: 40px;
+    width: 50%;
+    margin-top: 10%;
+    margin-left: 25%;
+}
+#pay-page h1 {
+    font-size: 36px;
+    margin-bottom: 20px;
+}
+#pay-page p {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+#pay-page label {
+    font-size: 18px;
+    font-weight: bold;
+    margin-right: 10px;
+}
+#pay-page button {
+    background-color: black;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+#pay-page button:hover {
+    background-color: #333;
+}
+#pay-page input[type="text"] {
+    font-size: 18px;
+    padding: 5px;
+    width: 150px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    margin-bottom: 20px;
+}
+#pay-page input[type="month"] {
+    font-size: 18px;
+    padding: 5px;
+    width: 150px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    margin-bottom: 20px;
+}
+@media (max-width: 768px) {
+    #ticket-page {
+        width: 90%;
+        padding: 20px;
+    }
+    #ticket-page h1 {
+        font-size: medium;
+    }
+    #ticket-page p {
+        font-size: 1px;
+    }
+    #ticket-page label {
+        font-size: small;
+    }
+    #ticket-page button {
+        padding: 8px 16px;
+        font-size: small;
+    }
+    #ticket-page select,
+    #ticket-page input[type="number"] {
+        font-size: small;
+        padding: 4px;
+    }
+}
+@media (max-width: 768px) {
+    #pay-page {
+        width: 90%;
+        padding: 20px;
+    }
+    #pay-page h1 {
+        font-size: medium;
+    }
+    #pay-page p {
+        font-size: small;
+    }
+    #pay-page label {
+        font-size: small;
+    }
+    #pay-page button {
+        padding: 8px 16px;
+        font-size: small;
+    }
+    #pay-page input[type="text"],
+    #pay-page input[type="month"] {
+        font-size: small;
+        padding: 4px;
+    }
 }

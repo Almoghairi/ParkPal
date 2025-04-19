@@ -14,7 +14,7 @@ function CryzoneX() {
           <div className="flip-card-inner">
             <div className="flip-card-front">
               <div className="hover-icon">🔄</div>
-              <img src="/pictures/cryzone.png" alt="CryzoneX"/>
+              <img src="/pictures/cryzone.png" alt="CryzoneX" style={{ borderRadius: '18px' }}/>
             </div>
             <div className="flip-card-back">
               <h2>CryzoneX</h2>
