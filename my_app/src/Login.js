@@ -2,7 +2,7 @@ import Home from "./HomePage";
 import SignUp from "./SignUp";
 import React, { useState } from "react";
 import HomePage from "./HomePage";
-
+import { Link } from "react-router";
 
 function Login() {
     const [showHomePage, setShowHomePage] = useState(false); 
@@ -41,7 +41,7 @@ function Login() {
                 <input id="password" type="password" placeholder="Password" />
                 <button type="submit">Login</button>
             </form>
-            <p>Don't have an account? <a href="/signup" onClick={() => setShowSignUpPage(true)}>Sign Up</a></p>
+            <p>Don't have an account? <Link to="/signup">Sign Up</Link></p>
         </div>
     );
 }
