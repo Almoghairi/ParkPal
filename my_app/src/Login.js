@@ -40,7 +40,7 @@ function Login() {
         if (!response.ok) {
           alert(data.message || "Login failed");
         } else {
-          localStorage.setItem("token", data.token); // Save JWT token
+          localStorage.setItem("token", data.token);
           setShowHomePage(true);
         }
       } catch (err) {

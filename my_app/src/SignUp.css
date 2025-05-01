@@ -3,7 +3,6 @@
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  /* background-color: #4b0082; */ /* Removed to show original background */
 }
 
 .signup-card {
@@ -12,8 +11,7 @@
   width: 100%;
   max-width: 400px;
   transform: translateY(-30%);
-  /* background-color: #ffffff1a; */ /* Optional glassy background */
-  backdrop-filter: blur(10px);       /* Keeps a modern glass effect */
+  backdrop-filter: blur(10px);      
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
   color: white;
 }
