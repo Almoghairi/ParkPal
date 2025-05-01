@@ -61,11 +61,30 @@ const SignUp = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setAuthError(null);
-    
-    if(validateForm()){
-      navigate("/home")
+  
+    if (!validateForm()) return;
+  
+    try {
+      const response = await fetch("http://localhost:5000/api/auth/register", {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+         body: JSON.stringify({
+         name: formData.name,
+         email: formData.email,
+         password: formData.password
+  })
+      });
+  
+      const data = await response.json();
+      if (!response.ok) {
+        setAuthError(data.message || "Registration failed");
+      } else {
+        alert("Registration successful!");
+        navigate("/login");
+      }
+    } catch (error) {
+      setAuthError("Server error. Please try again later.");
     }
-      
   };
   if (showHomePage) {
     return <HomePage />;
@@ -103,7 +122,7 @@ const SignUp = () => {
             <input type="password" id="confirmPassword"name="confirmPassword" value={formData.confirmPassword} onChange={handleChange} className={errors.confirmPassword ? 'error' : '' } style={{position: 'relative',zIndex: "1"}}/>
             {errors.confirmPassword && <span className="error-text">{errors.confirmPassword}</span>}
           </div>
-          <Lottie type= "submit" onClick={handleSubmit} style ={{width:"500px", margin:"auto",position: 'absolute',transform: 'translateY(35%)' }} animationData={Ani5} loop autoplay /> 
+          <Lottie type= "submit" onClick={handleSubmit} style ={{width:"500px", margin:"auto", position: 'absolute', transform: 'translateY(45%) translateX(-15%)' }} animationData={Ani5} loop autoplay /> 
         </form>
       </div>
     </div>

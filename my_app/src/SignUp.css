@@ -3,6 +3,7 @@
   justify-content: center;
   align-items: center;
   min-height: 100vh;
+  /* background-color: #4b0082; */ /* Removed to show original background */
 }
 
 .signup-card {
@@ -11,24 +12,33 @@
   width: 100%;
   max-width: 400px;
   transform: translateY(-30%);
+  /* background-color: #ffffff1a; */ /* Optional glassy background */
+  backdrop-filter: blur(10px);       /* Keeps a modern glass effect */
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  color: white;
 }
 
 .signup-card h2 {
   text-align: center;
   margin-bottom: 1.5rem;
+  color: #ffffff;
 }
 
 .form-group label {
   display: block;
   margin-bottom: 0rem;
   font-weight: 500;
+  color: #e0d5f9;
 }
+
 .form-group input {
-  width: 350px;
+  width: 100%;
   padding: 0.75rem;
-  border: 1px solid #ddd;
+  border: 1px solid #a47ef3;
   border-radius: 4px;
   font-size: 1rem;
+  background-color: #fdf9ff;
+  color: #4b0082;
 }
 
 .form-group input.error {
@@ -36,7 +46,7 @@
 }
 
 .error-text {
-  color: #e74c3c;
+  color: #ff6b6b;
   font-size: 0.875rem;
   margin-top: 0.25rem;
   display: block;
