@@ -41,14 +41,14 @@ const ForgottenAsylumReviews = () => {
     };
 
     try {
-      await axios.post('http://localhost:5000/api/forgotten-asylum', newReview, {
+      await axios.post('http://localhost:3001/api/forgotten-asylum', newReview, {
         headers: {
           Authorization: `Bearer ${token}`
         }
       });
 
       // Refresh reviews after adding
-      const res = await axios.get('http://localhost:5000/api/forgotten-asylum');
+      const res = await axios.get('http://localhost:3001/api/forgotten-asylum');
       setReviews(res.data);
       setComment('');
       setRating(0);

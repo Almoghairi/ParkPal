@@ -62,6 +62,8 @@ function VQ(){
               if (!response.ok) throw new Error(await response.text());
               
               const data = await response.json();
+            
+
               setResult(data);
               
             } catch (err) {
@@ -95,7 +97,7 @@ function VQ(){
 
 
 
-                    <button class="btn btn-dark" onClick={handle1Submit}>Enter Queue</button>
+                    <button className="btn btn-dark" onClick={handle1Submit}>Enter Queue</button>
                     
 
                     {showForm && (

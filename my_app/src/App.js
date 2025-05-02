@@ -1,6 +1,7 @@
 import ForgottenAsylumReviews from './ForgottenAsylumReviews';
 import './App.css';
 import { BrowserRouter as Router , Route , Routes } from 'react-router';
+import { useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
@@ -33,6 +34,11 @@ function App() {
   const navigate = useNavigate();
   const location = useLocation();
   const currentTab = location.pathname.replace('/', '') || 'home';
+  const [log, setLog] = useState("log in");
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    setLog(token ? "Log out" : "Log in");
+  }, [location]);
 
   return (
     <div className="App" style={{
@@ -56,7 +62,7 @@ function App() {
                 <Nav.Link className='light-text' eventKey="info">Rides Info</Nav.Link>
                 <Nav.Link className='light-text' eventKey="contact">Contact</Nav.Link>
               </Nav>
-              <Nav.Link id="Login" className='light-text' onClick={() => navigate('/login')}>Log in</Nav.Link>
+              <Nav.Link id="Login" className='light-text' onClick={() => navigate('/login')}>{log}</Nav.Link>
 
             </Navbar.Collapse>
           </Container>
@@ -82,7 +88,7 @@ function App() {
             <Route path="/contact" element={<Contact />} />
             <Route path="/signup" element={<SignUp />} />
             <Route path="*" element={<Home />} />
-            <Route path="/login" element={<Login />} />
+            <Route path="/login" element={<Login setLog={setLog} />} />
           </Routes>
         </div>
       </motion.div>

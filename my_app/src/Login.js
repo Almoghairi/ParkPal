@@ -7,7 +7,7 @@ import { color } from "framer-motion";
 
 
 
-function Login() {
+function Login({setLog}) {
     const [showHomePage, setShowHomePage] = useState(false);
     const [showSignUpPage, setShowSignUpPage] = useState(false);
     const [formData, setFormData] = useState({ email: "", password: "" });
@@ -30,7 +30,7 @@ function Login() {
       if (Object.keys(newErrors).length > 0) return;
   
       try {
-        const response = await fetch("http://localhost:5000/api/auth/login", {
+        const response = await fetch("http://localhost:3001/api/auth/login", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ email, password }),
@@ -41,6 +41,7 @@ function Login() {
           alert(data.message || "Login failed");
         } else {
           localStorage.setItem("token", data.token);
+          setLog("Logout");
           setShowHomePage(true);
         }
       } catch (err) {

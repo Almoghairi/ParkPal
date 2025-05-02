@@ -1,12 +1,19 @@
+const { initScheduler } = require('./utils/scheduler');
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 require('dotenv').config();
 const authRoutes = require('./routes/auth');
 const forgottenAsylumReviewRoutes = require('./routes/forgottenAsylumReviewRoute');
+const virtualQRoutes = require('./routes/VQServer');
+
 
 const app = express();
-app.use(cors());
+app.use(cors({
+  origin: 'http://localhost:3000',
+  methods: ['GET','POST','PUT','DELETE','OPTIONS'],
+  credentials: true
+}));
 app.use(express.json());
 
 mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
@@ -15,6 +22,9 @@ mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopol
 
 app.use('/api/auth', authRoutes);
 app.use('/api/forgotten-asylum', forgottenAsylumReviewRoutes);
+app.use('/api/vq', virtualQRoutes);
+
+initScheduler();
 
 app.get("/", (req, res) => {
   res.send("API is running");
