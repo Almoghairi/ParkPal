@@ -12,9 +12,4 @@ app.listen(PORT, () => {
 
 
 
-app.get('/', (req, res) => {
-  res.send('Welcome to Theme Park Virtual Queue System!');
-});
-
-
 
