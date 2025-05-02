@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 require('dotenv').config();
 const authRoutes = require('./routes/auth');
+const forgottenAsylumReviewRoutes = require('./routes/forgottenAsylumReviewRoute');
 
 const app = express();
 app.use(cors());
@@ -13,6 +14,7 @@ mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopol
   .catch((err) => console.error('MongoDB connection error:', err));
 
 app.use('/api/auth', authRoutes);
+app.use('/api/forgotten-asylum', forgottenAsylumReviewRoutes);
 
 app.get("/", (req, res) => {
   res.send("API is running");
