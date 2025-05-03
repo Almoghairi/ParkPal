@@ -84,6 +84,8 @@ function Pay({ totalAmount, adultQuantity, childQuantity, seniorQuantity }) {
     try {
       const decoded = jwtDecode(token);
       userId = decoded.userId;
+      let email = decoded.email;
+      console.log(email);
     } catch (err) {
       alert("Invalid token.");
       return;
