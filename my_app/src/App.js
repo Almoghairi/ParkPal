@@ -38,7 +38,7 @@ function App() {
   const currentTab = location.pathname.replace('/', '') || 'home';
   const [isLoggedIn, setIsLoggedIn] = useState(!!localStorage.getItem("token"));
   const authPath = isLoggedIn ? "/logout" : "/login";
-  const authLabel = isLoggedIn ? "Logout" : "Log in";
+  const authLabel = isLoggedIn ? "Log out" : "Log in";
 
   return (
     <div className="App" style={{
