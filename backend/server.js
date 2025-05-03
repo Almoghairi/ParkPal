@@ -6,7 +6,10 @@ require('dotenv').config();
 const authRoutes = require('./routes/auth');
 const forgottenAsylumReviewRoutes = require('./routes/forgottenAsylumReviewRoute');
 const virtualQRoutes = require('./routes/VQServer');
-
+const pharaohReviewRoutes = require('./routes/pharaohCurseReviewRoute');
+const infernoRoutes = require('./routes/infernoSpiralReviewRoute');
+const tempestRoutes = require('./routes/tempestWrathReviewRoute');
+const cryZoneRoutes = require('./routes/cryZoneXReviewRoute');
 
 const app = express();
 app.use(cors({
@@ -23,6 +26,10 @@ mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopol
 app.use('/api/auth', authRoutes);
 app.use('/api/forgotten-asylum', forgottenAsylumReviewRoutes);
 app.use('/api/vq', virtualQRoutes);
+app.use('/api/pharaoh-curse', pharaohReviewRoutes);
+app.use('/api/inferno-spiral', infernoRoutes);
+app.use('/api/tempest-wrath', tempestRoutes);
+app.use('/api/cryzone-x', cryZoneRoutes);
 
 initScheduler();
 
