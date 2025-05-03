@@ -25,5 +25,19 @@ router.post('/', async (req, res) => {
         res.status(500).json({ message: 'Internal server error.' });
     }
 });
+// GET /api/ticket/:userId
+router.get('/ticket/:userId', async (req, res) => {
+    const { userId } = req.params;
+    try {
+      const ticket = await Ticket.findOne({ userId }); // or multiple with .find()
+      if (ticket) {
+        return res.json({ hasTicket: true, ticket });
+      } else {
+        return res.json({ hasTicket: false });
+      }
+    } catch (err) {
+      res.status(500).json({ message: 'Server error' });
+    }
+  });
 
 module.exports = router;

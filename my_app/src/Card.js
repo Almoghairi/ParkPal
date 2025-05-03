@@ -6,11 +6,15 @@ import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { useNavigate } from 'react-router';
+import { toast } from 'react-toastify';
+import { useHasTicket } from './HasTicket';
 
 {/* Card function took from MUI.com */}
 function ImgMediaCard({title, image}) {
   const navigate = useNavigate();
   const token = localStorage.getItem("token"); // check login
+  const hasTicket = useHasTicket();
+
   return (
     <Card sx={{ maxWidth: 345 }} style={{backgroundColor:'black', color:'white'}}>
       <CardMedia style={{
@@ -41,7 +45,11 @@ function ImgMediaCard({title, image}) {
               color: 'white', borderRadius:'8px'
             }} size="small" onClick={() => {
             if (token){
-                navigate('/queue',{ state: { gameT:title , image:image}});
+                if (hasTicket) {
+                  navigate('/queue',{ state: { gameT:title , image:image}});
+                } else {
+                  toast.info('You have to buy a ticket!');
+                }
               }
             else {
                 navigate('/login');
