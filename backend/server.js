@@ -10,6 +10,8 @@ const pharaohReviewRoutes = require('./routes/pharaohCurseReviewRoute');
 const infernoRoutes = require('./routes/infernoSpiralReviewRoute');
 const tempestRoutes = require('./routes/tempestWrathReviewRoute');
 const cryZoneRoutes = require('./routes/cryZoneXReviewRoute');
+const ticketsRoute = require('./routes/TicketsRoute');
+
 
 const app = express();
 app.use(cors({
@@ -30,6 +32,7 @@ app.use('/api/pharaoh-curse', pharaohReviewRoutes);
 app.use('/api/inferno-spiral', infernoRoutes);
 app.use('/api/tempest-wrath', tempestRoutes);
 app.use('/api/cryzone-x', cryZoneRoutes);
+app.use('/api/ticket', ticketsRoute);
 
 initScheduler();
 

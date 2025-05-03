@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
+import { jwtDecode } from 'jwt-decode';
 
 
 function TicketPage() {
@@ -14,12 +15,22 @@ function TicketPage() {
   }, [adultQuantity, childQuantity, seniorQuantity]);
 
   if (showPayPage) {
+    const token = localStorage.getItem('token');
+    if (!token) {
+      return alert('You must be logged in to buy tickets.');
+    }
+    const userId = localStorage.getItem('userId');
     if (adultQuantity <= 0 && childQuantity <= 0 && seniorQuantity <= 0) {
       alert("Please select at least one ticket type before proceeding to payment.");
       setShowPayPage(false);
       return;
     }
-    return <Pay totalAmount={totalAmount} />;
+    return <Pay 
+        totalAmount={totalAmount} 
+        adultQuantity={adultQuantity} 
+        childQuantity={childQuantity} 
+        seniorQuantity={seniorQuantity} 
+      />;
   }
 
   return (
@@ -51,9 +62,8 @@ function TicketPage() {
   );
 }
 
-function Pay(parms) {
-  
-  const handleSubmit = (event) => {
+function Pay({ totalAmount, adultQuantity, childQuantity, seniorQuantity }) {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     const cardNumber = event.target.cardNumber.value.trim();
     const expiryDate = event.target.expiryDate.value.trim();
@@ -64,7 +74,48 @@ function Pay(parms) {
       return;
     }
 
-    alert("Payment submitted successfully!");
+    const token = localStorage.getItem('token');
+    if (!token) {
+      alert("You must be logged in.");
+      return;
+    }
+
+    let userId;
+    try {
+      const decoded = jwtDecode(token);
+      userId = decoded.userId;
+    } catch (err) {
+      alert("Invalid token.");
+      return;
+    }
+
+    const totalTickets = adultQuantity + childQuantity + seniorQuantity;
+
+    try {
+      const response = await fetch('http://localhost:3001/api/ticket', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+        },
+        body: JSON.stringify({
+          userId,
+          numberOfTickets: totalTickets
+        })
+      });
+
+      const data = await response.json();
+      if (response.ok) {
+        alert('Payment submitted and ticket saved successfully!');
+      } else {
+        alert(`Error: ${data.message}`);
+      }
+      console.log('Ticket saved:', data);
+      console.log('Payment submitted:', { cardNumber, expiryDate, cvv });
+    } catch (error) {
+      console.error('Error saving ticket:', error);
+      alert('An error occurred while saving your ticket.');
+    }
   };
 
   return (
@@ -75,7 +126,7 @@ function Pay(parms) {
       id="pay-page">
       <h1>Pay</h1>
       <p>Here you can pay for your tickets.</p>
-      <p>The total amount is: {parms.totalAmount} SAR</p>
+      <p>The total amount is: {totalAmount} SAR</p>
       
       <form onSubmit={handleSubmit}>
         <div>
