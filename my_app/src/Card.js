@@ -10,6 +10,7 @@ import { useNavigate } from 'react-router';
 {/* Card function took from MUI.com */}
 function ImgMediaCard({title, image}) {
   const navigate = useNavigate();
+  const token = localStorage.getItem("token"); // check login
   return (
     <Card sx={{ maxWidth: 345 }} style={{backgroundColor:'light'}}>
       <CardMedia style={{
@@ -36,7 +37,14 @@ function ImgMediaCard({title, image}) {
       </CardContent>
       <CardActions>
         {/* linked  now */}
-        <Button size="small" onClick={() => navigate('/queue',{ state: { gameT:title , image:image}} )}>Virtual Queue</Button> 
+        <Button size="small" onClick={() => {
+            if (token){
+                navigate('/queue',{ state: { gameT:title , image:image}});
+              }
+            else {
+                navigate('/login');
+            }
+          }}>Virtual Queue</Button> 
         <Button size="small" onClick={() => {
             switch (image) {
               case '/pictures/forgotten.png':
