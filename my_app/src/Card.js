@@ -12,7 +12,7 @@ function ImgMediaCard({title, image}) {
   const navigate = useNavigate();
   const token = localStorage.getItem("token"); // check login
   return (
-    <Card sx={{ maxWidth: 345 }} style={{backgroundColor:'light'}}>
+    <Card sx={{ maxWidth: 345 }} style={{backgroundColor:'black', color:'white'}}>
       <CardMedia style={{
       background: 'rgba(24, 24, 27, 0.55)',           // slightly warmer black
       backdropFilter: 'blur(14px)',
@@ -35,9 +35,11 @@ function ImgMediaCard({title, image}) {
           
         </Typography>
       </CardContent>
-      <CardActions>
+      <CardActions >
         {/* linked  now */}
-        <Button size="small" onClick={() => {
+        <Button sx={{
+              color: 'white', borderRadius:'8px'
+            }} size="small" onClick={() => {
             if (token){
                 navigate('/queue',{ state: { gameT:title , image:image}});
               }
@@ -45,7 +47,13 @@ function ImgMediaCard({title, image}) {
                 navigate('/login');
             }
           }}>Virtual Queue</Button> 
-        <Button size="small" onClick={() => {
+        <Button sx={{
+              color: 'white', borderRadius:'8px',
+              '&:hover': {
+                backgroundColor: '#',
+
+              },
+            }} size="small" onClick={() => {
             switch (image) {
               case '/pictures/forgotten.png':
                 navigate('/forgotten-info');
@@ -66,7 +74,13 @@ function ImgMediaCard({title, image}) {
                 navigate('/info'); 
             }
         }}>Ride Info</Button>
-        <Button size="small" onClick={() =>{
+        <Button sx={{
+              color: 'white', borderRadius:'8px',
+              '&:hover': {
+                backgroundColor: '#',
+
+              },
+            }} size="small" onClick={() =>{
           switch (image) {
             case '/pictures/forgotten.png':
               navigate('/forgotten-reviews');
