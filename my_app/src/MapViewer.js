@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons';
 
 function Map() {
-  const [map] = useState('/pictures/map.png');
+  const [map] = useState('/pictures/lastmap.png');
   const gameImage = ['/pictures/forgotten.png', '/pictures/tampet.png','/pictures/inferno.png','/pictures/cryzone.png', '/pictures/pharoah.png'];
   const posX = ['30%', '20%','80%','77%','35%']; // x-axis as percentages
   const posY = ['20%', '50%', '70%', '15%', '72%']; // y-axis also as percentages
