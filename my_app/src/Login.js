@@ -7,7 +7,7 @@ import { color } from "framer-motion";
 
 
 
-function Login({setLog}) {
+function Login({setIsLoggedIn}) {
     const [showHomePage, setShowHomePage] = useState(false);
     const [showSignUpPage, setShowSignUpPage] = useState(false);
     const [formData, setFormData] = useState({ email: "", password: "" });
@@ -41,7 +41,7 @@ function Login({setLog}) {
           alert(data.message || "Login failed");
         } else {
           localStorage.setItem("token", data.token);
-          setLog("Logout");
+          setIsLoggedIn(true);
           setShowHomePage(true);
         }
       } catch (err) {
