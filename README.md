@@ -18,6 +18,7 @@ The app is built for theme park visitors—families, friends, or anyone looking 
 
 Before running the project, make sure to install the required dependencies:
 
+Front-End
 ```bash
 npm install
 npm install react-icons
@@ -25,6 +26,18 @@ npm install react-parallax
 npm install react-lottie
 npm install aos
 npm install react-tsparticles
+npm install react-toastify
+```
+Backend
+```bash
+cd backend
+npm init -y
+npm install express mongoose cors bcryptjs dotenv
+npm install jsonwebtoken
+```
+Then start the server
+```bash
+node server.js
 ```
 
 ## 📖 Usage Instructions
