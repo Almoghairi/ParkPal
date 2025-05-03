@@ -104,14 +104,6 @@ function VQ(){
 
                 <Col md={6}  className="align-items-center" style={{display: 'grid',placeItems: 'center',height: '70vh',}}>
                     <Lottie animationData={Ani} style={{ width: 300, height: 300 }} />
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '8px', whiteSpace: 'nowrap' }}>
-                        <div className='fs-2'>Estimated waiting time </div>
-                        <Lottie animationData={Ani2} loop autoplay /> 
-                        <div className='fs-3'>{randomNumber} min to start</div>
-                     </div>
-                    
-
-                    <div className='fs-2' >{} people in queue</div>
 
 
 
