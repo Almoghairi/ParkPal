@@ -30,6 +30,9 @@ import { color, motion } from 'framer-motion';
 import Contact from './Contact';
 import SignUp from './SignUp';
 import LogoutPage from './LogOut';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 function App() {
   const navigate = useNavigate();
@@ -99,6 +102,7 @@ function App() {
           </Routes>
         </div>
       </motion.div>
+      <ToastContainer position="bottom-left" autoClose={3000} hideProgressBar />
     </div>
   );
 }
