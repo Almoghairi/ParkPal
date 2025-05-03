@@ -9,7 +9,7 @@ const PharaohCurseReviews = () => {
   const [rating, setRating] = useState(0);
 
   useEffect(() => {
-    axios.get('http://localhost:3001/api/pharaoh-curse')
+    axios.get('https://parkpal-tzjr.onrender.com/api/pharaoh-curse')
       .then(res => setReviews(res.data))
       .catch(err => console.error('Failed to load reviews:', err));
   }, []);
@@ -36,13 +36,13 @@ const PharaohCurseReviews = () => {
     };
 
     try {
-      await axios.post('http://localhost:3001/api/pharaoh-curse', newReview, {
+      await axios.post('https://parkpal-tzjr.onrender.com/api/pharaoh-curse', newReview, {
         headers: {
           Authorization: `Bearer ${token}`
         }
       });
 
-      const res = await axios.get('http://localhost:3001/api/pharaoh-curse');
+      const res = await axios.get('https://parkpal-tzjr.onrender.com/api/pharaoh-curse');
       setReviews(res.data);
       setComment('');
       setRating(0);

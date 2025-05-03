@@ -38,13 +38,13 @@ const TempestWrathReviews = () => {
     };
 
     try {
-      await axios.post('http://localhost:3001/api/tempest-wrath', newReview, {
+      await axios.post('https://parkpal-tzjr.onrender.com/api/tempest-wrath', newReview, {
         headers: {
           Authorization: `Bearer ${token}`
         }
       });
 
-      const res = await axios.get('http://localhost:3001/api/tempest-wrath');
+      const res = await axios.get('https://parkpal-tzjr.onrender.com/api/tempest-wrath');
       setReviews(res.data);
       setComment('');
       setRating(0);

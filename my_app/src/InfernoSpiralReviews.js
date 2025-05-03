@@ -9,7 +9,7 @@ const InfernoSpiralReviews = () => {
   const [rating, setRating] = useState(0);
 
   useEffect(() => {
-    axios.get('http://localhost:3001/api/inferno-spiral')
+    axios.get('https://parkpal-tzjr.onrender.com/api/inferno-spiral')
       .then(res => setReviews(res.data))
       .catch(err => console.error('Error loading reviews:', err));
   }, []);
@@ -38,13 +38,13 @@ const InfernoSpiralReviews = () => {
     };
 
     try {
-      await axios.post('http://localhost:3001/api/inferno-spiral', newReview, {
+      await axios.post('https://parkpal-tzjr.onrender.com/api/inferno-spiral', newReview, {
         headers: {
           Authorization: `Bearer ${token}`
         }
       });
 
-      const res = await axios.get('http://localhost:3001/api/inferno-spiral');
+      const res = await axios.get('https://parkpal-tzjr.onrender.com/api/inferno-spiral');
       setReviews(res.data);
       setComment('');
       setRating(0);

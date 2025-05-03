@@ -10,7 +10,7 @@ const ForgottenAsylumReviews = () => {
 
   // Fetch all reviews on component mount
   useEffect(() => {
-    axios.get('http://localhost:3001/api/forgotten-asylum')
+    axios.get('https://parkpal-tzjr.onrender.com/api/forgotten-asylum')
       .then(res => setReviews(res.data))
       .catch(err => console.error('Failed to load reviews:', err));
   }, []);
@@ -41,14 +41,14 @@ const ForgottenAsylumReviews = () => {
     };
 
     try {
-      await axios.post('http://localhost:3001/api/forgotten-asylum', newReview, {
+      await axios.post('https://parkpal-tzjr.onrender.com/api/forgotten-asylum', newReview, {
         headers: {
           Authorization: `Bearer ${token}`
         }
       });
 
       // Refresh reviews after adding
-      const res = await axios.get('http://localhost:3001/api/forgotten-asylum');
+      const res = await axios.get('https://parkpal-tzjr.onrender.com/api/forgotten-asylum');
       setReviews(res.data);
       setComment('');
       setRating(0);
