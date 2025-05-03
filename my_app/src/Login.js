@@ -4,6 +4,8 @@ import React, { useState } from "react";
 import HomePage from "./HomePage";
 import { Link } from "react-router";
 import { color } from "framer-motion";
+import { toast } from 'react-toastify';
+
 
 
 
@@ -41,8 +43,13 @@ function Login({setIsLoggedIn}) {
           alert(data.message || "Login failed");
         } else {
           localStorage.setItem("token", data.token);
+          localStorage.setItem('user', JSON.stringify({ name: data.name, email: data.email }));
+
           setIsLoggedIn(true);
           setShowHomePage(true);
+          toast.success('Login successful!');
+
+          
         }
       } catch (err) {
         alert("Server error. Please try again later.");

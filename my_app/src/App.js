@@ -1,7 +1,7 @@
 import ForgottenAsylumReviews from './ForgottenAsylumReviews';
 import './App.css';
 import { BrowserRouter as Router , Route , Routes } from 'react-router';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
@@ -24,12 +24,13 @@ import TempestWrathReviews from './TempestWrathReviews';
 import CryZoneXReviews from './CryZoneXReviews';
 import PharaohCurseReviews from './PharaohCurseReviews';
 import InfernoSpiralReviews from './InfernoSpiralReviews';
-import BackgroundAnimation from './BackgroundGradient';
-import { Background } from 'react-parallax';
-import { color, motion } from 'framer-motion';
+import { motion } from 'framer-motion';
 import Contact from './Contact';
 import SignUp from './SignUp';
 import LogoutPage from './LogOut';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 function App() {
   const navigate = useNavigate();
@@ -37,7 +38,7 @@ function App() {
   const currentTab = location.pathname.replace('/', '') || 'home';
   const [isLoggedIn, setIsLoggedIn] = useState(!!localStorage.getItem("token"));
   const authPath = isLoggedIn ? "/logout" : "/login";
-  const authLabel = isLoggedIn ? "Logout" : "Log in";
+  const authLabel = isLoggedIn ? "Log out" : "Log in";
 
   return (
     <div className="App" style={{
@@ -99,6 +100,7 @@ function App() {
           </Routes>
         </div>
       </motion.div>
+      <ToastContainer position="bottom-left" autoClose={3000} hideProgressBar />
     </div>
   );
 }

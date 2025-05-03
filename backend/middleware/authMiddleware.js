@@ -7,6 +7,8 @@ const verifyToken = (req, res, next) => {
   try {
     const decoded = jwt.verify(token, 'secretKey'); 
     req.userId = decoded.userId; 
+    req.emaol = decoded.email;
+    req.name = decoded.name;
     next();
   } catch (err) {
     res.status(400).json({ message: "Invalid token" });

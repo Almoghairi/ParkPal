@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { jwtDecode } from 'jwt-decode';
+import { useNavigate } from 'react-router';
+import { toast } from 'react-toastify';
 
 
 function TicketPage() {
@@ -9,6 +11,7 @@ function TicketPage() {
   const [childQuantity, setChildQuantity] = useState(0);
   const [seniorQuantity, setSeniorQuantity] = useState(0);
   const [totalAmount, setTotalAmount] = useState(0);
+  
 
   useEffect(() => {
     setTotalAmount((adultQuantity * 100) + (childQuantity * 50) + (seniorQuantity * 70));
@@ -63,11 +66,13 @@ function TicketPage() {
 }
 
 function Pay({ totalAmount, adultQuantity, childQuantity, seniorQuantity }) {
+  const navigate = useNavigate();
   const handleSubmit = async (event) => {
     event.preventDefault();
     const cardNumber = event.target.cardNumber.value.trim();
     const expiryDate = event.target.expiryDate.value.trim();
     const cvv = event.target.cvv.value.trim();
+
 
     if (!cardNumber || !expiryDate || !cvv) {
       alert("Please fill in all fields before submitting.");
@@ -84,6 +89,8 @@ function Pay({ totalAmount, adultQuantity, childQuantity, seniorQuantity }) {
     try {
       const decoded = jwtDecode(token);
       userId = decoded.userId;
+      let email = decoded.email;
+      console.log(email);
     } catch (err) {
       alert("Invalid token.");
       return;
@@ -106,7 +113,8 @@ function Pay({ totalAmount, adultQuantity, childQuantity, seniorQuantity }) {
 
       const data = await response.json();
       if (response.ok) {
-        alert('Payment submitted and ticket saved successfully!');
+        toast.info('Payment submitted and ticket saved successfully!');
+        navigate("/home");
       } else {
         alert(`Error: ${data.message}`);
       }

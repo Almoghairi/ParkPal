@@ -1,5 +1,7 @@
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
+
 
 function LogoutPage({ setIsLoggedIn }) {
   const navigate = useNavigate();
@@ -7,6 +9,7 @@ function LogoutPage({ setIsLoggedIn }) {
   useEffect(() => {
     localStorage.removeItem("token");
     setIsLoggedIn(false);
+    toast.info('Logged out successfully!');
     navigate("/home");
   }, []);
 

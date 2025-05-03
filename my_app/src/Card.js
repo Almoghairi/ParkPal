@@ -6,22 +6,26 @@ import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { useNavigate } from 'react-router';
+import { toast } from 'react-toastify';
+import { useHasTicket } from './HasTicket';
 
 {/* Card function took from MUI.com */}
 function ImgMediaCard({title, image}) {
   const navigate = useNavigate();
   const token = localStorage.getItem("token"); // check login
+  const hasTicket = useHasTicket();
+
   return (
-    <Card sx={{ maxWidth: 345 }} style={{backgroundColor:'light'}}>
+    <Card sx={{ maxWidth: 345 }} style={{backgroundColor:'black', color:'white'}}>
       <CardMedia style={{
-  background: 'rgba(24, 24, 27, 0.55)',           // slightly warmer black
-  backdropFilter: 'blur(14px)',
-  WebkitBackdropFilter: 'blur(12px)', // for Safari
-  boxShadow: '0 8px 30px rgba(0, 0, 0, 0.6)',
-  borderBottomLeftRadius: '8px',
-  borderBottomRightRadius: '8px',
-  color: '#eee'
-}}
+      background: 'rgba(24, 24, 27, 0.55)',           // slightly warmer black
+      backdropFilter: 'blur(14px)',
+      WebkitBackdropFilter: 'blur(12px)', // for Safari
+      boxShadow: '0 8px 30px rgba(0, 0, 0, 0.6)',
+      borderBottomLeftRadius: '8px',
+      borderBottomRightRadius: '8px',
+      color: '#eee'
+    }}
         component="img"
         alt={title}
         height="140"
@@ -35,17 +39,29 @@ function ImgMediaCard({title, image}) {
           
         </Typography>
       </CardContent>
-      <CardActions>
+      <CardActions >
         {/* linked  now */}
-        <Button size="small" onClick={() => {
+        <Button sx={{
+              color: 'white', borderRadius:'8px'
+            }} size="small" onClick={() => {
             if (token){
-                navigate('/queue',{ state: { gameT:title , image:image}});
+                if (hasTicket) {
+                  navigate('/queue',{ state: { gameT:title , image:image}});
+                } else {
+                  toast.info('You have to buy a ticket!');
+                }
               }
             else {
                 navigate('/login');
             }
           }}>Virtual Queue</Button> 
-        <Button size="small" onClick={() => {
+        <Button sx={{
+              color: 'white', borderRadius:'8px',
+              '&:hover': {
+                backgroundColor: '#',
+
+              },
+            }} size="small" onClick={() => {
             switch (image) {
               case '/pictures/forgotten.png':
                 navigate('/forgotten-info');
@@ -66,7 +82,13 @@ function ImgMediaCard({title, image}) {
                 navigate('/info'); 
             }
         }}>Ride Info</Button>
-        <Button size="small" onClick={() =>{
+        <Button sx={{
+              color: 'white', borderRadius:'8px',
+              '&:hover': {
+                backgroundColor: '#',
+
+              },
+            }} size="small" onClick={() =>{
           switch (image) {
             case '/pictures/forgotten.png':
               navigate('/forgotten-reviews');

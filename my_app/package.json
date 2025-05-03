@@ -34,6 +34,7 @@
     "react-router": "^7.3.0",
     "react-router-dom": "^7.5.3",
     "react-scripts": "5.0.1",
+    "react-toastify": "^11.0.5",
     "react-tsparticles": "^2.12.2",
     "three": "^0.152.2",
     "tsparticles": "^2.12.0",
