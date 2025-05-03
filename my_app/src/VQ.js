@@ -63,7 +63,7 @@ function VQ(){
             e.preventDefault();
             setError('');
             try {
-              const response = await fetch('/api/vq/join', {
+              const response = await fetch('https://parkpal-tzjr.onrender.com/api/vq/join', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({

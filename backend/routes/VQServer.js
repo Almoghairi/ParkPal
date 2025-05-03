@@ -8,7 +8,7 @@ const router = express.Router();
 // Rate limiter middleware
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000,
-  max: 100
+  max: 1000
 });
 router.use('/join', limiter);
 
