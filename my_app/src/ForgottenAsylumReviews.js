@@ -10,7 +10,7 @@ const ForgottenAsylumReviews = () => {
 
   // Fetch all reviews on component mount
   useEffect(() => {
-    axios.get('http://localhost:5000/api/forgotten-asylum')
+    axios.get('http://localhost:3001/api/forgotten-asylum')
       .then(res => setReviews(res.data))
       .catch(err => console.error('Failed to load reviews:', err));
   }, []);
