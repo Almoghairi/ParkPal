@@ -3,7 +3,6 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import './App.css';
-import Coaster from './RollerCoaster';
 import Typewriter from 'typewriter-effect';
 import { motion } from 'framer-motion';
 import ParkAnimation from './ParkAnimation';
