@@ -8,7 +8,7 @@ const router = express.Router();
 // Rate limiter middleware
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000,
-  max: 30
+  max: 100
 });
 router.use('/join', limiter);
 
@@ -17,7 +17,7 @@ router.post('/join', async (req, res) => {
   try {
     const { gameName, visitor } = req.body;
     const existing = await VQSchema.findOne({
-      'visitor.phone': visitor.phone,
+      'visitor.name': visitor.name,
       gameName,
       status: 'waiting'
     });
