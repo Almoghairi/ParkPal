@@ -9,5 +9,18 @@ function initScheduler() {
     );
     console.log(`Marked ${expired.modifiedCount} entries as expired`);
   });
+  schedule.scheduleJob('*/1 * * * *', async () => {
+    try {
+      const result = await VQSchema.deleteMany({
+        endTime: { $lt: new Date() },
+        status: 'waiting'
+      });
+      if (result.deletedCount > 0) {
+        console.log(`[Scheduler] Deleted ${result.deletedCount} expired queue entries`);
+      }
+    } catch (err) {
+      console.error('[Scheduler] Error cleaning expired queues:', err);
+    }
+  });
 }
 module.exports = { initScheduler };

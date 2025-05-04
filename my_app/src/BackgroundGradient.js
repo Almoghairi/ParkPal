@@ -27,7 +27,7 @@ const BackgroundAnimation = () => {
         style={{
           width: '100%',
           height: '100%',
-          transform: 'scale(2.5)', //  SVG/canvas stretch
+          transform: 'scale(4)', //  SVG/canvas stretch
         }}
       />
     </div>

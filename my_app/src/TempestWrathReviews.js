@@ -9,7 +9,7 @@ const TempestWrathReviews = () => {
   const [rating, setRating] = useState(0);
 
   useEffect(() => {
-    axios.get('http://localhost:3001/api/tempest-wrath')
+    axios.get('https://parkpal-tzjr.onrender.com/api/tempest-wrath')
       .then(res => setReviews(res.data))
       .catch(err => console.error('Error loading reviews:', err));
   }, []);

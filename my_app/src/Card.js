@@ -8,16 +8,32 @@ import Typography from '@mui/material/Typography';
 import { useNavigate } from 'react-router';
 import { toast } from 'react-toastify';
 import { useHasTicket } from './HasTicket';
+import { useHasQueue } from './QueueCheck';
 
 {/* Card function took from MUI.com */}
 function ImgMediaCard({title, image}) {
   const navigate = useNavigate();
   const token = localStorage.getItem("token"); // check login
   const hasTicket = useHasTicket();
+  const { inQueue, gameName } = useHasQueue(); // checks if user is in any queue
+
 
   return (
-    <Card sx={{ maxWidth: 345 }} style={{backgroundColor:'black', color:'white'}}>
-      <CardMedia style={{
+    <Card sx={{
+      width: '100%',
+      height: '100%',
+      backgroundColor: 'black',
+      color: 'white',
+      display: 'flex',
+      flexDirection: 'column',
+     }} style={{backgroundColor:'black', color:'white'}}>
+      <CardMedia 
+      sx={{
+        width: '100%',
+        height: { xs: 160, sm: 200, md: 240 }, // adaptive to screen size
+        objectFit: 'cover',
+      }}
+      style={{
       background: 'rgba(24, 24, 27, 0.55)',           // slightly warmer black
       backdropFilter: 'blur(14px)',
       WebkitBackdropFilter: 'blur(12px)', // for Safari
@@ -44,17 +60,25 @@ function ImgMediaCard({title, image}) {
         <Button sx={{
               color: 'white', borderRadius:'8px'
             }} size="small" onClick={() => {
-            if (token){
-                if (hasTicket) {
-                  navigate('/queue',{ state: { gameT:title , image:image}});
-                } else {
-                  toast.info('You have to buy a ticket!');
-                }
-              }
-            else {
+              if (!token) {
                 navigate('/login');
+                return;
+              }
+          
+              if (!hasTicket) {
+                toast.info('You have to buy a ticket!');
+                return;
+              }
+          
+              if (inQueue && gameName !== title) {
+                toast.error(`You are already in the queue for "${gameName}"`);
+                return;
+              }
+          
+              // Allow entering the queue for this game
+              navigate('/queue', { state: { gameT: { title }, image } });
             }
-          }}>Virtual Queue</Button> 
+            }>Virtual Queue</Button> 
         <Button sx={{
               color: 'white', borderRadius:'8px',
               '&:hover': {

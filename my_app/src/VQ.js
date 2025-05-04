@@ -6,133 +6,224 @@ import Ani from './Ani3.json';
 import Ani2 from './Ani2.json';
 import Lottie from 'lottie-react';
 import { jwtDecode } from 'jwt-decode';
+import Barcode from 'react-barcode';
 
 
-function VQ(){
-    const location = useLocation();
-    const { gameT, image } = location.state || {};
-    const title = gameT.title
-    // const [ticketInfo, setTicketInfo] = useState(null);
 
-    // const handleSubmit = async (e) => {
-    //     e.preventDefault();
-    //     if (!token.trim()) return;
-        
-        
-    //     try {
-    //       const response = await fetch(`/api/vq/status/${token.trim()}`);
+function VQ() {
+  const location = useLocation();
+  const { gameT, image } = location.state || {};
+  const title = gameT.title;
+  const [showBarcode, setShowBarcode] = useState(false);
 
-    //       const data = await response.json();
-    //       setTicketInfo(data);
-          
-    //       if (response.ok) {
-    //         <queue1/>
-    //       }
-          
-          
-          
-    //     } catch (err) {
-    //       setError(err.message);
-    //       setTicketInfo(null);
-    //     }}
-    const [randomNumber, setRandomNumber] = useState(0);
-    useEffect(() => {
-        setRandomNumber(Math.floor(Math.random() * 90)); 
-      }, []);
-    const numOfPeople= Math.floor(randomNumber/5);
 
+  const [queueData, setQueueData] = useState(null);
+  const [error, setError] = useState('');
+  const [loading, setLoading] = useState(true);
+  const [userId, setUserId] = useState(null);
+  const [invalidToken, setInvalidToken] = useState(false);
+  const currentQueue = JSON.parse(localStorage.getItem('currentQueue'));
+
+  useEffect(() => {
+    if (!queueData?.expires || showBarcode) return;
+  
+    const expiresAt = new Date(queueData.expires).getTime();
+    const now = Date.now();
+  
+    // If we're within the expiry window
+    if (now >= expiresAt) {
+      setShowBarcode(true);
+  
+      // After 1 minute, auto-quit
+      const timeout = setTimeout(() => {
+        handleQuitQueue();
+      }, 60 * 1000); // 1 minute
+  
+      return () => clearTimeout(timeout);
+    }
+  }, [queueData, showBarcode]);
+  
+  useEffect(() => {
+    if (!queueData?.token) return;
+  
+    const interval = setInterval(async () => {
+      try {
+        const res = await fetch(`https://parkpal-tzjr.onrender.com/api/vq/status/${queueData.token}`);
+        if (!res.ok) throw new Error("Failed to refresh queue status");
+  
+        const data = await res.json();
+  
+        setQueueData(prev => ({
+          ...prev,
+          position: data.position,
+          expires: data.gameEnd,
+          status: data.status
+        }));
+      } catch (err) {
+        console.error("Polling error:", err);
+      }
+    }, 10000); // every 10 seconds
+  
+    return () => clearInterval(interval);
+  }, [queueData?.token]); // ✅ valid useEffect, not nested
+  
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (!token) return setInvalidToken(true);
+    try {
+      const decoded = jwtDecode(token);
+      setUserId(decoded.userId);
+    } catch (err) {
+      setInvalidToken(true);
+    }
+  }, []);
+
+  // On mount, check if user is already in a queue
+  useEffect(() => {
+    const fetchQueueStatus = async () => {
+      if (!userId || !currentQueue || currentQueue.visitor.name !== userId) {
+        setLoading(false);
+        return;
+      }
+
+      try {
+        const res = await fetch(`https://parkpal-tzjr.onrender.com/api/vq/status/${currentQueue.token}`);
+        if (!res.ok) throw new Error("Queue status fetch failed.");
+        const data = await res.json();
+        setQueueData({ ...currentQueue, position: data.position, expires: data.gameEnd });
+      } catch (err) {
+        console.error(err);
+        localStorage.removeItem('currentQueue');
+      } finally {
+        setLoading(false);
+      }
+    };
     
-    
-        const [loading, setLoading] = useState(false);
-        const [result, setResult] = useState(null);
-        const [error, setError] = useState('');
 
-        const token = localStorage.getItem('token');
+    fetchQueueStatus();
+  }, [userId]);
 
-        let userId;
-        try {
-            const decoded = jwtDecode(token);
-            userId = decoded.userId;
-        } catch (err) {
-            alert("Invalid token.");
-            return;
-        }
+  const handleEnterQueue = async () => {
+    if (currentQueue && currentQueue.visitor.name === userId) {
+      setError('You are already in a queue.');
+      return;
+    }
+
+    setLoading(true);
+    try {
+      const response = await fetch('https://parkpal-tzjr.onrender.com/api/vq/join', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          gameName: gameT.title,
+          visitor: { name: userId },
+        }),
+      });
+
+      if (!response.ok) throw new Error(await response.text());
+      const data = await response.json();
+
+      const newQueue = {
+        token: data.token,
+        position: data.queuePosition,
+        gameName: data.gameName,
+        expires: data.expires,
+        visitor: { name: userId }
+      };
       
-      
-        const handle1Submit = async (e) => {
-            e.preventDefault();
-            setError('');
-            try {
-              const response = await fetch('https://parkpal-tzjr.onrender.com/api/vq/join', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                  gameName: gameT,
-                  visitor: {
-                    name: userId,
-                  }
-                })
-              });
-        
-              if (!response.ok) throw new Error(await response.text());
-              
-              const data = await response.json();
-            
 
-              setResult(data);
-              
-            } catch (err) {
-              setError(err.message);
-            }finally {
-                setLoading(false);
-            }
-        };
+      setQueueData(newQueue);
+      localStorage.setItem('currentQueue', JSON.stringify(newQueue));
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setLoading(false);
+    }
+  };
 
-        
-        
+  const handleQuitQueue = async () => {
+    if (!queueData?.token) return;
+  
+    try {
+      const res = await fetch(`https://parkpal-tzjr.onrender.com/api/vq/quit/${queueData.token}`, {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ userId }), // send userId
+      });
+  
+      if (!res.ok) throw new Error(await res.text());
+  
+      localStorage.removeItem('currentQueue');
+      setQueueData(null);
+    } catch (err) {
+      console.error(err);
+      setError('Failed to quit queue.');
+    }
+  };  
 
-    
+  if (invalidToken) return <p>Invalid or expired token. Please login again.</p>;
 
+  const isInAnotherGameQueue =
+    currentQueue && currentQueue.visitor.name === userId && currentQueue.gameName.title !== gameT.title;
 
+  return (
+    <Row className="align-items-center" style={{ padding: "0", margin: "0" }}>
+      <Col md={6} className="align-items-center" style={{ display: 'grid', placeItems: 'center', height: '70vh' }}>
+        <Lottie animationData={Ani} style={{ width: 300, height: 300 }} />
 
-    return(
-
-        <>
-            
-
-            <Row className="align-items-center"style={{padding:"0",margin:"0"}}>
-
-                <Col md={6}  className="align-items-center" style={{display: 'grid',placeItems: 'center',height: '70vh',}}>
-                    <Lottie animationData={Ani} style={{ width: 300, height: 300 }} />
-
-
-
-                    <button className="btn btn-dark" onClick={handle1Submit}>Enter Queue</button>
-
-                    {result && (
-                    <div className="confirmation">
-                        <h3>🎉 Queue Joined Successfully!</h3>
-                        <div className="confirmation-details">
-                            <p><strong>Token:</strong> {result.token}</p>
-                            <p><strong>Position:</strong> #{result.queuePosition}</p>
-                            <p><strong>Estimated Waiting:</strong> {(result.queuePosition/10)*5}</p>
-                            <p><strong>Expires:</strong> {new Date(result.expires).toLocaleString()}</p>
-                        </div>
-                    </div>
+        {loading ? (
+          <p>Loading...</p>
+        ) : queueData ? (
+          <>
+            <div className="confirmation">
+              <h3>🎉 You're in the Queue!</h3>
+              <div className="confirmation-details">
+                <p><strong>Token:</strong> {queueData.token}</p>
+                <p><strong>Position:</strong> #{queueData.position}</p>
+                <p><strong>Estimated Wait:</strong> {queueData.position * 5} minutes</p>
+                <p><strong>Expires:</strong> {new Date(queueData.expires).toLocaleString()}</p>
+              </div>
+              <div>
+              {showBarcode && (
+                <div className="barcode-wrapper text-center">
+                    <p>🎟️ Boarding now — scan within 1 minute</p>
+                    <Barcode value={queueData.token} />
+                </div>
                 )}
 
-                
-                </Col>
+              </div>
+            </div>
+            {!showBarcode && (
+                <button className="btn btn-danger mt-3" onClick={handleQuitQueue}>
+                    Quit Queue
+                </button>
+                )
+            }
 
-                <Col md={6} style={{padding:"0",margin:"0"}} >
-                    <img className='img-thumbnail' style={{width:"70%",top:"50%", left:"50%"}}src={image} alt={title}></img>
+          </>
+        ) : (
+          <>
+            <button
+              className="btn btn-dark"
+              onClick={handleEnterQueue}
+              disabled={isInAnotherGameQueue}
+            >
+              {isInAnotherGameQueue ? "Already in another queue" : "Enter Queue"}
+            </button>
+          </>
+        )}
 
-                </Col>
-            </Row>
+        {error && <p className="text-danger mt-3">{error}</p>}
+      </Col>
 
-        </>
-        
-
-    )
+      <Col md={6} style={{ padding: "0", margin: "0" }}>
+        <img className='img-thumbnail' style={{ width: "70%", top: "50%", left: "50%" }} src={image} alt={title} />
+      </Col>
+    </Row>
+  );
 }
+
 export default VQ;
+
