@@ -10,7 +10,7 @@ export function useHasTicket() {
 
     try {
       const { userId } = jwtDecode(token);
-      fetch(`http://localhost:3001/api/ticket/${userId}`)
+      fetch(`https://parkpal-tzjr.onrender.com/api/ticket/${userId}`)
         .then(res => res.json())
         .then(data => setHasTicket(data.hasTicket));
     } catch (e) {

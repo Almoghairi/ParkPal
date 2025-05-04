@@ -15,7 +15,7 @@ const ticketsRoute = require('./routes/TicketsRoute');
 
 const app = express();
 app.use(cors({
-  origin: 'http://localhost:3000',
+  origin: 'https://parkpal-blond.vercel.app',
   methods: ['GET','POST','PUT','DELETE','OPTIONS'],
   credentials: true
 }));

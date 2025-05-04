@@ -9,7 +9,7 @@ const CryZoneXReviews = () => {
   const [rating, setRating] = useState(0);
 
   useEffect(() => {
-    axios.get('http://localhost:3001/api/cryzone-x')
+    axios.get('https://parkpal-tzjr.onrender.com/api/cryzone-x')
       .then(res => setReviews(res.data))
       .catch(err => console.error('Failed to load reviews:', err));
   }, []);
@@ -38,13 +38,13 @@ const CryZoneXReviews = () => {
     };
 
     try {
-      await axios.post('http://localhost:3001/api/cryzone-x', newReview, {
+      await axios.post('https://parkpal-tzjr.onrender.com/api/cryzone-x', newReview, {
         headers: {
           Authorization: `Bearer ${token}`
         }
       });
 
-      const res = await axios.get('http://localhost:3001/api/cryzone-x');
+      const res = await axios.get('https://parkpal-tzjr.onrender.com/api/cryzone-x');
       setReviews(res.data);
       setComment('');
       setRating(0);

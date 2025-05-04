@@ -99,7 +99,7 @@ function Pay({ totalAmount, adultQuantity, childQuantity, seniorQuantity }) {
     const totalTickets = adultQuantity + childQuantity + seniorQuantity;
 
     try {
-      const response = await fetch('http://localhost:3001/api/ticket', {
+      const response = await fetch('https://parkpal-tzjr.onrender.com/api/ticket', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

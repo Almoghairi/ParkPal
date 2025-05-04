@@ -40,7 +40,7 @@ function VQ(){
             e.preventDefault();
             setError('');
             try {
-              const response = await fetch('/api/vq/join', {
+              const response = await fetch('https://parkpal-tzjr.onrender.com/api/vq/join', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
@@ -76,6 +76,9 @@ function VQ(){
 
                 <Col md={6}  className="align-items-center" style={{display: 'grid',placeItems: 'center',height: '70vh',}}>
                     <Lottie animationData={Ani} style={{ width: 300, height: 300 }} />
+
+
+
                     <button className="btn btn-dark" onClick={handle1Submit}>Enter Queue</button>
 
                     {result && (
