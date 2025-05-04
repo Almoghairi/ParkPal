@@ -52,11 +52,11 @@ function ImgMediaCard({ title, image }) {
         <Typography variant="subtitle2"
           align="center"
           fontWeight="bold"
-          sx={{ fontSize: '0.75rem', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+          sx={{ fontSize: '0.4rem', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
           {title}
         </Typography>
       </CardContent>
-      <CardActions sx={{ width:'100%',height:'20%',flexWrap: 'wrap', gap: 1, px: 2, pb: 2 }}>
+      <CardActions sx={{height:'20%',flexWrap: 'wrap', gap: 1, px: 2, pb: 2 }}>
         <Button
           variant="outlined"
           size="small"
