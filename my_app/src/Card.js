@@ -56,13 +56,13 @@ function ImgMediaCard({ title, image }) {
           {title}
         </Typography>
       </CardContent>
-      <CardActions sx={{height:'40%',flexWrap: 'wrap', gap: 1, px: 2, pb: 2 }}>
+      <CardActions sx={{height: 'auto',justifyContent: 'center',flexWrap: 'wrap', gap: 0.5, px: 1, pb: 1 }}>
         <Button
           variant="outlined"
           size="small"
           sx={{
-            fontSize: '0.65rem',     // smaller readable size
-            padding: '2px 8px',      // tight padding
+            fontSize: '0.55rem',     // smaller readable size
+            padding: '2px 4px',      // tight padding
             borderRadius: 1,
             color: 'white',
             borderColor: 'white',
@@ -82,8 +82,8 @@ function ImgMediaCard({ title, image }) {
           variant="outlined"
           size="small"
           sx={{
-            fontSize: '0.65rem',     // smaller readable size
-            padding: '4px 8px',      // tight padding
+            fontSize: '0.55rem',     // smaller readable size
+            padding: '2px 4px',      // tight padding
             borderRadius: 1,
             color: 'white',
             borderColor: 'white',
@@ -106,8 +106,8 @@ function ImgMediaCard({ title, image }) {
           variant="outlined"
           size="small"
           sx={{
-            fontSize: '0.65rem',     // smaller readable size
-            padding: '4px 8px',      // tight padding
+            fontSize: '0.55rem',     // smaller readable size
+            padding: '2px 4px',      // tight padding
             borderRadius: 1,
             color: 'white',
             borderColor: 'white',
