@@ -42,8 +42,10 @@ function TicketPage() {
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1.0, ease: 'easeIn' }}
-          style={{ backgroundColor: '#1c1c2b', minHeight: '100vh', paddingTop: '100px', paddingBottom: '60px' }}
+          style={{ backgroundColor: '#1c1c2b' }}
           id="ticket-page" >
+          <Container>
+          <Card className="p-5 text-white shadow" style={{ backgroundColor: '#2a2a3d', borderRadius: '16px' }}>
             <h1>Buy Ticket</h1>
             <p>Here you can buy tickets for the theme park.</p>
             <form>
@@ -61,6 +63,8 @@ function TicketPage() {
                 </div>
                 <button type="button" onClick={() => setShowPayPage(true)}>Pay</button>
             </form>
+            </Card>
+            </Container> 
         </motion.div>
     </>
   );
@@ -132,27 +136,31 @@ function Pay({ totalAmount, adultQuantity, childQuantity, seniorQuantity }) {
       initial={{ opacity: 0, y: 10 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 1.0, ease: 'easeIn' }}
-      style={{ backgroundColor: '#1c1c2b', minHeight: '100vh', paddingTop: '100px', paddingBottom: '60px' }}
+      style={{ backgroundColor: '#1c1c2b'}}
       id="pay-page">
-      <h1>Pay</h1>
-      <p>Here you can pay for your tickets.</p>
-      <p>The total amount is: {totalAmount} SAR</p>
-      
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor="cardNumber">Card Number:</label>
-          <input type="text" id="cardNumber" name="cardNumber" />
-        </div>
-        <div>
-          <label htmlFor="expiryDate">Expiry Date:</label>
-          <input type="month" id="expiryDate" name="expiryDate" />
-        </div>
-        <div>
-          <label htmlFor="cvv">CVV:</label>
-          <input type="text" id="cvv" name="cvv" />
-        </div>
-        <button type="submit">Submit Payment</button>
-      </form>
+      <Container>
+        <Card className="p-5 text-white shadow" style={{ backgroundColor: '#2a2a3d', borderRadius: '16px' }}>
+        <h1>Pay</h1>
+        <p>Here you can pay for your tickets.</p>
+        <p>The total amount is: {totalAmount} SAR</p>
+        
+        <form onSubmit={handleSubmit}>
+          <div>
+            <label htmlFor="cardNumber">Card Number:</label>
+            <input type="text" id="cardNumber" name="cardNumber" />
+          </div>
+          <div>
+            <label htmlFor="expiryDate">Expiry Date:</label>
+            <input type="month" id="expiryDate" name="expiryDate" />
+          </div>
+          <div>
+            <label htmlFor="cvv">CVV:</label>
+            <input type="text" id="cvv" name="cvv" />
+          </div>
+          <button type="submit">Submit Payment</button>
+        </form>
+        </Card>
+      </Container> 
     </motion.div>
   );
 }
