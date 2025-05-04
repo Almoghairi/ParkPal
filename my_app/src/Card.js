@@ -106,3 +106,4 @@ function ImgMediaCard({ title, image }) {
     </Card>
   );
 }
+export default ImgMediaCard;
