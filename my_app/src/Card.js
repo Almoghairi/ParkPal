@@ -37,7 +37,7 @@ function ImgMediaCard({ title, image }) {
         image={image}
         alt={title}
         sx={{
-          height: '60%',         // dynamic based on Card height
+          height: '40%',         // dynamic based on Card height
           width: '100%',
           objectFit: 'cover',
           borderBottomLeftRadius: 2,
@@ -49,10 +49,10 @@ function ImgMediaCard({ title, image }) {
         }}
       />
       <CardContent>
-        <Typography sx={{
-          height: '20%',         // dynamic based on Card height
-          width: '100%',
-          }}gutterBottom variant="h6" component="div">
+        <Typography variant="subtitle2"
+          align="center"
+          fontWeight="bold"
+          sx={{ fontSize: '0.75rem', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
           {title}
         </Typography>
       </CardContent>
@@ -60,7 +60,14 @@ function ImgMediaCard({ title, image }) {
         <Button
           variant="outlined"
           size="small"
-          sx={{ color: 'white', borderColor: 'white', borderRadius: 2 }}
+          sx={{
+            fontSize: '0.65rem',     // smaller readable size
+            padding: '4px 8px',      // tight padding
+            borderRadius: 1,
+            color: 'white',
+            borderColor: 'white',
+            minWidth: 'auto',        // removes default large width
+          }}
           onClick={() => {
             if (!token) return navigate('/login');
             if (!hasTicket) return toast.info('You have to buy a ticket!');
@@ -74,7 +81,14 @@ function ImgMediaCard({ title, image }) {
         <Button
           variant="outlined"
           size="small"
-          sx={{  color: 'white', borderColor: 'white', borderRadius: 2 }}
+          sx={{
+            fontSize: '0.65rem',     // smaller readable size
+            padding: '4px 8px',      // tight padding
+            borderRadius: 1,
+            color: 'white',
+            borderColor: 'white',
+            minWidth: 'auto',        // removes default large width
+          }}
           onClick={() => {
             switch (image) {
               case '/pictures/forgotten.png': navigate('/forgotten-info'); break;
@@ -91,7 +105,14 @@ function ImgMediaCard({ title, image }) {
         <Button
           variant="outlined"
           size="small"
-          sx={{ color: 'white', borderColor: 'white', borderRadius: 2 }}
+          sx={{
+            fontSize: '0.65rem',     // smaller readable size
+            padding: '4px 8px',      // tight padding
+            borderRadius: 1,
+            color: 'white',
+            borderColor: 'white',
+            minWidth: 'auto',        // removes default large width
+          }}
           onClick={() => {
             switch (image) {
               case '/pictures/forgotten.png': navigate('/forgotten-reviews'); break;
