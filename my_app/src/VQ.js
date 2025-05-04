@@ -8,6 +8,7 @@ import Lottie from 'lottie-react';
 import { jwtDecode } from 'jwt-decode';
 import Barcode from 'react-barcode';
 
+import emailjs from '@emailjs/browser';
 
 
 function VQ() {
@@ -224,6 +225,26 @@ function VQ() {
     </Row>
   );
 }
+function sendEmail(e, position, token, Time, email) {
+  e.preventDefault();
+  const formattedTime = new Date(Time).toLocaleString('en-US', {
+    dateStyle: 'medium',
+    timeStyle: 'short',
+  });
+
+  emailjs.send("service_zmmf2dj", "template_n0nqen9", {
+    token: token,
+    position: position,
+    Time: formattedTime,
+    email: email,
+    }, "Oqq3fldT6vZgObhSK").then((result) => {
+      console.log(result.text);
+    }, (error) => {
+      console.log(error.text);
+    }
+  );
+}
+
 
 export default VQ;
 
