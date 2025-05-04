@@ -56,7 +56,7 @@ function ImgMediaCard({ title, image }) {
           {title}
         </Typography>
       </CardContent>
-      <CardActions sx={{height: 'auto',justifyContent: 'center',flexWrap: 'wrap', gap: 0.5, px: 1, pb: 1 }}>
+      <CardActions sx={{height: 'auto',justifyContent: 'center',flexWrap: 'wrap', gap: 0.5, px: 0, pb: 1 }}>
         <Button
           variant="outlined"
           size="small"
