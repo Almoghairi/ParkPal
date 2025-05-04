@@ -49,11 +49,14 @@ function ImgMediaCard({ title, image }) {
         }}
       />
       <CardContent>
-        <Typography gutterBottom variant="h6" component="div">
+        <Typography sx={{
+          height: '20%',         // dynamic based on Card height
+          width: '100%',
+          }}gutterBottom variant="h6" component="div">
           {title}
         </Typography>
       </CardContent>
-      <CardActions sx={{ flexWrap: 'wrap', gap: 1, px: 2, pb: 2 }}>
+      <CardActions sx={{ width:'100%',height:'20%',flexWrap: 'wrap', gap: 1, px: 2, pb: 2 }}>
         <Button
           variant="outlined"
           size="small"
@@ -71,7 +74,7 @@ function ImgMediaCard({ title, image }) {
         <Button
           variant="outlined"
           size="small"
-          sx={{ color: 'white', borderColor: 'white', borderRadius: 2 }}
+          sx={{  color: 'white', borderColor: 'white', borderRadius: 2 }}
           onClick={() => {
             switch (image) {
               case '/pictures/forgotten.png': navigate('/forgotten-info'); break;
