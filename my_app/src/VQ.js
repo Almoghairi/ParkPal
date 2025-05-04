@@ -222,7 +222,7 @@ function VQ() {
         {error && <p className="text-danger mt-3">{error}</p>}
       </Col>
 
-      <Col md={6} style={{ padding: "20px", margin: "20px" }}>
+      <Col className='mt-5' md={6} style={{ padding: "0", margin: "0" }}>
         <img className='img-thumbnail' style={{ width: "70%", top: "50%", left: "50%" }} src={image} alt={title} />
       </Col>
     </Row>

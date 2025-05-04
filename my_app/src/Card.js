@@ -56,7 +56,7 @@ function ImgMediaCard({ title, image }) {
           {title}
         </Typography>
       </CardContent>
-      <CardActions sx={{height: 'auto',justifyContent: 'center',flexWrap: 'wrap', gap: 0.5, px: 0, pb: 1 }}>
+      <CardActions sx={{height: 'auto',justifyContent: 'center',flexWrap: 'wrap', gap: 0.5, px: 1, pb: 1 }}>
         <Button
           variant="outlined"
           size="small"
@@ -65,7 +65,6 @@ function ImgMediaCard({ title, image }) {
             padding: '2px 4px',      // tight padding
             borderRadius: 1,
             color: 'white',
-            borderColor: 'white',
             minWidth: 'auto',        // removes default large width
           }}
           onClick={() => {
@@ -86,7 +85,6 @@ function ImgMediaCard({ title, image }) {
             padding: '2px 4px',      // tight padding
             borderRadius: 1,
             color: 'white',
-            borderColor: 'white',
             minWidth: 'auto',        // removes default large width
           }}
           onClick={() => {
@@ -110,7 +108,6 @@ function ImgMediaCard({ title, image }) {
             padding: '2px 4px',      // tight padding
             borderRadius: 1,
             color: 'white',
-            borderColor: 'white',
             minWidth: 'auto',        // removes default large width
           }}
           onClick={() => {
