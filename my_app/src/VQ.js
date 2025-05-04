@@ -136,7 +136,7 @@ function VQ() {
       setQueueData(newQueue);
       const token = localStorage.getItem('token');
       const decoded = jwtDecode(token)
-      sendEmail(e,new data.queuePosition, data.token, data.expires, decoded.email)
+      sendEmail(data.queuePosition, data.token, data.expires, decoded.email)
       localStorage.setItem('currentQueue', JSON.stringify(newQueue));
     } catch (err) {
       setError(err.message);
@@ -228,8 +228,7 @@ function VQ() {
     </Row>
   );
 }
-function sendEmail(e, position, token, Time, email) {
-  e.preventDefault();
+function sendEmail( position, token, Time, email) {
   const formattedTime = new Date(Time).toLocaleString('en-US', {
     dateStyle: 'medium',
     timeStyle: 'short',
