@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { jwtDecode } from 'jwt-decode';
 import { useNavigate } from 'react-router';
 import { toast } from 'react-toastify';
+import { Container, Card } from 'react-bootstrap';
 
 
 function TicketPage() {
