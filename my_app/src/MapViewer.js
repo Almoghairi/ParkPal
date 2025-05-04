@@ -65,30 +65,24 @@ function Map() {
               }}
             />
           ))}
-
-          {activeIndex !== null && (
-            <motion.div
-              key={activeIndex}
-              style={{
-                position: 'absolute',
-                top: '5%',
-                left: '40%',
-                transform: 'translate(-50%, -50%)', // center the imageCard
-                zIndex: 999,
-              }}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1.0, ease: 'easeOut' }}
-            >
-              <ImgMediaCard
-                title={gameTitle[activeIndex]}
-                image={gameImage[activeIndex]}
-                
-              />
-              
-            </motion.div>
-          )}
         </div>
+      </Container>
+      <Container className='mt-5'>
+        {activeIndex !== null && (
+              <motion.div
+                key={activeIndex}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 1.0, ease: 'easeOut' }}
+              >
+                <ImgMediaCard
+                  title={gameTitle[activeIndex]}
+                  image={gameImage[activeIndex]}
+                  
+                />
+                
+              </motion.div>
+            )}
       </Container>
       
     </motion.div>
