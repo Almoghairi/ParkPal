@@ -113,7 +113,7 @@ function sendEmail(e, position, token, Time, email) {
     timeStyle: 'short',
   });
 
-  emailjs.send("service_08tc7el", "template_n0nqen9", {
+  emailjs.send("service_zmmf2dj", "template_n0nqen9", {
     token: token,
     position: position,
     Time: formattedTime,
