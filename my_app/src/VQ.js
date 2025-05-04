@@ -173,8 +173,8 @@ function VQ() {
     currentQueue && currentQueue.visitor.name === userId && currentQueue.gameName.title !== gameT.title;
 
   return (
-    <Row className=" align-items-center" style={{ display: 'flex', flexDirection:'column',padding: "0", margin: "0" }}>
-      <Col md={6} className="align-items-center" style={{ display: 'grid', placeItems: 'center', height: '70vh' }}>
+    <Row className=" align-items-center" style={{ padding: "0", margin: "0" }}>
+      <Col md={6} className="mb-5 mt-5 align-items-center" style={{ display: 'grid', placeItems: 'center', height: '70vh' }}>
         <Lottie animationData={Ani} style={{ width: 300, height: 300 }} />
 
         {loading ? (
