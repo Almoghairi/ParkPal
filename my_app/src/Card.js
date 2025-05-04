@@ -20,8 +20,8 @@ function ImgMediaCard({ title, image }) {
   return (
     <Card
       sx={{
-        width: { xs: 100, sm: 120, md: 140 },
-        height: { xs: 100, sm: 120, md: 140 },
+        width: { xs: 130, sm: 150, md: 180 },
+        height: { xs: 130, sm: 150, md: 180 },
         backgroundColor: 'black',
         color: 'white',
         display: 'flex',
@@ -52,7 +52,7 @@ function ImgMediaCard({ title, image }) {
         <Typography variant="subtitle2"
           align="center"
           fontWeight="bold"
-          sx={{ fontSize: '0.4rem', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+          sx={{ fontSize: '0.5rem', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
           {title}
         </Typography>
       </CardContent>
