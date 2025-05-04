@@ -134,6 +134,9 @@ function VQ() {
       
 
       setQueueData(newQueue);
+      const token = localStorage.getItem('token');
+      const decoded = jwtDecode(token)
+      sendEmail(e,new data.queuePosition, data.token, data.expires, decoded.email)
       localStorage.setItem('currentQueue', JSON.stringify(newQueue));
     } catch (err) {
       setError(err.message);
