@@ -42,6 +42,7 @@ function TicketPage() {
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1.0, ease: 'easeIn' }}
+          style={{ backgroundColor: '#1c1c2b', minHeight: '100vh', paddingTop: '100px', paddingBottom: '60px' }}
           id="ticket-page" >
             <h1>Buy Ticket</h1>
             <p>Here you can buy tickets for the theme park.</p>
@@ -131,6 +132,7 @@ function Pay({ totalAmount, adultQuantity, childQuantity, seniorQuantity }) {
       initial={{ opacity: 0, y: 10 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 1.0, ease: 'easeIn' }}
+      style={{ backgroundColor: '#1c1c2b', minHeight: '100vh', paddingTop: '100px', paddingBottom: '60px' }}
       id="pay-page">
       <h1>Pay</h1>
       <p>Here you can pay for your tickets.</p>
