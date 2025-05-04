@@ -21,7 +21,7 @@ function ImgMediaCard({ title, image }) {
     <Card
       sx={{
         width: { xs: 130, sm: 150, md: 180 },
-        height: { xs: 130, sm: 150, md: 180 },
+        height: { xs: 200, sm: 220, md: 240 },
         backgroundColor: 'black',
         color: 'white',
         display: 'flex',
@@ -37,7 +37,7 @@ function ImgMediaCard({ title, image }) {
         image={image}
         alt={title}
         sx={{
-          height: '40%',         // dynamic based on Card height
+          height: '30%',         // dynamic based on Card height
           width: '100%',
           objectFit: 'cover',
           borderBottomLeftRadius: 2,
