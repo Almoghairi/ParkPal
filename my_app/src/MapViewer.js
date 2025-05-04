@@ -71,7 +71,7 @@ function Map() {
               key={activeIndex}
               style={{
                 position: 'absolute',
-                top: '30%',
+                top: '10%',
                 left: '40%',
                 transform: 'translate(-50%, -50%)', // center the imageCard
                 zIndex: 999,
