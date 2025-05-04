@@ -26,7 +26,7 @@ function Map() {
           position: 'relative',
           width: '100%',
           maxWidth: '1200px',
-          minWidth: '600px',
+          minWidth: '500px',
           aspectRatio: '16 / 9',
           borderRadius: '24px',
           overflow: 'hidden', // cut it off the image is larger than the widthXheight
