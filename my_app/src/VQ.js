@@ -6,43 +6,20 @@ import Ani from './Ani3.json';
 import Ani2 from './Ani2.json';
 import Lottie from 'lottie-react';
 import { jwtDecode } from 'jwt-decode';
+import emailjs from '@emailjs/browser';
 
 
 function VQ(){
     const location = useLocation();
     const { gameT, image } = location.state || {};
-    const title = gameT.title
-    // const [ticketInfo, setTicketInfo] = useState(null);
-
-    // const handleSubmit = async (e) => {
-    //     e.preventDefault();
-    //     if (!token.trim()) return;
-        
-        
-    //     try {
-    //       const response = await fetch(`/api/vq/status/${token.trim()}`);
-
-    //       const data = await response.json();
-    //       setTicketInfo(data);
-          
-    //       if (response.ok) {
-    //         <queue1/>
-    //       }
-          
-          
-          
-    //     } catch (err) {
-    //       setError(err.message);
-    //       setTicketInfo(null);
-    //     }}
+    const title = gameT.title;
     const [randomNumber, setRandomNumber] = useState(0);
     useEffect(() => {
         setRandomNumber(Math.floor(Math.random() * 90)); 
       }, []);
     const numOfPeople= Math.floor(randomNumber/5);
 
-    
-    
+
         const [loading, setLoading] = useState(false);
         const [result, setResult] = useState(null);
         const [error, setError] = useState('');
@@ -78,9 +55,11 @@ function VQ(){
               
               const data = await response.json();
             
+              const token = localStorage.getItem('token');
+              const decoded = jwtDecode(token);
 
               setResult(data);
-              
+              sendEmail(e, data.queuePosition, data.token, data.expires, decoded.email);
             } catch (err) {
               setError(err.message);
             }finally {
@@ -89,32 +68,14 @@ function VQ(){
         };
 
         
-        
-
-    
-
-
 
     return(
 
         <>
-            
-
             <Row className="align-items-center"style={{padding:"0",margin:"0"}}>
 
                 <Col md={6}  className="align-items-center" style={{display: 'grid',placeItems: 'center',height: '70vh',}}>
                     <Lottie animationData={Ani} style={{ width: 300, height: 300 }} />
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '8px', whiteSpace: 'nowrap' }}>
-                        <div className='fs-2'>Estimated waiting time </div>
-                        <Lottie animationData={Ani2} loop autoplay /> 
-                        <div className='fs-3'>{randomNumber} min to start</div>
-                     </div>
-                    
-
-                    <div className='fs-2' >{} people in queue</div>
-
-
-
                     <button className="btn btn-dark" onClick={handle1Submit}>Enter Queue</button>
 
                     {result && (
@@ -134,7 +95,6 @@ function VQ(){
 
                 <Col md={6} style={{padding:"0",margin:"0"}} >
                     <img className='img-thumbnail' style={{width:"70%",top:"50%", left:"50%"}}src={image} alt={title}></img>
-
                 </Col>
             </Row>
 
@@ -143,4 +103,24 @@ function VQ(){
 
     )
 }
+function sendEmail(e, position, token, Time, email) {
+  e.preventDefault();
+  const formattedTime = new Date(Time).toLocaleString('en-US', {
+    dateStyle: 'medium',
+    timeStyle: 'short',
+  });
+
+  emailjs.send("service_08tc7el", "template_n0nqen9", {
+    token: token,
+    position: position,
+    Time: formattedTime,
+    email: email,
+    }, "Oqq3fldT6vZgObhSK").then((result) => {
+      console.log(result.text);
+    }, (error) => {
+      console.log(error.text);
+    }
+  );
+}
+
 export default VQ;
