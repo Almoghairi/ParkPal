@@ -20,8 +20,8 @@ function ImgMediaCard({ title, image }) {
   return (
     <Card
       sx={{
-        width: { xs: 260, sm: 280, md: 300 },
-        height: { xs: 260, sm: 280, md: 280 },
+        width: { xs: 100, sm: 120, md: 140 },
+        height: { xs: 100, sm: 120, md: 140 },
         backgroundColor: 'black',
         color: 'white',
         display: 'flex',

@@ -107,7 +107,7 @@
     #ticket-page {
         width: 90%;
         padding: 20px;
-        margin-left: 0%;
+        margin-left: 10%;
     }
     #ticket-page h1 {
         font-size: medium;
@@ -132,7 +132,7 @@
     #pay-page {
         width: 90%;
         padding: 20px;
-        margin-left: 0%;
+        margin-left: 10%;
     }
     #pay-page h1 {
         font-size: medium;
