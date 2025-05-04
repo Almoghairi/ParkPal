@@ -67,7 +67,7 @@ function Map() {
           ))}
         </div>
       </Container>
-      <Container className='mt-5'>
+      <Container className='mt-5 d-flex justify-content-center' >
         {activeIndex !== null && (
               <motion.div
                 key={activeIndex}
