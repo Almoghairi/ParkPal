@@ -30,6 +30,8 @@ router.post('/join', async (req, res) => {
     
 
     const estimatedWaitInMs = (queueLength) * 5 * 60 * 1000 === 0 ? 60 * 1000: (queueLength) * 5 * 60 * 1000; // +1 for this visitor
+    const entries = await VQSchema.find({}, 'numberOfPeople');
+    const total = entries.reduce((sum, entry) => sum + numberOfPeople, 0);
 
     const entry = new VQSchema({
       gameName,
@@ -40,6 +42,7 @@ router.post('/join', async (req, res) => {
     await entry.save();
 
     res.status(201).json({
+      totalPositions: total,
       token: entry.token,
       queuePosition: entry.queuePosition,
       numberOfPeople:entry.numberOfPeople,

@@ -27,6 +27,8 @@ function VQ() {
 
 
   const [queueCount, setqueueCount]= useState(0);
+  const [total, setTotal] = useState(0);
+
 
   useEffect(() => {
     if (!queueData?.expires || showBarcode) return;
@@ -127,10 +129,13 @@ function VQ() {
 
       if (!response.ok) throw new Error(await response.text());
       const data = await response.json();
+      setTotal(data.totalPositions);
+
 
       const newQueue = {
         token: data.token,
         position: data.queuePosition,
+        numberOfPeople:data.numberOfPeople,
         gameName: data.gameName,
         expires: data.expires,
         visitor: { name: userId }
@@ -189,8 +194,8 @@ function VQ() {
               <h3>🎉 You're in the Queue!</h3>
               <div className="confirmation-details">
                 <p><strong>Token:</strong> {queueData.token}</p>
-                <p><strong>Position:</strong> #{queueData.position}</p>
-                <p><strong>Estimated Wait:</strong> {queueData.position * 5} minutes</p>
+                <p><strong>Position:</strong> #{total}</p>
+                <p><strong>Estimated Wait:</strong> {total * 5} minutes</p>
                 <p><strong>Expires:</strong> {new Date(queueData.expires).toLocaleString()}</p>
               </div>
               <div>
