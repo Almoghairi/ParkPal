@@ -60,7 +60,7 @@ function App() {
                 <span className="d-none d-lg-inline">Home</span>
                 <i
                   className={`bi ${currentTab === 'home' ? 'bi-house-fill' : 'bi-house'} d-inline d-lg-none px-2`}
-                  style={{ fontSize: 'clamp(1rem, 5vw, 2rem)' }}
+                  style={{ fontSize: 'clamp(1rem, 1.2rem, 1.4rem)' }}
                 ></i>
               </Nav.Link>
 
@@ -68,7 +68,7 @@ function App() {
                 <span className="d-none d-lg-inline">Buy Ticket</span>
                 <i
                   className={`bi ${currentTab === 'ticket' ? 'bi-ticket-perforated-fill' : 'bi-ticket-perforated'} d-inline d-lg-none px-2`}
-                  style={{ fontSize: 'clamp(1rem, 5vw, 2rem)' }}
+                  style={{ fontSize: 'clamp(1rem, 1.2rem, 1.4rem)' }}
                 ></i>
               </Nav.Link>
 
@@ -76,7 +76,7 @@ function App() {
                 <span className="d-none d-lg-inline">Map</span>
                 <i
                   className={`bi ${currentTab === 'map' ? 'bi-map-fill' : 'bi-map'} d-inline d-lg-none px-2`}
-                  style={{ fontSize: 'clamp(1rem, 5vw, 2rem)' }}
+                  style={{ fontSize: 'clamp(1rem, 1.2rem, 1.4rem)' }}
                 ></i>
               </Nav.Link>
 
@@ -84,7 +84,7 @@ function App() {
                 <span className="d-none d-lg-inline">Rides Info</span>
                 <i
                   className={`bi ${currentTab === 'info' ? 'bi-info-circle-fill' : 'bi-info-circle'} d-inline d-lg-none px-2`}
-                  style={{ fontSize: 'clamp(1rem, 5vw, 2rem)' }}
+                  style={{ fontSize: 'clamp(1rem, 1.2rem, 1.4rem)' }}
                 ></i>
               </Nav.Link>
 
@@ -92,7 +92,7 @@ function App() {
                 <span className="d-none d-lg-inline">Contact</span>
                 <i
                   className={`bi ${currentTab === 'contact' ? 'bi-envelope-fill' : 'bi-envelope'} d-inline d-lg-none px-2`}
-                  style={{ fontSize: 'clamp(1rem, 5vw, 2rem)' }}
+                  style={{ fontSize: 'clamp(1rem, 1.2rem, 1.4rem)' }}
                 ></i>
               </Nav.Link>
             </Nav>
