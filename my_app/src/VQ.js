@@ -121,7 +121,6 @@ function VQ() {
         body: JSON.stringify({
           gameName: gameT.title,
           visitor: { name: userId },
-          numberOfpeople:queueCount,
         }),
       });
 
