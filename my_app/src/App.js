@@ -30,6 +30,8 @@ import SignUp from './SignUp';
 import LogoutPage from './LogOut';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import 'bootstrap-icons/font/bootstrap-icons.css';
+
 
 
 function App() {
