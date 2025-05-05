@@ -58,27 +58,27 @@ function App() {
               <Nav className="me-auto flex-row justify-content-around" activeKey={currentTab} onSelect={(key) => navigate(`/${key}`)}>
               <Nav.Link eventKey="home" className="light-text">
                 <span className="d-none d-lg-inline">Home</span>
-                <i className="bi bi-house-fill d-inline d-lg-none"></i>
+                <i className="bi bi-house-fill d-inline d-lg-none fs-4 px-2"></i>
               </Nav.Link>
 
               <Nav.Link eventKey="ticket" className="light-text">
                 <span className="d-none d-lg-inline">Buy Ticket</span>
-                <i className="bi bi-ticket-perforated d-inline d-lg-none"></i>
+                <i className="bi bi-ticket-perforated d-inline d-lg-none fs-4 px-2"></i>
               </Nav.Link>
 
               <Nav.Link eventKey="map" className="light-text">
                 <span className="d-none d-lg-inline">Map</span>
-                <i className="bi bi-map-fill d-inline d-lg-none"></i>
+                <i className="bi bi-map-fill d-inline d-lg-none fs-4 px-2"></i>
               </Nav.Link>
 
               <Nav.Link eventKey="info" className="light-text">
                 <span className="d-none d-lg-inline">Rides Info</span>
-                <i className="bi bi-info-circle-fill d-inline d-lg-none"></i>
+                <i className="bi bi-info-circle-fill d-inline d-lg-none fs-4 px-2"></i>
               </Nav.Link>
 
               <Nav.Link eventKey="contact" className="light-text">
                 <span className="d-none d-lg-inline">Contact</span>
-                <i className="bi bi-envelope-fill d-inline d-lg-none"></i>
+                <i className="bi bi-envelope-fill d-inline d-lg-none fs-4 px-2"></i>
               </Nav.Link>
               </Nav>
               <Nav.Link
@@ -86,7 +86,7 @@ function App() {
                 onClick={() => navigate(authPath)}
               >
                 <span className="d-none d-lg-inline">{authLabel}</span>
-                <i className="bi bi-person-circle d-inline d-lg-none"></i>
+                <i className="bi bi-person-circle d-inline d-lg-none fs-4 "></i>
               </Nav.Link>
           </Container>
         </Navbar>
