@@ -55,7 +55,7 @@ function App() {
         <Navbar expand="lg" variant="dark"> 
           <Container>
             <Navbar.Brand className='light-text'>ParkPal.</Navbar.Brand>
-              <Nav className="me-auto " activeKey={currentTab} onSelect={(key) => navigate(`/${key}`)}>
+              <Nav className="me-auto flex-row justify-content-around" activeKey={currentTab} onSelect={(key) => navigate(`/${key}`)}>
               <Nav.Link eventKey="home" className="light-text">
                 <span className="d-none d-lg-inline">Home</span>
                 <i className="bi bi-house-fill d-inline d-lg-none"></i>
