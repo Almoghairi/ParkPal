@@ -55,32 +55,48 @@ function App() {
         <Navbar expand="lg" variant="dark"> 
           <Container>
             <Navbar.Brand className='light-text'>ParkPal.</Navbar.Brand>
-              <Nav className="me-auto flex-row justify-content-around" activeKey={currentTab} onSelect={(key) => navigate(`/${key}`)}>
+            <Nav className="me-auto flex-row justify-content-around" activeKey={currentTab} onSelect={(key) => navigate(`/${key}`)}>
               <Nav.Link eventKey="home" className="light-text">
                 <span className="d-none d-lg-inline">Home</span>
-                <i className="bi bi-house-fill d-inline d-lg-none fs-4 px-2"></i>
+                <i
+                  className={`bi ${currentTab === 'home' ? 'bi-house-fill' : 'bi-house'} d-inline d-lg-none px-2`}
+                  style={{ fontSize: 'clamp(1rem, 5vw, 2rem)' }}
+                ></i>
               </Nav.Link>
 
               <Nav.Link eventKey="ticket" className="light-text">
                 <span className="d-none d-lg-inline">Buy Ticket</span>
-                <i className="bi bi-ticket-perforated d-inline d-lg-none fs-4 px-2"></i>
+                <i
+                  className={`bi ${currentTab === 'ticket' ? 'bi-ticket-perforated-fill' : 'bi-ticket-perforated'} d-inline d-lg-none px-2`}
+                  style={{ fontSize: 'clamp(1rem, 5vw, 2rem)' }}
+                ></i>
               </Nav.Link>
 
               <Nav.Link eventKey="map" className="light-text">
                 <span className="d-none d-lg-inline">Map</span>
-                <i className="bi bi-map-fill d-inline d-lg-none fs-4 px-2"></i>
+                <i
+                  className={`bi ${currentTab === 'map' ? 'bi-map-fill' : 'bi-map'} d-inline d-lg-none px-2`}
+                  style={{ fontSize: 'clamp(1rem, 5vw, 2rem)' }}
+                ></i>
               </Nav.Link>
 
               <Nav.Link eventKey="info" className="light-text">
                 <span className="d-none d-lg-inline">Rides Info</span>
-                <i className="bi bi-info-circle-fill d-inline d-lg-none fs-4 px-2"></i>
+                <i
+                  className={`bi ${currentTab === 'info' ? 'bi-info-circle-fill' : 'bi-info-circle'} d-inline d-lg-none px-2`}
+                  style={{ fontSize: 'clamp(1rem, 5vw, 2rem)' }}
+                ></i>
               </Nav.Link>
 
               <Nav.Link eventKey="contact" className="light-text">
                 <span className="d-none d-lg-inline">Contact</span>
-                <i className="bi bi-envelope-fill d-inline d-lg-none fs-4 px-2"></i>
+                <i
+                  className={`bi ${currentTab === 'contact' ? 'bi-envelope-fill' : 'bi-envelope'} d-inline d-lg-none px-2`}
+                  style={{ fontSize: 'clamp(1rem, 5vw, 2rem)' }}
+                ></i>
               </Nav.Link>
-              </Nav>
+            </Nav>
+
               <Nav.Link
                 className="light-text"
                 onClick={() => navigate(authPath)}
