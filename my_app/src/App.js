@@ -30,6 +30,8 @@ import SignUp from './SignUp';
 import LogoutPage from './LogOut';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import 'bootstrap-icons/font/bootstrap-icons.css';
+
 
 
 function App() {
@@ -53,25 +55,39 @@ function App() {
         <Navbar expand="lg" variant="dark"> 
           <Container>
             <Navbar.Brand className='light-text'>ParkPal.</Navbar.Brand>
-            <Navbar.Toggle aria-controls="basic-navbar-nav" />
-            <Navbar.Collapse id="basic-navbar-nav">
-              <Nav className="me-auto " activeKey={currentTab} onSelect={(key) => navigate(`/${key}`)}>
-                <Nav.Link className='light-text' eventKey="home">Home</Nav.Link>
-                <Nav.Link className='light-text' eventKey="ticket">Buy Ticket</Nav.Link>
-                <Nav.Link className='light-text' eventKey="map">Map</Nav.Link>
-                <Nav.Link className='light-text' eventKey="info">Rides Info</Nav.Link>
-                <Nav.Link className='light-text' eventKey="contact">Contact</Nav.Link>
+              <Nav className="me-auto flex-row justify-content-around" activeKey={currentTab} onSelect={(key) => navigate(`/${key}`)}>
+              <Nav.Link eventKey="home" className="light-text">
+                <span className="d-none d-lg-inline">Home</span>
+                <i className="bi bi-house-fill d-inline d-lg-none fs-4 px-2"></i>
+              </Nav.Link>
+
+              <Nav.Link eventKey="ticket" className="light-text">
+                <span className="d-none d-lg-inline">Buy Ticket</span>
+                <i className="bi bi-ticket-perforated d-inline d-lg-none fs-4 px-2"></i>
+              </Nav.Link>
+
+              <Nav.Link eventKey="map" className="light-text">
+                <span className="d-none d-lg-inline">Map</span>
+                <i className="bi bi-map-fill d-inline d-lg-none fs-4 px-2"></i>
+              </Nav.Link>
+
+              <Nav.Link eventKey="info" className="light-text">
+                <span className="d-none d-lg-inline">Rides Info</span>
+                <i className="bi bi-info-circle-fill d-inline d-lg-none fs-4 px-2"></i>
+              </Nav.Link>
+
+              <Nav.Link eventKey="contact" className="light-text">
+                <span className="d-none d-lg-inline">Contact</span>
+                <i className="bi bi-envelope-fill d-inline d-lg-none fs-4 px-2"></i>
+              </Nav.Link>
               </Nav>
               <Nav.Link
                 className="light-text"
-                onClick={() => {
-                  navigate(authPath);
-                }}
+                onClick={() => navigate(authPath)}
               >
-                {authLabel}
+                <span className="d-none d-lg-inline">{authLabel}</span>
+                <i className="bi bi-person-circle d-inline d-lg-none fs-4 "></i>
               </Nav.Link>
-
-            </Navbar.Collapse>
           </Container>
         </Navbar>
 
