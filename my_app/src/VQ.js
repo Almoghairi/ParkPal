@@ -175,7 +175,7 @@ function VQ() {
   if (invalidToken) return <p>Invalid or expired token. Please login again.</p>;
 
   const isInAnotherGameQueue =
-    currentQueue && currentQueue.visitor.name === userId && currentQueue.gameName.title !== gameT.title;
+    currentQueue && currentQueue.visitor.name === userId && currentQueue.gameName !== gameT;
 
   return (
     <Row className=" align-items-center" style={{ padding: "0", margin: "0" }}>
