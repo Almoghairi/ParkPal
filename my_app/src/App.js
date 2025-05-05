@@ -52,10 +52,9 @@ function App() {
         <Navbar expand="lg" variant="dark"> 
           <Container>
             <div className="d-flex justify-content-between">
-              <Navbar.Brand className='light-text'>ParkPal.</Navbar.Brand>
+              <Navbar.Brand className='light-text order-1'>ParkPal.</Navbar.Brand>
               <Navbar.Toggle 
-                aria-controls="basic-navbar-nav"
-                className="ms-auto"
+                aria-controls="basic-navbar-nav order-2 ms-auto"
               />
              </div>
             <Navbar.Collapse id="basic-navbar-nav">
