@@ -34,6 +34,7 @@ router.post('/join', async (req, res) => {
     const entry = new VQSchema({
       gameName,
       visitor,
+      numberOfPeople,
       endTime: new Date(Date.now() + estimatedWaitInMs)
     });
     await entry.save();
