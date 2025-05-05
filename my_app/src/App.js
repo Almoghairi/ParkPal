@@ -51,10 +51,12 @@ function App() {
       >
         <Navbar expand="lg" variant="dark"> 
           <Container>
-              <Navbar.Brand className='light-text'>ParkPal.</Navbar.Brand>
-              <Navbar.Toggle 
-                aria-controls="basic-navbar-nav "
-              />
+            <div className="d-flex justify-content-between w-100 align-items-center">
+                <Navbar.Brand className='light-text'>ParkPal.</Navbar.Brand>
+                <Navbar.Toggle 
+                  aria-controls="basic-navbar-nav "
+                />
+            </div>
             <Navbar.Collapse id="basic-navbar-nav">
               <Nav className="me-auto " activeKey={currentTab} onSelect={(key) => navigate(`/${key}`)}>
                 <Nav.Link className='light-text' eventKey="home">Home</Nav.Link>
