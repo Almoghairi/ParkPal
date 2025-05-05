@@ -55,7 +55,8 @@ function App() {
                 <Navbar.Brand className='light-text'>ParkPal.</Navbar.Brand>
                 <Navbar.Toggle 
                   aria-controls="basic-navbar-nav "
-                  className='ms-auto position-absolute end-0'
+                  className="ms-auto"
+                  style={{ width: 'auto' }}
                 />
             <Navbar.Collapse id="basic-navbar-nav">
               <Nav className="me-auto " activeKey={currentTab} onSelect={(key) => navigate(`/${key}`)}>
