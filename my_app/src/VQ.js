@@ -94,7 +94,7 @@ function VQ() {
         const res = await fetch(`https://parkpal-tzjr.onrender.com/api/vq/status/${currentQueue.token}`);
         if (!res.ok) throw new Error("Queue status fetch failed.");
         const data = await res.json();
-        setQueueData({ ...currentQueue, position: data.position, expires: data.gameEnd });
+        setQueueData({ ...currentQueue, position: data.position,numberOfPeople:data.numberOfPeople, expires: data.gameEnd });
       } catch (err) {
         console.error(err);
         localStorage.removeItem('currentQueue');
