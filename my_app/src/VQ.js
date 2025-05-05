@@ -25,6 +25,9 @@ function VQ() {
   const [invalidToken, setInvalidToken] = useState(false);
   const currentQueue = JSON.parse(localStorage.getItem('currentQueue'));
 
+
+  const [queueCount, setqueueCount]= useState(0);
+
   useEffect(() => {
     if (!queueData?.expires || showBarcode) return;
   
@@ -126,6 +129,7 @@ function VQ() {
 
       const newQueue = {
         token: data.token,
+        numberOfPeople: queueCount,
         position: data.queuePosition,
         gameName: data.gameName,
         expires: data.expires,
@@ -136,7 +140,7 @@ function VQ() {
       setQueueData(newQueue);
       const token = localStorage.getItem('token');
       const decoded = jwtDecode(token)
-      sendEmail(data.queuePosition, data.token, data.expires, decoded.email)
+      sendEmail(data.queuePosition,data.totalQueue, data.token, data.expires, decoded.email)
       localStorage.setItem('currentQueue', JSON.stringify(newQueue));
     } catch (err) {
       setError(err.message);
@@ -207,8 +211,12 @@ function VQ() {
             }
 
           </>
-        ) : (
+        ) : (  
           <>
+          <form>
+            <label htmlFor="QueueQuantity">Number:</label>
+            <input type="number" id="QueueQuantity" name="QueueQuantity" min="0" max="10"  onChange={(e) => setqueueCount(Number(e.target.value))} />
+          </form>
             <button
               className="btn btn-dark"
               onClick={handleEnterQueue}
