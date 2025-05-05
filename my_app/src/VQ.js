@@ -121,6 +121,7 @@ function VQ() {
         body: JSON.stringify({
           gameName: gameT.title,
           visitor: { name: userId },
+          numberOfpeople:queueCount,
         }),
       });
 
@@ -129,9 +130,7 @@ function VQ() {
 
       const newQueue = {
         token: data.token,
-        numberOfPeople: queueCount,
         position: data.queuePosition,
-        totalqueue: data.totalQueue,
         gameName: data.gameName,
         expires: data.expires,
         visitor: { name: userId }

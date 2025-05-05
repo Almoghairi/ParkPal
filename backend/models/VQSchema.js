@@ -14,17 +14,10 @@ const VQSchema= new mongoose.Schema({
           maxlength: 50
         }
     },
-    numberOfPeople:{
-      type: Number,
-      min:1
-    },
     queuePosition: {
         type: Number,
         min: 1
       },
-    totalQueue:{
-      type:Number
-    },
       startTime: {
         type: Date,
         default: Date.now
@@ -43,17 +36,7 @@ const VQSchema= new mongoose.Schema({
         unique: true,
         default: () => Math.random().toString(36).substr(2, 9)
     }
-}, { timestamps: true });
-
-VQSchema.pre('save', async function(next) {
-    if (!this.isNew) {
-        const previousOrder = await this.constructor.findById(this._id);
-        if (previousOrder) {
-            this.totalQueue += previousOrder.totalQueue; // Accumulate previous value
-        }
-    }
-    next();
-  });
+});
 VQSchema.pre('save', async function(next) {
     if (!this.queuePosition) {
       const count = await this.constructor.countDocuments({
