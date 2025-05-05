@@ -55,7 +55,7 @@ function App() {
               <Navbar.Brand className='light-text'>ParkPal.</Navbar.Brand>
               <Navbar.Toggle 
                 aria-controls="basic-navbar-nav"
-                className="ms-auto p-0"
+                className="ms-auto"
               />
              </div>
             <Navbar.Collapse id="basic-navbar-nav">
