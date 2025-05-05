@@ -60,6 +60,7 @@ function VQ() {
         setQueueData(prev => ({
           ...prev,
           position: data.position,
+          numberOfPeople:data.numberOfPeople,
           expires: data.gameEnd,
           status: data.status
         }));
