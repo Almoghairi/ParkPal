@@ -24,7 +24,6 @@ const VQSchema= new mongoose.Schema({
       },
     totalQueue:{
       type:Number,
-      min:1
     },
       startTime: {
         type: Date,
