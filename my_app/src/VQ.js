@@ -60,7 +60,6 @@ function VQ() {
         setQueueData(prev => ({
           ...prev,
           position: data.position,
-          numberOfPeople:data.numberOfPeople,
           expires: data.gameEnd,
           status: data.status
         }));
@@ -95,7 +94,7 @@ function VQ() {
         const res = await fetch(`https://parkpal-tzjr.onrender.com/api/vq/status/${currentQueue.token}`);
         if (!res.ok) throw new Error("Queue status fetch failed.");
         const data = await res.json();
-        setQueueData({ ...currentQueue, position: data.position,numberOfPeople:data.numberOfPeople, expires: data.gameEnd });
+        setQueueData({ ...currentQueue, position: data.position, expires: data.gameEnd });
       } catch (err) {
         console.error(err);
         localStorage.removeItem('currentQueue');
@@ -122,7 +121,6 @@ function VQ() {
         body: JSON.stringify({
           gameName: gameT.title,
           visitor: { name: userId },
-          numberOfPeople:queueCount,
         }),
       });
 
@@ -131,6 +129,7 @@ function VQ() {
 
       const newQueue = {
         token: data.token,
+        numberOfPeople: queueCount,
         position: data.queuePosition,
         gameName: data.gameName,
         expires: data.expires,
@@ -175,7 +174,7 @@ function VQ() {
   if (invalidToken) return <p>Invalid or expired token. Please login again.</p>;
 
   const isInAnotherGameQueue =
-    currentQueue && currentQueue.visitor.name === userId && currentQueue.gameName !== gameT;
+    currentQueue && currentQueue.visitor.name === userId && currentQueue.gameName.title !== gameT.title;
 
   return (
     <Row className=" align-items-center" style={{ padding: "0", margin: "0" }}>
@@ -215,7 +214,7 @@ function VQ() {
         ) : (  
           <>
           <form>
-            <label htmlFor="QueueQuantity">Number:</label>
+            <label htmlFor="QueueQuantity">number: </label>
             <input type="number" id="QueueQuantity" name="QueueQuantity" min="0" max="10"  onChange={(e) => setqueueCount(Number(e.target.value))} />
           </form>
             <button
