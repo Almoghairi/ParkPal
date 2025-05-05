@@ -52,49 +52,51 @@ function App() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1.2, ease: 'easeIn' }}
       >
-        <Navbar expand="lg" variant="dark"> 
+        <Navbar expand="lg" variant="dark">
           <Container>
-            <Navbar.Brand className='light-text'>ParkPal.</Navbar.Brand>
-            <Navbar.Toggle aria-controls="basic-navbar-nav" />
-            <Navbar.Collapse id="basic-navbar-nav">
-              <Nav className="me-auto " activeKey={currentTab} onSelect={(key) => navigate(`/${key}`)}>
-              <Nav.Link eventKey="home" className="light-text">
-                <span className="d-none d-lg-inline">Home</span>
-                <i className="bi bi-house-fill d-inline d-lg-none"></i>
+            <Navbar.Brand className="light-text">ParkPal.</Navbar.Brand>
+
+            <Nav
+              className="ms-auto d-flex flex-row justify-content-around w-100"
+              activeKey={currentTab}
+              onSelect={(key) => navigate(`/${key}`)}
+            >
+              <Nav.Link className="light-text px-3" eventKey="home">
+                <span className="d-none d-sm-inline">Home</span>
+                <i className="bi bi-house-fill d-inline d-sm-none"></i>
               </Nav.Link>
 
-              <Nav.Link eventKey="ticket" className="light-text">
-                <span className="d-none d-lg-inline">Buy Ticket</span>
-                <i className="bi bi-ticket-perforated d-inline d-lg-none"></i>
+              <Nav.Link className="light-text px-3" eventKey="ticket">
+                <span className="d-none d-sm-inline">Buy Ticket</span>
+                <i className="bi bi-ticket-perforated d-inline d-sm-none"></i>
               </Nav.Link>
 
-              <Nav.Link eventKey="map" className="light-text">
-                <span className="d-none d-lg-inline">Map</span>
-                <i className="bi bi-map-fill d-inline d-lg-none"></i>
+              <Nav.Link className="light-text px-3" eventKey="map">
+                <span className="d-none d-sm-inline">Map</span>
+                <i className="bi bi-map-fill d-inline d-sm-none"></i>
               </Nav.Link>
 
-              <Nav.Link eventKey="info" className="light-text">
-                <span className="d-none d-lg-inline">Rides Info</span>
-                <i className="bi bi-info-circle-fill d-inline d-lg-none"></i>
+              <Nav.Link className="light-text px-3" eventKey="info">
+                <span className="d-none d-sm-inline">Rides Info</span>
+                <i className="bi bi-info-circle-fill d-inline d-sm-none"></i>
               </Nav.Link>
 
-              <Nav.Link eventKey="contact" className="light-text">
-                <span className="d-none d-lg-inline">Contact</span>
-                <i className="bi bi-envelope-fill d-inline d-lg-none"></i>
+              <Nav.Link className="light-text px-3" eventKey="contact">
+                <span className="d-none d-sm-inline">Contact</span>
+                <i className="bi bi-envelope-fill d-inline d-sm-none"></i>
               </Nav.Link>
-              </Nav>
+
               <Nav.Link
-                className="light-text"
+                className="light-text px-3"
                 onClick={() => navigate(authPath)}
               >
-                <span className="d-none d-lg-inline">{authLabel}</span>
-                <i className="bi bi-person-circle d-inline d-lg-none"></i>
+                <span className="d-none d-sm-inline">{authLabel}</span>
+                <i className="bi bi-person-circle d-inline d-sm-none"></i>
               </Nav.Link>
-
-
-            </Navbar.Collapse>
+            </Nav>
           </Container>
         </Navbar>
+
 
         <div >
           <Routes>
