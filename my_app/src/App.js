@@ -51,7 +51,7 @@ function App() {
       >
         <Navbar expand="lg" variant="dark"> 
           <Container>
-            <Navbar.Brand className='light-text'>ParkPal.</Navbar.Brand>
+            <Navbar.Brand className='light-text d-flex justify-content-between'>ParkPal.</Navbar.Brand>
             <Navbar.Toggle 
               aria-controls="basic-navbar-nav"
               className="ms-auto p-0"
