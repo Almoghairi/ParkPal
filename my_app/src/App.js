@@ -57,37 +57,38 @@ function App() {
             <Navbar.Brand className="light-text">ParkPal.</Navbar.Brand>
 
             <Nav
-              className="ms-auto d-flex flex-row justify-content-around w-100"
+              className="ms-auto d-flex flex-row justify-content-around"
               activeKey={currentTab}
               onSelect={(key) => navigate(`/${key}`)}
             >
-              <Nav.Link className="light-text px-3" eventKey="home">
+              <Nav.Link className="light-text " eventKey="home">
                 <span className="d-none d-sm-inline">Home</span>
                 <i className="bi bi-house-fill d-inline d-sm-none"></i>
               </Nav.Link>
 
-              <Nav.Link className="light-text px-3" eventKey="ticket">
+              <Nav.Link className="light-text " eventKey="ticket">
                 <span className="d-none d-sm-inline">Buy Ticket</span>
                 <i className="bi bi-ticket-perforated d-inline d-sm-none"></i>
               </Nav.Link>
 
-              <Nav.Link className="light-text px-3" eventKey="map">
+              <Nav.Link className="light-text " eventKey="map">
                 <span className="d-none d-sm-inline">Map</span>
                 <i className="bi bi-map-fill d-inline d-sm-none"></i>
               </Nav.Link>
 
-              <Nav.Link className="light-text px-3" eventKey="info">
+              <Nav.Link className="light-text" eventKey="info">
                 <span className="d-none d-sm-inline">Rides Info</span>
                 <i className="bi bi-info-circle-fill d-inline d-sm-none"></i>
               </Nav.Link>
 
-              <Nav.Link className="light-text px-3" eventKey="contact">
+              <Nav.Link className="light-text" eventKey="contact">
                 <span className="d-none d-sm-inline">Contact</span>
                 <i className="bi bi-envelope-fill d-inline d-sm-none"></i>
               </Nav.Link>
-
+            </Nav>
+            <Nav>
               <Nav.Link
-                className="light-text px-3"
+                className="light-text"
                 onClick={() => navigate(authPath)}
               >
                 <span className="d-none d-sm-inline">{authLabel}</span>
