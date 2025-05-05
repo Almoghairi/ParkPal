@@ -7,12 +7,6 @@ import Typewriter from 'typewriter-effect';
 import { motion } from 'framer-motion';
 import ParkAnimation from './ParkAnimation';
 
-
-import { Container, Row, Col } from 'react-bootstrap';
-import { motion } from 'framer-motion';
-import Typewriter from 'typewriter-effect';
-import ParkAnimation from './ParkAnimation';
-
 function Home() {
   const description =
     "ParkPal is a web application designed to streamline and enhance the theme park experience. It enables users to purchase tickets quickly and locate all park attractions through an intuitive map. Comprehensive ride and activity details allow visitors to plan their day effectively. With the Virtual Queue feature, users can secure their place in line without waiting in person, giving them more time to explore other offerings. The application also facilitates user-generated reviews, helping visitors discover the most worthwhile rides. ParkPal is ideal for families, friends, and anyone seeking a more efficient and enjoyable theme park visit, with reduced wait times and increased opportunities for fun.";
