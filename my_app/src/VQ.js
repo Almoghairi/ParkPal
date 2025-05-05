@@ -121,6 +121,7 @@ function VQ() {
         body: JSON.stringify({
           gameName: gameT.title,
           visitor: { name: userId },
+          numberOfPeople: queueCount,
         }),
       });
 
@@ -214,7 +215,7 @@ function VQ() {
         ) : (  
           <>
           <form>
-            <label htmlFor="QueueQuantity">Number:</label>
+            <label htmlFor="QueueQuantity">number: </label>
             <input type="number" id="QueueQuantity" name="QueueQuantity" min="0" max="10"  onChange={(e) => setqueueCount(Number(e.target.value))} />
           </form>
             <button

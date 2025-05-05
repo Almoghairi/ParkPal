@@ -15,7 +15,7 @@ router.use('/join', limiter);
 // POST /api/vq/join
 router.post('/join', async (req, res) => {
   try {
-    const { gameName, visitor} = req.body;
+    const { gameName, visitor } = req.body;
     const queueLength = await VQSchema.countDocuments({
       gameName,
       status: 'waiting'
@@ -27,13 +27,14 @@ router.post('/join', async (req, res) => {
       status: 'waiting'
     });
     if (existing) return res.status(201).json({ error: 'You are already in queue' });
-    const lastPerson = await VQSchema.findOne().sort({ createdAt: -1 });
+    
 
-    const estimatedWaitInMs = (lastPerson.totalQueue) * 5 * 60 * 1000; // +1 for this visitor
+    const estimatedWaitInMs = (queueLength + 1) * 5 * 60 * 1000; // +1 for this visitor
 
     const entry = new VQSchema({
       gameName,
       visitor,
+      numberOfPeople,
       endTime: new Date(Date.now() + estimatedWaitInMs)
     });
     await entry.save();
@@ -41,7 +42,6 @@ router.post('/join', async (req, res) => {
     res.status(201).json({
       token: entry.token,
       queuePosition: entry.queuePosition,
-      totalQueue: entry.totalQueue,
       gameName: entry.gameName,
       expires: entry.endTime
     });
