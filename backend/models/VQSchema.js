@@ -47,7 +47,7 @@ VQSchema.pre('save', async function(next) {
         gameName: this.gameName,
         status: 'waiting'
       });
-      this.queuePosition = this.queuePosition + this.numberOfPeople;
+      this.queuePosition = count + this.numberOfPeople;
     }
     next();
 });
