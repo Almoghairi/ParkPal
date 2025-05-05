@@ -44,6 +44,7 @@ function App() {
     <div className="App" style={{
       color:'#EDEDED',
     }}>
+      
       <motion.div className="NavBar mt-4 mb-5 " 
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
