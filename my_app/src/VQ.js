@@ -130,7 +130,6 @@ function VQ() {
 
       const newQueue = {
         token: data.token,
-        numberOfPeople: queueCount,
         position: data.queuePosition,
         gameName: data.gameName,
         expires: data.expires,
