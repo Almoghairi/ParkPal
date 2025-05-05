@@ -17,15 +17,15 @@ const VQSchema= new mongoose.Schema({
     queuePosition: {
         type: Number,
         min: 1
-      },
-      numberOfPeople:{
-        type:Number,
-        min:1
-      },
-      startTime: {
-        type: Date,
-        default: Date.now
-      },
+    },
+    numberOfPeople:{
+       type:Number,
+      min:1
+    },
+    startTime: {
+      type: Date,
+      default: Date.now
+    },
       endTime: {
         type: Date,
         required: true
@@ -47,8 +47,10 @@ VQSchema.pre('save', async function(next) {
         gameName: this.gameName,
         status: 'waiting'
       });
-      this.queuePosition = count + this.numberOfPeople;
+      this.queuePosition = count + 1;
     }
     next();
 });
+
+
 module.exports=mongoose.model("VQSchema", VQSchema);

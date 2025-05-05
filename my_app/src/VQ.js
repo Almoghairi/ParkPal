@@ -26,7 +26,7 @@ function VQ() {
   const currentQueue = JSON.parse(localStorage.getItem('currentQueue'));
 
 
-  // const [queueCount, setqueueCount]= useState(0);
+  const [queueCount, setqueueCount]= useState(0);
   const [total, setTotal] = useState(0);
 
 
@@ -123,6 +123,7 @@ function VQ() {
         body: JSON.stringify({
           gameName: gameT.title,
           visitor: { name: userId },
+          numberOfPeople: queueCount,
         }),
       });
 
@@ -134,6 +135,7 @@ function VQ() {
       const newQueue = {
         token: data.token,
         position: data.queuePosition,
+        numberOfPeople:data.numberOfPeople,
         gameName: data.gameName,
         expires: data.expires,
         visitor: { name: userId }
