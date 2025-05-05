@@ -23,7 +23,8 @@ const VQSchema= new mongoose.Schema({
         min: 1
       },
     totalQueue:{
-      type:Number
+      type:Number,
+      default:0
     },
       startTime: {
         type: Date,
