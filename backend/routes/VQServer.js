@@ -15,7 +15,7 @@ router.use('/join', limiter);
 // POST /api/vq/join
 router.post('/join', async (req, res) => {
   try {
-    const { gameName, visitor } = req.body;
+    const { gameName, visitor,numberOfPeople } = req.body;
     const queueLength = await VQSchema.countDocuments({
       gameName,
       status: 'waiting'
