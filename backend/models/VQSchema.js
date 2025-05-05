@@ -14,13 +14,13 @@ const VQSchema= new mongoose.Schema({
           maxlength: 50
         }
     },
-    numberOfPeople:{
-      type:Number,
-      min:1
-    },
     queuePosition: {
         type: Number,
         min: 1
+      },
+      numberOfPeople:{
+        type:Number,
+        min:1
       },
       startTime: {
         type: Date,

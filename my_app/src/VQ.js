@@ -215,7 +215,7 @@ function VQ() {
           <>
           <form>
             <label htmlFor="QueueQuantity">number: </label>
-            <input type="number" id="QueueQuantity" name="QueueQuantity" min="0" max="10"  onChange={(e) => setqueueCount(Number(e.target.value))} />
+            <input type="number" id="QueueQuantity" name="QueueQuantity" min="0" max="5"  onChange={(e) => setqueueCount(Number(e.target.value))} />
           </form>
             <button
               className="btn btn-dark"

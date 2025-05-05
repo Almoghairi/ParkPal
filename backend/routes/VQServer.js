@@ -42,6 +42,7 @@ router.post('/join', async (req, res) => {
     res.status(201).json({
       token: entry.token,
       queuePosition: entry.queuePosition,
+      numberOfPeople:entry.numberOfPeople,
       gameName: entry.gameName,
       expires: entry.endTime
     });
