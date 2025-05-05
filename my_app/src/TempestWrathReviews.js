@@ -24,6 +24,29 @@ const TempestWrathReviews = () => {
       return alert('Please provide both a comment and a rating.');
     }
 
+    const PERSPECTIVE_API_KEY = "0153a9520193ed04e4475367d27f00f1b80b23b5";
+    
+    try {
+      const perspectiveResponse = await axios.post(
+        `https://commentanalyzer.googleapis.com/v1alpha1/comments:analyze?key=${PERSPECTIVE_API_KEY}`,
+        {
+          comment: { text: comment.trim() },
+          requestedAttributes: { TOXICITY: {} }
+        }
+      );
+
+      const score = perspectiveResponse.data.attributeScores.TOXICITY.summaryScore.value;
+
+      if (score > 0.75){
+        alert("Your review appears to contain inappropriate content. Please revise it.");
+        return;
+      }
+    } catch (apiErr) {
+      console.error("Error checking content with Perspective API:", apiErr);
+      alert("Error checking comment content. Try again later.");
+      return;
+    }
+
     const newReview = {
       comment,
       rating,
