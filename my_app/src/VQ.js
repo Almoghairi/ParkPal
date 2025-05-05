@@ -194,7 +194,7 @@ function VQ() {
               <h3>🎉 You're in the Queue!</h3>
               <div className="confirmation-details">
                 <p><strong>Token:</strong> {queueData.token}</p>
-                <p><strong>Position:</strong> #{total}</p>
+                <p><strong>Position:</strong> #{data.totalPositions}</p>
                 <p><strong>Estimated Wait:</strong> {total * 5} minutes</p>
                 <p><strong>Expires:</strong> {new Date(queueData.expires).toLocaleString()}</p>
               </div>
@@ -220,7 +220,7 @@ function VQ() {
           <>
           <form>
             <label htmlFor="QueueQuantity">number: </label>
-            <input type="number" id="QueueQuantity" name="QueueQuantity" min="0" max="5"  onChange={(e) => setqueueCount(Number(e.target.value))} />
+            <input type="number" id="QueueQuantity" name="QueueQuantity" min="0" max="5"  onChange={(e) => setqueueCount(e.target.value)} />
           </form>
             <button
               className="btn btn-dark"
