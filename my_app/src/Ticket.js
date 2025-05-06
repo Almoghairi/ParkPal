@@ -51,14 +51,17 @@ function TicketPage() {
             <p>Here you can buy tickets for the theme park.</p>
             <form>
                 <div>
+                    <p>Age 12 - 65</p>
                     <label htmlFor="adultQuantity">Adult Tickets:</label>
                     <input type="number" id="adultQuantity" name="adultQuantity" min="0" max="10" value={adultQuantity} onChange={(e) => setAdultQuantity(Number(e.target.value))} />
                 </div>
                 <div>
+                    <p>Age 0 - 12</p>
                     <label htmlFor="childQuantity">Child Tickets:</label>
                     <input type="number" id="childQuantity" name="childQuantity" min="0" max="10" value={childQuantity} onChange={(e) => setChildQuantity(Number(e.target.value))} />
                 </div>
                 <div>
+                    <p>Age 65+</p>
                     <label htmlFor="seniorQuantity">Senior Tickets:</label>
                     <input type="number" id="seniorQuantity" name="seniorQuantity" min="0" max="10" value={seniorQuantity} onChange={(e) => setSeniorQuantity(Number(e.target.value))} />
                 </div>
@@ -78,19 +81,28 @@ function Pay({ totalAmount, adultQuantity, childQuantity, seniorQuantity }) {
     const cardNumber = event.target.cardNumber.value.trim();
     const expiryDate = event.target.expiryDate.value.trim();
     const cvv = event.target.cvv.value.trim();
-
-
+  
     if (!cardNumber || !expiryDate || !cvv) {
       alert("Please fill in all fields before submitting.");
       return;
     }
-
+  
+    if (!/^\d{16}$/.test(cardNumber)) {
+      alert("Card number must be exactly 16 digits.");
+      return;
+    }
+  
+    if (!/^\d{3}$/.test(cvv)) {
+      alert("CVV must be exactly 3 digits.");
+      return;
+    }
+  
     const token = localStorage.getItem('token');
     if (!token) {
       alert("You must be logged in.");
       return;
     }
-
+  
     let userId;
     try {
       const decoded = jwtDecode(token);
@@ -101,9 +113,9 @@ function Pay({ totalAmount, adultQuantity, childQuantity, seniorQuantity }) {
       alert("Invalid token.");
       return;
     }
-
+  
     const totalTickets = adultQuantity + childQuantity + seniorQuantity;
-
+  
     try {
       const response = await fetch('https://parkpal-tzjr.onrender.com/api/ticket', {
         method: 'POST',
@@ -116,7 +128,7 @@ function Pay({ totalAmount, adultQuantity, childQuantity, seniorQuantity }) {
           numberOfTickets: totalTickets
         })
       });
-
+  
       const data = await response.json();
       if (response.ok) {
         toast.info('Payment submitted and ticket saved successfully!');
@@ -124,13 +136,11 @@ function Pay({ totalAmount, adultQuantity, childQuantity, seniorQuantity }) {
       } else {
         alert(`Error: ${data.message}`);
       }
-      console.log('Ticket saved:', data);
-      console.log('Payment submitted:', { cardNumber, expiryDate, cvv });
     } catch (error) {
       console.error('Error saving ticket:', error);
       alert('An error occurred while saving your ticket.');
     }
-  };
+  };  
 
   return (
     <motion.div 
