@@ -169,7 +169,7 @@ router.post('/join', async (req, res) => {
     if (existing) return res.status(201).json({ error: 'You are already in queue' });
     
 
-    const estimatedWaitInMs = (queueLength + 1) * 5 * 60 * 1000; // +1 for this visitor
+    const estimatedWaitInMs = (queueLength) * 5 * 60 * 1000 === 0 ? 60 * 1000: (queueLength) * 5 * 60 * 1000; // +1 for this visitor
 
     const entry = new VQSchema({
       gameName,
