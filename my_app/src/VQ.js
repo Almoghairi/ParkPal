@@ -488,7 +488,7 @@ function VQ() {
       </Col>
 
       <Col className='mt-5' md={6} style={{ padding: "0", margin: "0" }}>
-        <img className='img-thumbnail' style={{ width: "70%", top: "50%", left: "50%" }} src={image} alt={title} />
+        <img className='img-thumbnail' style={{ width: "70%", top: "50%", left: "50%" }} src={image} alt={gameT.title} />
       </Col>
     </Row>
   );
